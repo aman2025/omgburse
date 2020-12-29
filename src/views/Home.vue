@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Welcome :panelShow="true" />
     <BoxTop />
     <ProductList />
     <div class="OrderRecord">
@@ -12,12 +13,14 @@
 <script>
 import BoxTop from '@/components/BoxTop.vue';
 import ProductList from '@/components/ProductList.vue';
+import Welcome from '@/components/Welcome.vue';
 
 export default {
   name: 'Home',
   components: {
     ProductList,
-    BoxTop
+    BoxTop,
+    Welcome
   }
 };
 </script>

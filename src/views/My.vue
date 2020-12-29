@@ -3,12 +3,13 @@
     <h1 class="my-title">My information</h1>
     <BoxTop top="top" :custom="true" />
     <!-- List component  -->
-    <List :listdatas="lists" style="margin-top: -40px" />
+    <List :listdatas="lists" style="margin-top: 5px" />
     <div class="other">
       <div><img src="../assets/btn-money.png" /></div>
       <div><img src="../assets/btn-service.png" /></div>
       <div><img src="../assets/btn-friend.png" /></div>
     </div>
+    <div class="blank"></div>
   </div>
 </template>
 <script>
@@ -88,6 +89,10 @@ export default {
   height: 18vw;
 }
 .my-title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: #ef4224;
   height: 40px;
   font-size: 19px;
@@ -95,5 +100,8 @@ export default {
   text-align: center;
   color: #fff;
   font-weight: normal;
+}
+.blank {
+  height: 50px;
 }
 </style>
