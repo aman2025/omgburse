@@ -1,17 +1,26 @@
 <template>
   <div class="wraper">
     <i v-if="hasIcon" :class="iconuser"></i>
-    <input type="text" :placeholder="placeholder" :class="'ipt ' + (hasIcon ? 'iptpadd' : '')" />
+    <input type="text" :placeholder="placeholder" v-model="name" :class="'ipt ' + (hasIcon ? 'iptpadd' : '')" />
+    {{ name }}
   </div>
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
   name: 'Button',
   props: {
     placeholder: String,
     iconuser: String,
-    hasIcon: Boolean
+    hasIcon: Boolean,
+    username: String
+  },
+  setup(props) {
+    var name = ref(props.username);
+    return {
+      name
+    };
   }
 };
 </script>

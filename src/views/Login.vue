@@ -1,6 +1,10 @@
 <template>
   <div class="login">
     <div>
+      11 {{ loginForm.username }}
+      <Input placeholder="username" v-model:username="name" iconuser="icon-q01" :hasIcon="true" />
+    </div>
+    <div>
       <input type="text" v-model="loginForm.username" placeholder="用户名" />
       <input type="text" v-model="loginForm.password" placeholder="密码" />
       <button @click="handleSubmit">登录</button>
@@ -10,13 +14,15 @@
 <script>
 import request from '../utils/request';
 import { toRefs, reactive } from 'vue';
+import Input from '@/components/Input.vue';
 
 export default {
   name: 'Login',
-  components: {},
+  components: { Input },
   setup() {
     const state = reactive({
-      loginForm: { username: '', password: '' }
+      loginForm: { username: '', password: '' },
+      name: 'aa'
     });
     return {
       ...toRefs(state)

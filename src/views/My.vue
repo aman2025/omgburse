@@ -3,27 +3,31 @@
     <h1 class="my-title">My information</h1>
     <BoxTop top="top" :custom="true" />
     <!-- List component  -->
-    <List :listdatas="lists" style="margin-top: 5px" />
+    <List :listdatas="lists" :openDialog="openDialog" style="margin-top: 5px" />
     <div class="other">
-      <div><img src="../assets/btn-money.png" /></div>
+      <div @click="singOut"><img src="../assets/btn-money.png" /></div>
       <div><img src="../assets/btn-service.png" /></div>
       <div><img src="../assets/btn-friend.png" /></div>
     </div>
     <div class="blank"></div>
+    <Dialog v-if="show" content="Do you want to Sign out?" title="tip" :hasHead="false" />
   </div>
 </template>
 <script>
 import List from '@/components/List.vue';
 import BoxTop from '@/components/BoxTop.vue';
+import Dialog from '@/components/Dialog.vue';
+import { ref } from 'vue';
 
 export default {
   name: 'My',
   components: {
     List,
-    BoxTop
+    BoxTop,
+    Dialog
   },
   setup() {
-    var lists = [
+    const lists = [
       {
         id: 1,
         title: 'Member system',
@@ -74,9 +78,20 @@ export default {
         url: '/SignOut'
       }
     ];
+    const show = ref(false);
+    const openDialog = ref(() => {
+      show.value = true;
+    });
     return {
-      lists
+      lists,
+      show,
+      openDialog
     };
+  },
+  methods: {
+    singOut() {
+      this.show = true;
+    }
   }
 };
 </script>

@@ -65,7 +65,7 @@ export default {
   text-align: center;
   font-size: 25px;
   font-weight: 700;
-  padding: 35px 0 20px;
+  padding: 15px 0 10px;
 }
 .welcome h3 {
   font-size: 18px;

@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <div v-for="item in listdatas" :key="item.id" :class="'listItem ' + item.className" @click="linkTo(item.url)">
+    <div v-for="item in listdatas" :key="item.id" :class="'listItem ' + item.className" @click="typeof openDialog == 'function' ? openDialog() : linkTo(item.url)">
       <div class="uni-image" style="bottom: 14%; height: 26px;">
         <div></div>
         <img :src="'../assets/' + item.img + '.png'" />
@@ -15,7 +15,8 @@
 export default {
   name: 'List',
   props: {
-    listdatas: Array
+    listdatas: Array,
+    openDialog: Function
   },
   methods: {
     linkTo(url) {
