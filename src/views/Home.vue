@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <!-- <Loading /> -->
     <Welcome :panelShow="true" />
     <BoxTop />
     <ProductList />
@@ -14,6 +15,8 @@
 import BoxTop from '@/components/BoxTop.vue';
 import ProductList from '@/components/ProductList.vue';
 import Welcome from '@/components/Welcome.vue';
+// import Loading from '@/components/Loading.vue';
+// import request from '../utils/request';
 
 export default {
   name: 'Home',
@@ -21,6 +24,18 @@ export default {
     ProductList,
     BoxTop,
     Welcome
+    // Loading
+  },
+  setup() {
+    // request({
+    //   url: 'v1/console/namespaces?namespaceId=',
+    //   beforeSend() {
+    //     // self.openLoading();
+    //   },
+    //   success() {
+    //     self.closeLoading();
+    //   }
+    // });
   }
 };
 </script>
