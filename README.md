@@ -26,5 +26,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 # omgburse
-vue, vuex, vue-router
+vue, vuex, vue-router, ref
 
