@@ -1,7 +1,7 @@
 <template>
   <div class="product-list">
     <div class="product-list-container">
-      <div class="product-item">
+      <div class="product-item" @click="showDetail">
         <div class="title-bg">
           <span class="text">Member</span>
           <span class="text" style="margin-left: 16px">LV1</span>
@@ -33,6 +33,11 @@ export default {
   name: 'ProductList',
   props: {
     msg: String
+  },
+  methods: {
+    showDetail() {
+      this.$router.push('/ProductDetail');
+    }
   }
 };
 </script>

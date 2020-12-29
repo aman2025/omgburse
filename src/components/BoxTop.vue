@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="rightButton">
-          <div class="btnRecharge">
+          <div class="btnRecharge" @click="recharge">
             <div class="image">
               <img src="" />
             </div>
@@ -58,6 +58,11 @@ export default {
   props: {
     top: String,
     custom: Boolean
+  },
+  methods: {
+    recharge() {
+      this.$router.push('/Recharge');
+    }
   }
 };
 </script>

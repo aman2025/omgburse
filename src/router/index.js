@@ -97,6 +97,22 @@ const routes = [
     meta: {
       showTab: false
     }
+  },
+  {
+    path: '/recharge',
+    name: 'Recharge',
+    component: () => import('../views/Recharge.vue'),
+    meta: {
+      showTab: false
+    }
+  },
+  {
+    path: '/productDetail',
+    name: 'ProductDetail',
+    component: () => import('../views/ProductDetail.vue'),
+    meta: {
+      showTab: false
+    }
   }
 ];
 
