@@ -1,6 +1,5 @@
 <template>
   <div class="list">
-    {{ lists }}
     <div v-for="item in listdatas" :key="item.id" :class="'listItem ' + item.className" @click="linkTo(item.url)">
       <div class="uni-image" style="bottom: 14%; height: 26px;">
         <div></div>

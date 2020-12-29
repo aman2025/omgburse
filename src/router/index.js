@@ -89,6 +89,14 @@ const routes = [
     meta: {
       showTab: false
     }
+  },
+  {
+    path: '/withDrawalRecord',
+    name: 'WithdrawalRecord',
+    component: () => import('../views/WithdrawalRecord.vue'),
+    meta: {
+      showTab: false
+    }
   }
 ];
 
