@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height:100%">
     <Tabbar v-if="this.$route.meta.showTab" />
     <router-view />
   </div>
