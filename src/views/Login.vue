@@ -35,6 +35,7 @@ export default {
     handleSubmit() {
       const loginForm = this.loginForm;
       const login = user => request.post('/Api/User/login', user);
+      // todo：validator
       login(loginForm)
         .then(res => {
           // todo: res没有token信息
