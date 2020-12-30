@@ -1,8 +1,8 @@
 <template>
   <div class="login">
     <div>
-      11 {{ loginForm.username }}
-      <Input placeholder="username" v-model:username="name" iconuser="icon-q01" :hasIcon="true" />
+      username： {{ loginForm.username }}
+      <Input placeholder="username" v-model:loginForm="loginForm" iconuser="icon-q01" :hasIcon="true" />
     </div>
     <div>
       <input type="text" v-model="loginForm.username" placeholder="用户名" />
@@ -34,12 +34,16 @@ export default {
   methods: {
     handleSubmit() {
       const loginForm = this.loginForm;
-      const login = user => request.post('http://localhost:8000/v1/auth/users/login', user);
+      const login = user => request.post('/Api/User/login', user);
       login(loginForm)
         .then(res => {
+          // todo: res没有token信息
           localStorage.setItem('token', JSON.stringify(res));
           console.log('login success');
-          this.$router.push('/');
+          if (res.status == 1) {
+            //登录成功
+            this.$router.push('/');
+          }
         })
         .catch(() => {
           alert('login fail!');
@@ -47,7 +51,7 @@ export default {
     },
     testApi() {
       // 测试跨域请求
-      const memberlist = () => request.get('/api/Api/System/Memberlist');
+      const memberlist = () => request.get('/Api/System/Memberlist');
       memberlist().then(res => {
         console.log(res);
       });
