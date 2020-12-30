@@ -9,6 +9,9 @@
       <input type="text" v-model="loginForm.password" placeholder="密码" />
       <button @click="handleSubmit">登录</button>
     </div>
+    <div>
+      <button @click="testApi">测试api</button>
+    </div>
   </div>
 </template>
 <script>
@@ -41,6 +44,13 @@ export default {
         .catch(() => {
           alert('login fail!');
         });
+    },
+    testApi() {
+      // 测试跨域请求
+      const memberlist = () => request.get('/api/Api/System/Memberlist');
+      memberlist().then(res => {
+        console.log(res);
+      });
     }
   }
 };
