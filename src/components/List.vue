@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <div v-for="item in listdatas" :key="item.id" :class="'listItem ' + item.className" @click="typeof openDialog == 'function' ? openDialog() : linkTo(item.url)">
+    <div v-for="item in listdatas" :key="item.id" :class="'listItem ' + item.className" @click="item.url ? linkTo(item.url) : openDialog(item.content, item.callback)">
       <div class="uni-image" style="bottom: 14%; height: 26px;">
         <div></div>
         <img :src="'../assets/' + item.img + '.png'" />
@@ -12,11 +12,18 @@
 </template>
 
 <script>
+import { isFunction } from '../utils/util';
+
 export default {
   name: 'List',
   props: {
     listdatas: Array,
     openDialog: Function
+  },
+  setup() {
+    return {
+      isFunction
+    };
   },
   methods: {
     linkTo(url) {

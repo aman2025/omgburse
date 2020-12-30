@@ -73,3 +73,5 @@ export const generateUrl = (url, params) => {
 export const isPlainObject = obj => {
   return Object.prototype.toString.call(obj) === '[object Object]';
 };
+
+export const isFunction = val => val && Object.prototype.toString.call(val) === '[object Function]';

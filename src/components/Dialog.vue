@@ -4,10 +4,10 @@
       <h3 class="dl-hd">
         <span v-show="hasHead">{{ title }}</span>
       </h3>
-      <h3 class="dl-bd">{{ content }}</h3>
+      <h3 class="dl-bd" @click="sonClick">{{ content }}</h3>
       <h3 class="dl-ft">
-        <button class="cancel" @click="cancel">NO</button>
-        <button class="ok" @click="ok">YES</button>
+        <button class="cancel" @click="onCancel(false)">NO</button>
+        <button class="ok" @click="onOk(false)">YES</button>
       </h3>
     </div>
     <div class="dialog-mask"></div>
@@ -20,9 +20,19 @@ export default {
   props: {
     content: String,
     title: String,
-    hasHead: Boolean
+    hasHead: Boolean,
+    onCancel: Function,
+    onOk: Function
   },
-  setup() {},
+  setup() {
+    // const onOk = () => {
+    //   console.log('onOk...');
+    // };
+    // return {
+    //   onOk
+    // };
+  },
+  methods: {},
   components: {}
 };
 </script>

@@ -5,18 +5,19 @@
     <!-- List component  -->
     <List :listdatas="lists" :openDialog="openDialog" style="margin-top: 5px" />
     <div class="other">
-      <div @click="singOut"><img src="../assets/btn-money.png" /></div>
+      <div @click="makeMoney"><img src="../assets/btn-money.png" /></div>
       <div><img src="../assets/btn-service.png" /></div>
       <div><img src="../assets/btn-friend.png" /></div>
     </div>
     <div class="blank"></div>
-    <Dialog v-if="show" content="Do you want to Sign out?" title="tip" :hasHead="false" />
+    <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false" />
   </div>
 </template>
 <script>
 import List from '@/components/List.vue';
 import BoxTop from '@/components/BoxTop.vue';
 import Dialog from '@/components/Dialog.vue';
+
 import { ref } from 'vue';
 
 export default {
@@ -27,70 +28,113 @@ export default {
     Dialog
   },
   setup() {
+    //sign out
+    const signOut = function() {
+      console.log('signOut...');
+    };
     const lists = [
       {
         id: 1,
         title: 'Member system',
         className: 'member_system',
         img: 'icon_member',
-        url: '/MemberSystem'
+        url: '/MemberSystem',
+        content: ''
       },
       {
         id: 2,
         title: 'Bind bank card',
         className: 'bind_bank_card',
         img: 'icon_bank',
-        url: '/BankInformation'
+        url: '/BankInformation',
+        content: ''
       },
       {
         id: 3,
         title: 'Withdrawal record',
         className: 'withdrawal_record',
         img: 'icon_withdraw',
-        url: '/WithdrawalRecord'
+        url: '/WithdrawalRecord',
+        content: ''
       },
       {
         id: 4,
         title: 'Recharge record',
         className: 'recharge_record',
         img: 'icon_recharge',
-        url: '/RechargeRecord'
+        url: '/RechargeRecord',
+        content: ''
       },
       {
         id: 5,
         title: 'Change Name',
         className: 'change_name',
         img: 'icon_modify',
-        url: '/ChangeName'
+        url: '/ChangeName',
+        content: ''
       },
       {
         id: 6,
         title: 'Introduction',
         className: 'introduction',
         img: 'icon_introduction',
-        url: '/Introduction'
+        url: '/Introduction',
+        content: ''
       },
       {
         id: 7,
         title: 'Sign out',
         className: 'sign_out',
         img: 'icon_signout',
-        url: '/SignOut'
+        url: '',
+        content: 'Do you want to Sign out?',
+        callback: signOut
       }
     ];
+    //dialog show
     const show = ref(false);
-    const openDialog = ref(() => {
+
+    // 响应式回调方法，dialog点击ok
+    const callback = ref(function() {});
+
+    // 打开dialog
+    const openDialog = ref((val, func) => {
+      content.value = val; // 子组件传值给父组件参数
       show.value = true;
+      callback.value = func; //回调callback，重新赋值
     });
+
+    // 确定dialog
+    const onOk = ref(val => {
+      show.value = val;
+      callback.value();
+    });
+    //关闭dialog
+    const onCancel = ref(val => {
+      show.value = val;
+    });
+
+    //定义dialog的内容
+    const content = ref('');
     return {
       lists,
       show,
-      openDialog
+      openDialog,
+      content,
+      onOk,
+      onCancel,
+      callback
     };
   },
   methods: {
-    singOut() {
+    makeMoney() {
+      // console.log('make Money');
       this.show = true;
+      this.content = 'make money';
+      // 设置callback响应方法重新赋值
+      this.callback = function() {
+        console.log('make money callback');
+      };
     }
   }
 };
