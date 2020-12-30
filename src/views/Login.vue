@@ -2,7 +2,11 @@
   <div class="login">
     <div>
       username： {{ loginForm.username }}
-      <Input placeholder="username" v-model:loginForm="loginForm" iconuser="icon-q01" :hasIcon="true" />
+      <Input placeholder="enter username" objkey="username" v-model:formData="loginForm" iconuser="icon-q01" :hasIcon="true" />
+    </div>
+    <div>
+      password： {{ loginForm.password }}
+      <Input placeholder="enter password" objkey="password" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" />
     </div>
     <div>
       <input type="text" v-model="loginForm.username" placeholder="用户名" />
@@ -24,8 +28,7 @@ export default {
   components: { Input },
   setup() {
     const state = reactive({
-      loginForm: { username: '', password: '' },
-      name: 'aa'
+      loginForm: { username: '', password: '' }
     });
     return {
       ...toRefs(state)

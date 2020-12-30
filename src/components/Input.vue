@@ -1,8 +1,7 @@
 <template>
   <div class="wraper">
     <i v-if="hasIcon" :class="iconuser"></i>
-    <input type="text" :placeholder="placeholder" @input="getAccount" :class="'ipt ' + (hasIcon ? 'iptpadd' : '')" />
-    {{ accountObj.username }}
+    <input type="text" :placeholder="placeholder" @input="getValue" :class="'ipt ' + (hasIcon ? 'iptpadd' : '')" />
   </div>
 </template>
 
@@ -14,18 +13,20 @@ export default {
     placeholder: String,
     iconuser: String,
     hasIcon: Boolean,
-    loginForm: String
+    formData: String,
+    objkey: String
   },
   setup(props) {
-    var accountObj = ref(props.loginForm);
+    var newFormData = ref(props.formData);
     return {
-      accountObj
+      newFormData
     };
   },
   methods: {
-    getAccount(event) {
+    getValue(event) {
+      console.log(this.objkey);
       const el = event.target;
-      this.accountObj['username'] = el.value;
+      this.newFormData[this.objkey] = el.value;
     }
   }
 };
