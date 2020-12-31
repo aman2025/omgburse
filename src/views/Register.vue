@@ -10,22 +10,19 @@
       <div>
         <Input placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
       </div>
-      <div class="login-remember">
-        <label for="rm">
-          <input type="checkbox" class="checkbox" id="rm" />
-          Remember password
-        </label>
+      <div>
+        <Input placeholder="Repeat your password" objkey="repassword" v-model:formData="loginForm" iconuser="icon-q06" :hasIcon="true" />
+      </div>
+      <div>
+        <Input placeholder="Enter upid" objkey="upid" v-model:formData="loginForm" iconuser="icon-q03" :hasIcon="true" />
       </div>
       <div class="login-btn-wrap">
-        <Button btnText="Login" theme="primary" class="tipBtn" @click="handleSubmit" />
+        <Button btnText="Register" theme="primary" class="tipBtn" @click="handleSubmit" />
       </div>
       <div class="login-register">
-        <span @click="goRegister">Register</span>
-        <em>|</em>
-        <span>Forget password</span>
+        <span @click="goLogin">Login</span>
       </div>
     </div>
-    <Toast v-show="visible" :message="message" />
   </div>
 </template>
 <script>
@@ -33,16 +30,13 @@
 import { toRefs, reactive } from 'vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
-import Toast from '@/components/Toast.vue';
 
 export default {
-  name: 'Login',
-  components: { Input, Button, Toast },
+  name: 'Register',
+  components: { Input, Button },
   setup() {
     const state = reactive({
-      loginForm: { username: '', password: '' },
-      visible: false,
-      message: ''
+      loginForm: { username: '', password: '', repassword: '', upid: '' }
     });
     return {
       ...toRefs(state)
@@ -50,11 +44,9 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.closeToast();
-      this.showToast('登录成功');
       console.log('login...');
       // const loginForm = this.loginForm;
-      // const login = user => request.post('/Api/User/login', user);
+      // const login = user => request.post('/Api/User/register', user);
       // // todo：validator
       // login(loginForm)
       //   .then(res => {
@@ -70,19 +62,8 @@ export default {
       //     alert('login fail!');
       //   });
     },
-    goRegister() {
-      this.$router.push('/Register');
-    },
-    closeToast() {
-      var timeout = null;
-      timeout && clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        this.visible = false;
-      }, 1500);
-    },
-    showToast(msg) {
-      this.visible = true;
-      this.message = msg;
+    goLogin() {
+      this.$router.push('/Login');
     }
   }
 };
