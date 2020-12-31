@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     getValue(event) {
-      console.log(this.objkey);
       const el = event.target;
       this.newFormData[this.objkey] = el.value;
     }

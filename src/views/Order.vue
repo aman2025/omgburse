@@ -1,5 +1,6 @@
 <template>
   <div class="order">
+    <Loading v-if="isLoad" />
     <OutView title="Order Record" />
     <NoData resultText="No order today" />
     <Button btnText="Go to order finance" class="tipBtn" @click="goHome" />
@@ -7,22 +8,24 @@
   </div>
 </template>
 <script>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import request from '../utils/request';
 import OutView from '@/components/OutView.vue';
 import Button from '@/components/Button.vue';
 import NoData from '@/components/NoData.vue';
+import Loading from '@/components/Loading.vue';
 
 export default {
   name: 'Order',
   components: {
     OutView,
     Button,
-    NoData
+    NoData,
+    Loading
   },
   setup() {
+    const isLoad = ref(false);
     const order = () => {
-      console.log('getOrder...');
       var orderUrl = '/Api/Change/Myorder';
       var params = {
         p: '1',
@@ -31,8 +34,15 @@ export default {
         status: ''
       };
       const getOrder = param => request.get(orderUrl, param);
-      getOrder({ params: params })
+      getOrder({
+        params: params,
+        beforesend() {
+          //axios拦截器中自定义的事件
+          isLoad.value = true;
+        }
+      })
         .then(res => {
+          isLoad.value = false;
           console.log(res.data);
         })
         .catch(() => {});
@@ -41,6 +51,9 @@ export default {
       order();
       console.log('onMounted');
     });
+    return {
+      isLoad
+    };
   },
   methods: {
     goHome() {

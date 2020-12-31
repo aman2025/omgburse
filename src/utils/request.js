@@ -16,7 +16,7 @@ const request = () => {
 
   instance.interceptors.request.use(
     config => {
-      const { url, params, data, method, headers } = config;
+      const { url, params, data, method, headers, beforesend } = config;
       if (!params) {
         config.params = {};
       }
@@ -39,6 +39,8 @@ const request = () => {
         }
         config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
       }
+      //发送请求前的回调事件
+      beforesend && beforesend();
       return config;
     },
     error => Promise.reject(error)

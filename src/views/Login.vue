@@ -56,10 +56,11 @@ export default {
       login(loginForm)
         .then(res => {
           localStorage.setItem('token', JSON.stringify(res.token));
-          console.log('login success');
           if (res.status == 1) {
             //登录成功
             this.$router.push('/');
+          } else {
+            console.log('登录失败！');
           }
         })
         .catch(() => {
