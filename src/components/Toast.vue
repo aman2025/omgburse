@@ -10,7 +10,8 @@ export default {
   name: 'toast',
   props: {
     message: String
-  }
+  },
+  setup() {}
 };
 </script>
 <style lang="scss" scoped>

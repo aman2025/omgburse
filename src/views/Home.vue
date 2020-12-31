@@ -28,7 +28,7 @@ export default {
     Loading
   },
   setup() {
-    var isLoad = ref(true); // 设置isLoad=true响应
+    var isLoad = ref(false); // 设置isLoad=true响应
     // request({
     //   url: 'v1/console/namespaces?namespaceId=',
     //   beforeSend() {
@@ -39,10 +39,10 @@ export default {
     //   }
     // });
     onMounted(() => {
-      setTimeout(() => {
-        // 测试loading隐藏
-        isLoad.value = false;
-      }, 2000);
+      // 测试loading隐藏
+      // setTimeout(() => {
+      //   isLoad.value = false;
+      // }, 1000);
     });
     return {
       isLoad

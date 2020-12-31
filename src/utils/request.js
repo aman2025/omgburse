@@ -20,17 +20,17 @@ const request = () => {
       if (!params) {
         config.params = {};
       }
-      if (!url.includes('auth/users/login')) {
+      if (!url.includes('/Api/User/login')) {
         let token = {};
         try {
-          token = JSON.parse(localStorage.token);
+          // token = JSON.parse(localStorage.token);
+          token = '1'; //测试token
         } catch (e) {
           console.log(e);
           goLogin();
         }
-        const { accessToken = '' } = token;
-        config.params.accessToken = accessToken;
-        config.headers = Object.assign({}, headers, { accessToken });
+        config.params.token = token;
+        config.headers = Object.assign({}, headers, { Authorization: token });
       }
       if (data && isPlainObject(data) && ['post', 'put'].includes(method)) {
         config.data = qs.stringify(data);

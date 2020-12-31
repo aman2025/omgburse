@@ -29,7 +29,7 @@
   </div>
 </template>
 <script>
-// import request from '../utils/request';
+import request from '../utils/request';
 import { toRefs, reactive } from 'vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
@@ -50,25 +50,41 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.closeToast();
-      this.showToast('登录成功');
-      console.log('login...');
-      // const loginForm = this.loginForm;
-      // const login = user => request.post('/Api/User/login', user);
-      // // todo：validator
-      // login(loginForm)
-      //   .then(res => {
-      //     // todo: res没有token信息
-      //     localStorage.setItem('token', JSON.stringify(res));
-      //     console.log('login success');
-      //     if (res.status == 1) {
-      //       //登录成功
-      //       this.$router.push('/');
-      //     }
-      //   })
-      //   .catch(() => {
-      //     alert('login fail!');
-      //   });
+      this.loginValidate();
+      const loginForm = this.loginForm;
+      const login = user => request.post('/Api/User/login', user);
+      login(loginForm)
+        .then(res => {
+          localStorage.setItem('token', JSON.stringify(res.token));
+          console.log('login success');
+          if (res.status == 1) {
+            //登录成功
+            this.$router.push('/');
+          }
+        })
+        .catch(() => {
+          alert('login fail!');
+        });
+    },
+    loginValidate() {
+      var errors = {
+        username: 'username cannot be empty',
+        password: 'password cannot be empty'
+      };
+      var errorsLog = [];
+      var vals = Object.keys(errors).map(key => {
+        const val = this.loginForm[key];
+        if (!val) {
+          errorsLog.push(errors[key]);
+        }
+        return val;
+      });
+      if (vals.filter(v => v).length === 2) {
+        return vals;
+      } else {
+        this.showToast(errorsLog[0]);
+      }
+      return null;
     },
     goRegister() {
       this.$router.push('/Register');

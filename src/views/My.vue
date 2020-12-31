@@ -18,7 +18,7 @@ import List from '@/components/List.vue';
 import BoxTop from '@/components/BoxTop.vue';
 import Dialog from '@/components/Dialog.vue';
 
-import { ref } from 'vue';
+import { ref, getCurrentInstance } from 'vue';
 
 export default {
   name: 'My',
@@ -28,9 +28,11 @@ export default {
     Dialog
   },
   setup() {
+    // 获取vue实例
+    var { ctx } = getCurrentInstance();
     //sign out
-    const signOut = function() {
-      console.log('signOut...');
+    const signOut = () => {
+      ctx.$router.push('/login');
     };
     const lists = [
       {

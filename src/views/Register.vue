@@ -23,20 +23,24 @@
         <span @click="goLogin">Login</span>
       </div>
     </div>
+    <Toast v-show="visible" :message="message" />
   </div>
 </template>
 <script>
-// import request from '../utils/request';
+import request from '../utils/request';
 import { toRefs, reactive } from 'vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
+import Toast from '@/components/Toast.vue';
 
 export default {
   name: 'Register',
-  components: { Input, Button },
+  components: { Input, Button, Toast },
   setup() {
     const state = reactive({
-      loginForm: { username: '', password: '', repassword: '', upid: '' }
+      loginForm: { username: '', password: '', repassword: '', upid: '' },
+      visible: false,
+      message: ''
     });
     return {
       ...toRefs(state)
@@ -44,26 +48,64 @@ export default {
   },
   methods: {
     handleSubmit() {
-      console.log('login...');
-      // const loginForm = this.loginForm;
-      // const login = user => request.post('/Api/User/register', user);
-      // // todo：validator
-      // login(loginForm)
-      //   .then(res => {
-      //     // todo: res没有token信息
-      //     localStorage.setItem('token', JSON.stringify(res));
-      //     console.log('login success');
-      //     if (res.status == 1) {
-      //       //登录成功
-      //       this.$router.push('/');
-      //     }
-      //   })
-      //   .catch(() => {
-      //     alert('login fail!');
-      //   });
+      this.closeToast();
+      var vals = this.loginValidate();
+      if (vals) {
+        // 校验通过并获取值
+        console.log('you');
+        const loginForm = this.loginForm;
+        const login = user => request.post('/Api/User/register', user);
+        // todo：validator
+        login(loginForm)
+          .then(res => {
+            localStorage.setItem('token', JSON.stringify(res.data));
+            if (res.status == 1) {
+              this.$router.push('/');
+            }
+          })
+          .catch(() => {
+            alert('login fail!');
+          });
+      }
     },
     goLogin() {
       this.$router.push('/Login');
+    },
+    loginValidate() {
+      var errors = {
+        username: 'username cannot be empty',
+        password: 'password cannot be empty',
+        repassword: 'repassword cannot be empty',
+        upid: 'upid cannot be empty'
+      };
+      var errorsLog = [];
+      var vals = Object.keys(errors).map(key => {
+        const val = this.loginForm[key];
+        if (!val) {
+          errorsLog.push(errors[key]);
+          console.log(errors[key]);
+        }
+        return val;
+      });
+      console.log(vals);
+      console.log(errorsLog);
+      if (vals.filter(v => v).length === 4) {
+        return vals;
+      } else {
+        this.showToast(errorsLog[0]);
+      }
+      return null;
+    },
+    closeToast() {
+      var timeout = null;
+      timeout && clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        this.visible = false;
+      }, 1500);
+    },
+    showToast(msg) {
+      this.visible = true;
+      this.message = msg;
     }
   }
 };
