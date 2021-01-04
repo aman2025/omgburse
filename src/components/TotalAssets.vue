@@ -1,20 +1,23 @@
 <template>
   <div class="total-assets">
     <div>
-      <h3 class="total-title"><span>6,218.18</span><em>Your total assets</em></h3>
+      <h3 class="total-title">
+        <span>{{ userinfo.ymoney }}</span
+        ><em>Your total assets</em>
+      </h3>
       <div class="total-info">
         <ul>
           <li>
             <h3>Interest</h3>
-            <em>485.00</em>
+            <em>{{ depositLogs.interest }}</em>
           </li>
           <li>
-            <h3>Total revenue()</h3>
-            <em>169.75</em>
+            <h3>Total revenue</h3>
+            <em>{{ depositLogs.total }}</em>
           </li>
           <li>
-            <h3>Yesterday's earnings()</h3>
-            <em>0.00</em>
+            <h3>Yesterday's earnings</h3>
+            <em>{{ depositLogs.yesterday }}</em>
           </li>
         </ul>
       </div>
@@ -25,7 +28,10 @@
 <script>
 export default {
   name: 'TotalAssets',
-  props: {}
+  props: {
+    depositLogs: Object
+  },
+  inject: ['userinfo']
 };
 </script>
 

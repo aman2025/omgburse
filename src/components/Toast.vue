@@ -52,7 +52,7 @@ export default {
   min-width: 100px;
   padding: 12px 10px;
   line-height: 15px;
-  border-radius: 8px;
+  border-radius: 6px;
   white-space: nowrap;
   background-color: rgba(0, 0, 0, 0.6);
   text-align: center;

@@ -4,7 +4,10 @@
       <h3 class="dl-hd">
         <span v-show="hasHead">{{ title }}</span>
       </h3>
-      <h3 class="dl-bd" @click="sonClick">{{ content }}</h3>
+      <h3 class="dl-bd" @click="sonClick">
+        {{ content }}
+        <slot></slot>
+      </h3>
       <h3 class="dl-ft">
         <button class="cancel" @click="onCancel(false)">NO</button>
         <button class="ok" @click="onOk(false)">YES</button>

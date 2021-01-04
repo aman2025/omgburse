@@ -1,11 +1,12 @@
 <template>
   <div class="home">
+    <Loading v-if="isLoad" />
     <BoxTop />
-    <TotalAssets />
+    <TotalAssets :depositLogs="depositList.logs" />
     <div class="line"></div>
     <div class="product-wrap">
       <h3 class="product-type">Product type</h3>
-      <ProductType />
+      <ProductType :depositLists="depositList.lists" />
     </div>
     <Button btnText="Transfer out" theme="primary" class="tipBtn" @click="saveName" />
   </div>
@@ -16,6 +17,8 @@ import BoxTop from '@/components/BoxTop.vue';
 import TotalAssets from '@/components/TotalAssets.vue';
 import ProductType from '@/components/ProductType.vue';
 import Button from '@/components/Button.vue';
+import { ref } from 'vue';
+import request from '../utils/request';
 
 export default {
   name: 'FinancialProduct',
@@ -24,6 +27,27 @@ export default {
     TotalAssets,
     ProductType,
     Button
+  },
+  setup() {
+    const isLoad = ref(false); // 设置isLoad=true响应
+    // 投资列表
+    const depositList = ref([]);
+    const depositUrl = '/Api/Deposit/Lists';
+    const getGoods = () => request.get(depositUrl);
+    getGoods({
+      beforesend() {
+        isLoad.value = true;
+      }
+    })
+      .then(res => {
+        isLoad.value = false;
+        depositList.value = res.data;
+      })
+      .catch(() => {});
+    return {
+      isLoad,
+      depositList
+    };
   }
 };
 </script>

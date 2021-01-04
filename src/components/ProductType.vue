@@ -1,27 +1,121 @@
 <template>
   <div class="product-type">
-    <div class="type-bar">
+    <div class="type-bar" v-for="item in depositLists" :key="item.id">
       <div class="type-bar-name">
         <span>Type</span>
-        <em>A</em>
+        <em>{{ item.title }}</em>
       </div>
       <div class="type-bar-info">
-        <h3>One day: <span>Interest rate +5%</span></h3>
-        <h5>[set] <em>7</em> days</h5>
-        <button>+35%</button>
+        <h3>
+          One day: <span>Interest rate +{{ $filters.toPercent(item.per) }}</span>
+        </h3>
+        <h5>
+          [set] <em>{{ item.days }}</em> days
+        </h5>
+        <button>+{{ $filters.toPercent(item.days * item.per) }}</button>
       </div>
-      <div class="type-bar-btn">
+      <div class="type-bar-btn" @click="onDeposite(item.id)">
         <span>Deposit</span>
       </div>
     </div>
+    <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false">
+      <template v-slot>
+        <div class="depositeText">
+          <span>amount:</span>
+          <input type="text" class="ipt02" v-model="money" />
+        </div>
+      </template>
+    </Dialog>
+    <Loading v-if="isLoad" />
+    <Toast v-show="visible" :message="message" />
   </div>
 </template>
 
 <script>
+import Dialog from '@/components/Dialog.vue';
+import Toast from '@/components/Toast.vue';
+import { reactive, ref, toRefs } from 'vue';
+import request from '../utils/request';
 export default {
   name: 'ProductType',
+  components: {
+    Dialog,
+    Toast
+  },
   props: {
-    productTypes: Array
+    depositLists: Array
+  },
+  setup() {
+    const toastState = reactive({
+      visible: false,
+      message: ''
+    });
+    // 确定dialog
+    const show = ref(false);
+    const content = ref('');
+    const depositeId = ref('');
+    const money = ref('');
+    const callback = ref(function() {});
+    const onOk = ref(val => {
+      show.value = val;
+      callback.value();
+    });
+    //关闭dialog
+    const onCancel = ref(val => {
+      show.value = val;
+    });
+    const isLoad = ref(false);
+    // 点击 deposite
+    const onDeposite = sid => {
+      depositeId.value = sid;
+      show.value = true;
+      callback.value = depositeSubmit;
+    };
+    const depositeSubmit = () => {
+      // 金额为空返回
+      if (!money.value) {
+        toastState.visible = true;
+        toastState.message = 'money can not be empty';
+        return;
+      }
+      const url = '/Api/Deposit/Addthedeposit';
+      const params = {
+        id: depositeId.value,
+        money: money.value
+      };
+      const addthedeposit = param => request.get(url, param);
+      addthedeposit({
+        params: params,
+        beforesend() {
+          isLoad.value = true;
+        }
+      })
+        .then(res => {
+          isLoad.value = false;
+          console.log(res);
+          if (res.status == '1') {
+            toastState.visible = true;
+            toastState.message = 'successful';
+          } else {
+            toastState.visible = true;
+            toastState.message = 'fail';
+          }
+        })
+        .catch(() => {});
+    };
+    //return
+    return {
+      isLoad,
+      content,
+      callback,
+      onOk,
+      onCancel,
+      onDeposite,
+      depositeId,
+      money,
+      ...toRefs(toastState),
+      show
+    };
   },
   methods: {
     deposit() {
@@ -111,5 +205,21 @@ export default {
 }
 .product-type .type-bar .type-bar-btn span {
   color: #16bc05;
+}
+.depositeText {
+  width: 80%;
+  margin: 0 auto;
+}
+.depositeText span {
+  display: block;
+  text-align: left;
+}
+.depositeText .ipt02 {
+  border-radius: 3px;
+  border: 1px solid #999;
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 5px;
 }
 </style>
