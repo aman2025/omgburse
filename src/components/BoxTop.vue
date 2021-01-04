@@ -4,13 +4,13 @@
       <div class="top">
         <div class="leftUserInfo">
           <div class="Hi">Hi</div>
-          <div class="UserName">9560495371</div>
+          <div class="UserName">{{ userinfo.uname }}</div>
           <div class="myTotalAssets">Your Total Assets</div>
-          <div class="money">6,262.28₹</div>
+          <div class="money">{{ userinfo.ymoney }}</div>
           <div class="Virtual" v-if="!custom">Virtual currency</div>
-          <div class="VirtualMoney" v-if="!custom">100.00₹</div>
+          <div class="VirtualMoney" v-if="!custom">{{ userinfo.virtual }}</div>
           <div class="LvImgBg">
-            <div class="lvText">LV3</div>
+            <div class="lvText">{{ userinfo.level }}</div>
           </div>
         </div>
         <div class="rightButton">
@@ -32,18 +32,18 @@
           </div>
         </div>
       </div>
-      <div class="myid" v-if="custom">ID: 71038354</div>
+      <div class="myid" v-if="custom">ID: {{ userinfo.id }}</div>
       <div class="bottom">
         <div class="infoNum" v-if="!custom">
-          <span class="numValue">53.31</span>
+          <span class="numValue">{{ userinfo.yesterday }}</span>
           <span class="text">Yesterday's earnings</span>
         </div>
         <div class="infoNum" v-if="!custom">
-          <span class="numValue">1,193.88</span>
+          <span class="numValue">{{ userinfo.cumulative }}</span>
           <span class="text">Cumulative income</span>
         </div>
         <div class="infoNum" v-if="!custom">
-          <span class="numValue">0.00</span>
+          <span class="numValue">{{ userinfo.today }}</span>
           <span class="text">Today's earnings</span>
         </div>
       </div>
@@ -59,6 +59,7 @@ export default {
     top: String,
     custom: Boolean
   },
+  inject: ['userinfo'],
   methods: {
     recharge() {
       this.$router.push('/Recharge');

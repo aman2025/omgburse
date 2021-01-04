@@ -13,7 +13,7 @@ export default {
     placeholder: String,
     iconuser: String,
     hasIcon: Boolean,
-    formData: String,
+    formData: Object,
     objkey: String
   },
   setup(props) {

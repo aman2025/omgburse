@@ -1,26 +1,26 @@
 <template>
   <div class="product-list">
     <div class="product-list-container">
-      <div class="product-item" @click="showDetail">
+      <div v-for="item in goods" :key="item.id" class="product-item" @click="showDetail">
         <div class="title-bg">
-          <span class="text">Member</span>
-          <span class="text" style="margin-left: 16px">LV1</span>
+          <span class="text">{{ item[0].title }}</span>
+          <span class="text" style="margin-left: 16px">{{ item[0].theusertype }}</span>
         </div>
         <div class="icon">
-          <img src="../assets/product/p1.png" />
+          <img :src="item[0].img" />
           <div class="resize-sensor">
             <div><div></div></div>
             <div><div></div></div>
           </div>
         </div>
-        <div class="uni-image amazon">
-          <img src="../assets/product/shuadan_dt_ymx.png" />
+        <div class="amazon">
+          <img :src="item[0].cateimg" />
         </div>
         <div class="bottom">
-          <div class="price">0.65%</div>
+          <div class="price">{{ $filters.toPercent(item[0].per) }}</div>
           <div style="display: flex; flex-direction: column; justify-content: space-around;">
             <div class="info">Ornaments</div>
-            <div class="price1">500₹ area</div>
+            <div class="price1">{{ item[0].price }}</div>
           </div>
         </div>
       </div>
@@ -32,7 +32,12 @@
 export default {
   name: 'ProductList',
   props: {
-    msg: String
+    goods: Array
+  },
+  computed: {
+    newPer() {
+      return '$' + this.goods.per;
+    }
   },
   methods: {
     showDetail() {

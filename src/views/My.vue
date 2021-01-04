@@ -30,6 +30,8 @@ export default {
   setup() {
     // 获取vue实例
     var { ctx } = getCurrentInstance();
+    // 全局实例函数添加组件
+    // ctx.$Toast({ modelValue: false, message: 'ok', time: 2 });
     //sign out
     const signOut = () => {
       ctx.$router.push('/login');
@@ -128,12 +130,14 @@ export default {
       callback
     };
   },
+  inject: ['userinfo'],
   methods: {
     makeMoney() {
-      // console.log('make Money');
+      console.log(this.userinfo);
+      console.log('make Money');
       this.show = true;
       this.content = 'make money';
-      // 设置callback响应方法重新赋值
+      // 设置callback响应方法重新赋值;
       this.callback = function() {
         console.log('make money callback');
       };

@@ -1,17 +1,41 @@
 <template>
   <transition name="alert-fade">
-    <div class="toast">
-      {{ message }}
-    </div>
+    <div class="toast">{{ message }}</div>
   </transition>
 </template>
 <script>
+import { ref, watch } from 'vue';
 export default {
   name: 'toast',
   props: {
+    toastProps: Object,
     message: String
   },
-  setup() {}
+  setup(props) {
+    console.log(props.message);
+    const msg = ref(props.message);
+    // const newProps = ref(props.toastProps);
+    // if (newProps.value.visible == true) {
+    //   closeToast();
+    // }
+    //close toast
+    // const closeToast = () => {
+    //   var timeout = null;
+    //   timeout && clearTimeout(timeout);
+    //   timeout = setTimeout(() => {
+    //     this.visible = false;
+    //   }, 1500);
+    // };
+    watch([msg], (newValue, oldValue) => {
+      // 函数包含更新前，更新后的值
+      console.log(newValue);
+      console.log(oldValue);
+    });
+    return {
+      msg
+      // ...newProps
+    };
+  }
 };
 </script>
 <style lang="scss" scoped>

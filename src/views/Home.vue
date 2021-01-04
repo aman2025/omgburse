@@ -3,7 +3,7 @@
     <Loading v-if="isLoad" />
     <Welcome :panelShow="true" />
     <BoxTop />
-    <ProductList />
+    <ProductList :goods="goods" />
     <div class="OrderRecord">
       <img src="../assets/shuadan_dt_btn_order.png" />
     </div>
@@ -17,7 +17,8 @@ import ProductList from '@/components/ProductList.vue';
 import Welcome from '@/components/Welcome.vue';
 import Loading from '@/components/Loading.vue';
 // import request from '../utils/request';
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
+import request from '../utils/request';
 
 export default {
   name: 'Home',
@@ -28,24 +29,29 @@ export default {
     Loading
   },
   setup() {
-    var isLoad = ref(false); // 设置isLoad=true响应
-    // request({
-    //   url: 'v1/console/namespaces?namespaceId=',
-    //   beforeSend() {
-    //     // self.openLoading();
-    //   },
-    //   success() {
-    //     self.closeLoading();
-    //   }
-    // });
-    onMounted(() => {
-      // 测试loading隐藏
-      // setTimeout(() => {
-      //   isLoad.value = false;
-      // }, 1000);
-    });
+    const isLoad = ref(false); // 设置isLoad=true响应
+    const goods = ref([]);
+    const goodUrl = '/Api/Index/getgoods';
+    const params = {
+      p: '1',
+      limit: '10'
+    };
+    const getGoods = param => request.get(goodUrl, param);
+    getGoods({
+      params: params,
+      beforesend() {
+        isLoad.value = true;
+      }
+    })
+      .then(res => {
+        isLoad.value = false;
+        console.log(res.data);
+        goods.value = res.data;
+      })
+      .catch(() => {});
     return {
-      isLoad
+      isLoad,
+      goods
     };
   },
   methods: {}

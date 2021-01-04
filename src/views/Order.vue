@@ -55,6 +55,7 @@ export default {
       isLoad
     };
   },
+  inject: ['location'],
   methods: {
     goHome() {
       this.$router.push('/');

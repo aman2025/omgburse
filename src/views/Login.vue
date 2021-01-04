@@ -90,13 +90,6 @@ export default {
     goRegister() {
       this.$router.push('/Register');
     },
-    closeToast() {
-      var timeout = null;
-      timeout && clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        this.visible = false;
-      }, 1500);
-    },
     showToast(msg) {
       this.visible = true;
       this.message = msg;

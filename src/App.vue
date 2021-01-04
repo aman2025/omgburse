@@ -11,6 +11,10 @@ export default {
   name: 'Home',
   components: {
     Tabbar
+  },
+  provide: {
+    //全局数据
+    // location: { username: 'test' }
   }
 };
 </script>
