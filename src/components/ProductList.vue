@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     showDetail() {
-      this.$router.push('/ProductDetail');
+      this.$router.push('/ProductDetail?id=1');
     }
   }
 };
