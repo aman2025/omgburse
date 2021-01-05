@@ -1,38 +1,35 @@
 <template>
   <transition name="alert-fade">
-    <div class="toast">{{ message }}</div>
+    <div class="toast">
+      {{ message }}
+    </div>
   </transition>
 </template>
 <script>
-import { ref, watch } from 'vue';
+import { reactive, toRefs, watchEffect } from 'vue';
 export default {
   name: 'toast',
   props: {
-    toastProps: Object,
     message: String
   },
-  setup(props) {
-    console.log(props.message);
-    const msg = ref(props.message);
-    // const newProps = ref(props.toastProps);
-    // if (newProps.value.visible == true) {
-    //   closeToast();
-    // }
-    //close toast
-    // const closeToast = () => {
-    //   var timeout = null;
-    //   timeout && clearTimeout(timeout);
-    //   timeout = setTimeout(() => {
-    //     this.visible = false;
-    //   }, 1500);
-    // };
-    watch([msg], (newValue, oldValue) => {
-      // 函数包含更新前，更新后的值
-      console.log(newValue);
-      console.log(oldValue);
+  setup() {
+    const state = reactive({
+      msg: '33'
     });
+
+    // aa.value = props.message;
+    //监听
+    watchEffect(() => {
+      console.log(state.msg);
+    });
+    const change = () => {
+      console.log(3);
+      console.log(state.msg);
+    };
+    //return
     return {
-      msg
+      ...toRefs(state),
+      change
       // ...newProps
     };
   }

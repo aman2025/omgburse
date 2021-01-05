@@ -67,7 +67,7 @@ export default {
         title: 'Recharge record',
         className: 'recharge_record',
         img: 'icon_recharge',
-        url: '/RechargeRecord',
+        url: '/WithdrawalRecord',
         content: ''
       },
       {

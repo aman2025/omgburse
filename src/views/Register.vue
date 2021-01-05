@@ -63,7 +63,7 @@ export default {
         console.log(loginForm);
         login(loginForm)
           .then(res => {
-            localStorage.setItem('token', JSON.stringify(res.data));
+            // localStorage.setItem('token', JSON.stringify(res.data));
             if (res.status == 1) {
               this.$router.push('/');
             } else {
