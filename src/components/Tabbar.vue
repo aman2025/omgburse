@@ -40,7 +40,7 @@ nav {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  height: 1rem;
+  height: 50px;
   background-color: #fff;
   z-index: 99999;
 }
@@ -68,7 +68,7 @@ nav a {
   -webkit-box-align: center;
   justify-content: center;
   text-align: center;
-  font-size: 0.2rem;
+  font-size: 10px;
   color: #999;
 }
 nav a i {

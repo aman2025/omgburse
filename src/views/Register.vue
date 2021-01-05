@@ -60,13 +60,14 @@ export default {
         const loginForm = Object.assign({}, this.loginForm, { upid: this.params.upid });
         const url = '/Api/User/register';
         const login = user => request.post(url, user);
-        // todo：validator
         console.log(loginForm);
         login(loginForm)
           .then(res => {
             localStorage.setItem('token', JSON.stringify(res.data));
             if (res.status == 1) {
               this.$router.push('/');
+            } else {
+              this.showToast('upid is error!');
             }
           })
           .catch(() => {
@@ -94,12 +95,16 @@ export default {
       });
       console.log(vals);
       console.log(errorsLog);
-      if (vals.filter(v => v).length === 3) {
-        return vals;
-      } else {
+      if (vals.filter(v => v).length !== 3) {
         this.showToast(errorsLog[0]);
+        return null;
       }
-      return null;
+      const [password, repassword] = ['password', 'repassword'].map(k => this.loginForm[k]);
+      if (password !== repassword) {
+        this.showToast('Passwords are inconsistent!');
+        return null;
+      }
+      return vals;
     },
     closeToast() {
       var timeout = null;

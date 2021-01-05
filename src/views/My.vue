@@ -6,7 +6,7 @@
     <List :listdatas="lists" :openDialog="openDialog" style="margin-top: 5px" />
     <div class="other">
       <div @click="makeMoney"><img src="../assets/btn-money.png" /></div>
-      <div><img src="../assets/btn-service.png" /></div>
+      <div @click="customerService"><img src="../assets/btn-service.png" /></div>
       <div @click="inviteFriends"><img src="../assets/btn-friend.png" /></div>
     </div>
     <div class="blank"></div>
@@ -17,8 +17,8 @@
 import List from '@/components/List.vue';
 import BoxTop from '@/components/BoxTop.vue';
 import Dialog from '@/components/Dialog.vue';
-
-import { ref, getCurrentInstance } from 'vue';
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 
 export default {
   name: 'My',
@@ -28,13 +28,14 @@ export default {
     Dialog
   },
   setup() {
-    // 获取vue实例
-    var { ctx } = getCurrentInstance();
-    // 全局实例函数添加组件
+    // 获取vue实例, 全局实例函数添加组件
+    // var { ctx } = getCurrentInstance();
     // ctx.$Toast({ modelValue: false, message: 'ok', time: 2 });
     //sign out
+    const router = useRouter();
     const signOut = () => {
-      ctx.$router.push('/login');
+      window.localStorage.clear();
+      router.push('/Login');
     };
     const lists = [
       {
@@ -133,18 +134,15 @@ export default {
   inject: ['userinfo'],
   methods: {
     makeMoney() {
-      // console.log(this.userinfo);
-      // this.show = true;
-      // this.content = 'make money';
-      // 设置callback响应方法重新赋值;
-      // this.callback = function() {
-      //   console.log('make money callback');
-      // };
       this.$router.push('/MakeMoney');
+    },
+    customerService() {
+      this.$router.push('/customerService');
     },
     inviteFriends() {
       this.$router.push('/InviteFriends');
-    }
+    },
+    logout() {}
   }
 };
 </script>

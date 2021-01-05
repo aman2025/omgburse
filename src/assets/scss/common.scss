@@ -5,7 +5,7 @@ html {
 	-ms-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-font-smoothing: antialiased;
-	font-size: 50px;  
+	font-size: 14px;  
   }
   *,
   *::before,
@@ -114,10 +114,6 @@ html {
 	position: absolute;
 	left: 0;
 	top: 0;
-  }
-  .resize-sensor > div:last-child > div {
-	// width: 200%;
-	// height: 200%;
   }
   .uni-image{
 	// width: 320px;

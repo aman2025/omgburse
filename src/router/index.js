@@ -137,6 +137,14 @@ const routes = [
     meta: {
       showTab: false
     }
+  },
+  {
+    path: '/customerService',
+    name: 'CustomerService',
+    component: () => import('../views/CustomerService.vue'),
+    meta: {
+      showTab: false
+    }
   }
 ];
 

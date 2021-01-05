@@ -46,6 +46,7 @@ export default {
     })
       .then(res => {
         isLoad.value = false;
+        console.log(res.data);
         state.lists = res.data.lists;
         state.logs = res.data.logs;
       })

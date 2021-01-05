@@ -23,6 +23,7 @@ const request = () => {
       if (!url.includes('/Api/User/login')) {
         let token = {};
         try {
+          // 如果获取不到token，进入catch去goLogin()
           token = JSON.parse(localStorage.token);
           // token = '1'; //测试token
         } catch (e) {
