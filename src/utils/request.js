@@ -23,8 +23,8 @@ const request = () => {
       if (!url.includes('/Api/User/login')) {
         let token = {};
         try {
-          // token = JSON.parse(localStorage.token);
-          token = '1'; //测试token
+          token = JSON.parse(localStorage.token);
+          // token = '1'; //测试token
         } catch (e) {
           console.log(e);
           goLogin();

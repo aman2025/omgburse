@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 
 const routes = [
@@ -121,11 +121,27 @@ const routes = [
     meta: {
       showTab: false
     }
+  },
+  {
+    path: '/inviteFriends',
+    name: 'InviteFriends',
+    component: () => import('../views/InviteFriends.vue'),
+    meta: {
+      showTab: false
+    }
+  },
+  {
+    path: '/makeMoney',
+    name: 'MakeMoney',
+    component: () => import('../views/MakeMoney.vue'),
+    meta: {
+      showTab: false
+    }
   }
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
 });
 

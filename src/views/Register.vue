@@ -8,14 +8,14 @@
         <Input placeholder="Enter your username" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" />
       </div>
       <div>
-        <Input placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
+        <Input type="password" placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
       </div>
       <div>
-        <Input placeholder="Repeat your password" objkey="repassword" v-model:formData="loginForm" iconuser="icon-q06" :hasIcon="true" />
+        <Input type="password" placeholder="Repeat your password" objkey="repassword" v-model:formData="loginForm" iconuser="icon-q06" :hasIcon="true" />
       </div>
-      <div>
+      <!-- <div>
         <Input placeholder="Enter upid" objkey="upid" v-model:formData="loginForm" iconuser="icon-q03" :hasIcon="true" />
-      </div>
+      </div> -->
       <div class="login-btn-wrap">
         <Button btnText="Register" theme="primary" class="tipBtn" @click="handleSubmit" />
       </div>
@@ -32,18 +32,23 @@ import { toRefs, reactive } from 'vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
 import Toast from '@/components/Toast.vue';
+import { useRoute } from 'vue-router';
 
 export default {
   name: 'Register',
   components: { Input, Button, Toast },
   setup() {
+    // const { ctx } = getCurrentInstance();
+    const router = useRoute();
+    const params = router.query;
     const state = reactive({
-      loginForm: { username: '', password: '', repassword: '', upid: '' },
+      loginForm: { username: '', password: '', repassword: '' },
       visible: false,
       message: ''
     });
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      params
     };
   },
   methods: {
@@ -52,10 +57,11 @@ export default {
       var vals = this.loginValidate();
       if (vals) {
         // 校验通过并获取值
-        console.log('you');
-        const loginForm = this.loginForm;
-        const login = user => request.post('/Api/User/register', user);
+        const loginForm = Object.assign({}, this.loginForm, { upid: this.params.upid });
+        const url = '/Api/User/register';
+        const login = user => request.post(url, user);
         // todo：validator
+        console.log(loginForm);
         login(loginForm)
           .then(res => {
             localStorage.setItem('token', JSON.stringify(res.data));
@@ -75,8 +81,7 @@ export default {
       var errors = {
         username: 'username cannot be empty',
         password: 'password cannot be empty',
-        repassword: 'repassword cannot be empty',
-        upid: 'upid cannot be empty'
+        repassword: 'repassword cannot be empty'
       };
       var errorsLog = [];
       var vals = Object.keys(errors).map(key => {
@@ -89,7 +94,7 @@ export default {
       });
       console.log(vals);
       console.log(errorsLog);
-      if (vals.filter(v => v).length === 4) {
+      if (vals.filter(v => v).length === 3) {
         return vals;
       } else {
         this.showToast(errorsLog[0]);

@@ -2,22 +2,24 @@
   <div class="total-assets">
     <div>
       <h3 class="total-title">
-        <span>{{ userinfo.ymoney }}</span
-        ><em>Your total assets</em>
+        <!-- todo: 异步问题,或数据问题 -->
+        <!-- <span>{{ userinfo.ymoney }}</span> -->
+        <span>100.999</span>
+        <em>Your total assets</em>
       </h3>
       <div class="total-info">
         <ul>
           <li>
             <h3>Interest</h3>
-            <em>{{ depositLogs.interest }}</em>
+            <em>{{ newDepositLogs.interest }}</em>
           </li>
           <li>
             <h3>Total revenue</h3>
-            <em>{{ depositLogs.total }}</em>
+            <em>{{ newDepositLogs.total }}</em>
           </li>
           <li>
             <h3>Yesterday's earnings</h3>
-            <em>{{ depositLogs.yesterday }}</em>
+            <em>{{ newDepositLogs.yesterday }}</em>
           </li>
         </ul>
       </div>
@@ -26,12 +28,31 @@
 </template>
 
 <script>
+import { reactive, toRefs } from 'vue';
+import request from '../utils/request';
 export default {
   name: 'TotalAssets',
   props: {
     depositLogs: Object
   },
-  inject: ['userinfo']
+  setup(props) {
+    // 团队
+    const state = reactive({
+      userinfo: {},
+      newDepositLogs: props.depositLogs
+    });
+    const url = '/Api/Account/UserInfo';
+    const getUserinfo = () => request.get(url);
+    getUserinfo()
+      .then(res => {
+        state.userinfo = res.data;
+      })
+      .catch(() => {});
+    // return
+    return {
+      ...toRefs(state)
+    };
+  }
 };
 </script>
 

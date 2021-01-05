@@ -1,25 +1,25 @@
 <template>
   <div class="LVList">
     <div>
-      <div class="item">
+      <div class="item" v-for="item in teamData" :key="item.title">
         <div class="itmeImg">
           <img src="../assets/team_bg_lv.png" alt="" />
         </div>
         <div class="LV">
-          <div class="text">LV1</div>
+          <div class="text">{{ item.title }}</div>
         </div>
         <div class="Bonus">
           <div class="text1">Bonus</div>
-          <div class="text2">+402.25</div>
+          <div class="text2">{{ item.totalmoney }}</div>
         </div>
         <div class="NumberOfPeople">
-          <div class="text2">17</div>
+          <div class="text2">{{ item.num }}</div>
         </div>
         <div class="Details">
           <div class="button">Details</div>
         </div>
       </div>
-      <div style="height: 10px;"></div>
+      <div style="height: 60px;"></div>
     </div>
   </div>
 </template>
@@ -27,7 +27,9 @@
 <script>
 export default {
   name: 'TeamList',
-  props: {}
+  props: {
+    teamData: Array
+  }
 };
 </script>
 
@@ -38,6 +40,8 @@ export default {
 .LVList .item {
   position: relative;
   padding: 8px;
+  height: 31.86vw;
+  margin: 10px 0;
 }
 .LVList .item .itmeImg {
   text-align: center;

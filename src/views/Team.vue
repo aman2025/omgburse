@@ -1,11 +1,12 @@
 <template>
   <div class="myTeam">
+    <Loading v-if="isLoad" />
     <!-- 头部图片 -->
     <div class="title">
       <img src="../assets/shuadan_yqlj_bg.png" />
-      <div class="titleText">ehfj321</div>
+      <div class="titleText">{{ teamList.referral }}</div>
       <div class="copyBtn">copy</div>
-      <div class="titleText" style="top: 43vw;">https://xxx.xxx.com</div>
+      <div class="titleText" style="top: 43vw;">{{ teamList.referralurl }}</div>
       <div class="copyBtn" style="top: 43vw;">copy</div>
     </div>
     <!-- 头部图片 end -->
@@ -29,26 +30,31 @@
           <div><div></div></div>
         </div>
       </div>
-      <div class="text3">19</div>
-      <div class="text4">+402.25</div>
+      <div class="text3">{{ teamList.teamnum }}</div>
+      <div class="text4">{{ teamList.teamcontribution }}</div>
     </div>
     <!-- List component  -->
     <List :listdatas="lists" />
     <!-- team LV list component -->
-    <TeamLVList />
+    <TeamLVList :teamData="teamList.team" />
   </div>
 </template>
 <script>
 import TeamLVList from '@/components/TeamLVList.vue';
 import List from '@/components/List.vue';
+import { ref } from 'vue';
+import Loading from '@/components/Loading.vue';
+import request from '../utils/request';
 
 export default {
   name: 'Team',
   components: {
     TeamLVList,
-    List
+    List,
+    Loading
   },
   setup() {
+    const isLoad = ref(false); // 设置isLoad=true响应
     var lists = [
       {
         id: 1,
@@ -65,8 +71,26 @@ export default {
         url: '/TotalTeamContribution'
       }
     ];
+    // 团队
+    const teamList = ref([]);
+    const url = '/Api/Team/index';
+    const getGoods = () => request.get(url);
+    getGoods({
+      beforesend() {
+        isLoad.value = true;
+      }
+    })
+      .then(res => {
+        isLoad.value = false;
+        console.log(res.data);
+        teamList.value = res.data;
+      })
+      .catch(() => {});
+    // return
     return {
-      lists
+      lists,
+      isLoad,
+      teamList
     };
   }
 };

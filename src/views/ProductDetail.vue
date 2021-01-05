@@ -71,7 +71,8 @@ import OutView from '@/components/OutView.vue';
 import Toast from '@/components/Toast.vue';
 import Loading from '@/components/Loading.vue';
 import Dialog from '@/components/Dialog.vue';
-import { getCurrentInstance, reactive, ref, toRefs } from 'vue';
+import { reactive, ref, toRefs } from 'vue';
+import { useRoute } from 'vue-router';
 import request from '../utils/request';
 
 export default {
@@ -87,13 +88,14 @@ export default {
       visible: false,
       message: ''
     });
-    const { ctx } = getCurrentInstance();
+    const router = useRoute();
     const isLoad = ref(false); // 设置isLoad=true响应
     const goodsDetail = ref({});
     const goodDetailUrl = '/Api/Index/Goodsdetail';
     let orderid = '';
     // 商品详情
-    const params = ctx.$router.currentRoute.value.query;
+    // console.log(router.query); 获取路由参数
+    const params = router.query;
     const getGoodsDetail = param => request.get(goodDetailUrl, param);
     getGoodsDetail({
       params: params,

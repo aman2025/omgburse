@@ -42,6 +42,7 @@ nav {
   display: flex;
   height: 1rem;
   background-color: #fff;
+  z-index: 99999;
 }
 nav::before {
   content: '';

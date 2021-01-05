@@ -19,6 +19,7 @@ import ProductType from '@/components/ProductType.vue';
 import Button from '@/components/Button.vue';
 import { ref } from 'vue';
 import request from '../utils/request';
+import Loading from '@/components/Loading.vue';
 
 export default {
   name: 'FinancialProduct',
@@ -26,7 +27,8 @@ export default {
     BoxTop,
     TotalAssets,
     ProductType,
-    Button
+    Button,
+    Loading
   },
   setup() {
     const isLoad = ref(false); // 设置isLoad=true响应
@@ -41,6 +43,7 @@ export default {
     })
       .then(res => {
         isLoad.value = false;
+        console.log(res.data);
         depositList.value = res.data;
       })
       .catch(() => {});

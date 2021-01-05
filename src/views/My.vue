@@ -7,7 +7,7 @@
     <div class="other">
       <div @click="makeMoney"><img src="../assets/btn-money.png" /></div>
       <div><img src="../assets/btn-service.png" /></div>
-      <div><img src="../assets/btn-friend.png" /></div>
+      <div @click="inviteFriends"><img src="../assets/btn-friend.png" /></div>
     </div>
     <div class="blank"></div>
     <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false" />
@@ -133,14 +133,17 @@ export default {
   inject: ['userinfo'],
   methods: {
     makeMoney() {
-      console.log(this.userinfo);
-      console.log('make Money');
-      this.show = true;
-      this.content = 'make money';
+      // console.log(this.userinfo);
+      // this.show = true;
+      // this.content = 'make money';
       // 设置callback响应方法重新赋值;
-      this.callback = function() {
-        console.log('make money callback');
-      };
+      // this.callback = function() {
+      //   console.log('make money callback');
+      // };
+      this.$router.push('/MakeMoney');
+    },
+    inviteFriends() {
+      this.$router.push('/InviteFriends');
     }
   }
 };

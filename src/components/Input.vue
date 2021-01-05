@@ -1,7 +1,7 @@
 <template>
   <div class="wraper">
     <i v-if="hasIcon" :class="iconuser"></i>
-    <input type="text" :placeholder="placeholder" @input="getValue" :class="'ipt ' + (hasIcon ? 'iptpadd' : '')" />
+    <input :type="type ? type : 'text'" :placeholder="placeholder" @input="getValue" :class="'ipt ' + (hasIcon ? 'iptpadd' : '')" />
   </div>
 </template>
 
@@ -14,6 +14,7 @@ export default {
     iconuser: String,
     hasIcon: Boolean,
     formData: Object,
+    type: String,
     objkey: String
   },
   setup(props) {
