@@ -29,9 +29,7 @@ export default {
     Button
   },
   methods: {
-    save() {
-      // this.$router.replace('/');
-    }
+    save() {}
   }
 };
 </script>

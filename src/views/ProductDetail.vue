@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="btn-group">
-      <button class="btn1">Recharge</button>
+      <button class="btn1" @click="recharge">Recharge</button>
       <button class="btn2" @click="addOrder">Order grabbing</button>
     </div>
     <h3 class="r-title">Today's results</h3>
@@ -151,16 +151,26 @@ export default {
         .then(res => {
           isLoad.value = false;
           if (res.status == '1') {
-            console.log(toastState.visible);
-            toastState.visible = true;
-            toastState.message = 'successful';
+            showToast('successful');
           } else {
-            console.log(toastState.visible);
-            toastState.visible = true;
-            toastState.message = 'fail';
+            showToast('fail');
           }
         })
         .catch(() => {});
+    };
+
+    // 显示隐藏toast
+    const showToast = msg => {
+      if (toastState.visible) {
+        return;
+      }
+      toastState.visible = true;
+      toastState.message = msg;
+      var timeout = null;
+      timeout && clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        toastState.visible = false;
+      }, 1500);
     };
 
     // 确定dialog
@@ -188,7 +198,11 @@ export default {
       ...toRefs(toastState)
     };
   },
-  methods: {}
+  methods: {
+    recharge() {
+      this.$router.push('/Recharge');
+    }
+  }
 };
 </script>
 <style scoped lang="scss">

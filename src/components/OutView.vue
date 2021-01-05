@@ -9,17 +9,26 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
 export default {
   name: 'OutView',
   props: {
     title: String,
     isBack: Boolean
   },
-  methods: {
-    goBack() {
-      this.$router.back(-1);
-    }
-  }
+  setup() {
+    const router = useRouter();
+    console.log(router);
+    const goBack = () => {
+      router.back(-1);
+    };
+
+    // return
+    return {
+      goBack
+    };
+  },
+  methods: {}
 };
 </script>
 

@@ -94,14 +94,26 @@ export default {
           isLoad.value = false;
           console.log(res);
           if (res.status == '1') {
-            toastState.visible = true;
-            toastState.message = 'successful';
+            showToast('successful');
           } else {
-            toastState.visible = true;
-            toastState.message = 'fail';
+            showToast('fail');
           }
         })
         .catch(() => {});
+    };
+
+    // 显示隐藏toast
+    const showToast = msg => {
+      if (toastState.visible) {
+        return;
+      }
+      toastState.visible = true;
+      toastState.message = msg;
+      var timeout = null;
+      timeout && clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        toastState.visible = false;
+      }, 1500);
     };
     //return
     return {

@@ -61,7 +61,6 @@ export default {
             alert('login fail!');
           });
       }
-      // this.$router.replace('/');
     },
     // 表单校验
     accoutValidate() {
