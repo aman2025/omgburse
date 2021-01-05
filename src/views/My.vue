@@ -159,7 +159,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  background-color: #ef4224;
+  background-color: #5096ab;
   height: 40px;
   font-size: 19px;
   line-height: 40px;

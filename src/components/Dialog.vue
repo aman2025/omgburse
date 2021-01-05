@@ -53,7 +53,7 @@ export default {
 }
 .dialog {
   position: relative;
-  border: 2px solid #ef4224;
+  border: 2px solid #5096ab;
   position: fixed;
   border-radius: 5px;
   background-color: #fff;

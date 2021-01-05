@@ -95,7 +95,7 @@ export default {
   z-index: 9;
 }
 .box .fixed {
-  background: #ef4224;
+  background: #5096ab;
   width: 100%;
   -webkit-border-radius: 0px 0px 15px 15px;
   border-radius: 0px 0px 15px 15px;
@@ -133,7 +133,7 @@ export default {
   left: 11px;
   top: 10px;
   font-size: 20px;
-  color: #fbea6e;
+  color: #fff;
 }
 .box .fixed .top .leftUserInfo .UserName {
   position: absolute;
@@ -151,14 +151,14 @@ export default {
   left: 11px;
   top: 39px;
   font-size: 12px;
-  color: #fdb7a8;
+  color: #333333;
 }
 .box .fixed .top .leftUserInfo .money {
   position: absolute;
   left: 11px;
   top: 55px;
   font-size: 20px;
-  color: #fbea6e;
+  color: #fff;
 }
 .box .fixed .top .leftUserInfo .Virtual {
   position: absolute;
@@ -166,7 +166,7 @@ export default {
   left: 145px;
   top: 39px;
   font-size: 12px;
-  color: #fdb7a8;
+  color: #333333;
 }
 .box .fixed .top .leftUserInfo .VirtualMoney {
   position: absolute;

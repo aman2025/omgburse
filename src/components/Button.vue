@@ -50,7 +50,7 @@ button:after {
 }
 .tipBtn {
   margin-top: 1 2px;
-  background: #f0ad4e;
+  background: #5096ac;
   width: 256px;
   height: 42px;
   line-height: 42px;

@@ -35,7 +35,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .outView .title {
-  background: #ff764a;
+  background: #5096ac;
   width: 100%;
   line-height: 34px;
   color: #fff;
