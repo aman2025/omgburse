@@ -3,23 +3,22 @@
     <div>
       <h3 class="total-title">
         <!-- todo: 异步问题,或数据问题 -->
-        <!-- <span>{{ userinfo.ymoney }}</span> -->
-        <span>100.999</span>
+        <span>{{ userinfo.ymoney }}</span>
         <em>Your total assets</em>
       </h3>
       <div class="total-info">
         <ul>
           <li>
             <h3>Interest</h3>
-            <em>{{ newDepositLogs.interest }}</em>
+            <em>{{ depositLogs.interest }}</em>
           </li>
           <li>
             <h3>Total revenue</h3>
-            <em>{{ newDepositLogs.total }}</em>
+            <em>{{ depositLogs.total }}</em>
           </li>
           <li>
             <h3>Yesterday's earnings</h3>
-            <em>{{ newDepositLogs.yesterday }}</em>
+            <em>{{ depositLogs.yesterday }}</em>
           </li>
         </ul>
       </div>
@@ -35,11 +34,10 @@ export default {
   props: {
     depositLogs: Object
   },
-  setup(props) {
+  setup() {
     // 团队
     const state = reactive({
-      userinfo: {},
-      newDepositLogs: props.depositLogs
+      userinfo: {}
     });
     const url = '/Api/Account/UserInfo';
     const getUserinfo = () => request.get(url);

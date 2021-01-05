@@ -2,11 +2,11 @@
   <div class="home">
     <Loading v-if="isLoad" />
     <BoxTop />
-    <TotalAssets :depositLogs="depositList.logs" />
+    <TotalAssets :depositLogs="logs" />
     <div class="line"></div>
     <div class="product-wrap">
       <h3 class="product-type">Product type</h3>
-      <ProductType :depositLists="depositList.lists" />
+      <ProductType :depositLists="lists" />
     </div>
     <Button btnText="Transfer out" theme="primary" class="tipBtn" @click="saveName" />
   </div>
@@ -17,7 +17,7 @@ import BoxTop from '@/components/BoxTop.vue';
 import TotalAssets from '@/components/TotalAssets.vue';
 import ProductType from '@/components/ProductType.vue';
 import Button from '@/components/Button.vue';
-import { ref } from 'vue';
+import { reactive, ref, toRefs } from 'vue';
 import request from '../utils/request';
 import Loading from '@/components/Loading.vue';
 
@@ -33,7 +33,10 @@ export default {
   setup() {
     const isLoad = ref(false); // 设置isLoad=true响应
     // 投资列表
-    const depositList = ref([]);
+    const state = reactive({
+      lists: [],
+      logs: {}
+    });
     const depositUrl = '/Api/Deposit/Lists';
     const getGoods = () => request.get(depositUrl);
     getGoods({
@@ -43,13 +46,13 @@ export default {
     })
       .then(res => {
         isLoad.value = false;
-        console.log(res.data);
-        depositList.value = res.data;
+        state.lists = res.data.lists;
+        state.logs = res.data.logs;
       })
       .catch(() => {});
     return {
       isLoad,
-      depositList
+      ...toRefs(state)
     };
   }
 };
