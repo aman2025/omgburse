@@ -6,32 +6,20 @@
   </transition>
 </template>
 <script>
-import { reactive, toRefs, watchEffect } from 'vue';
+import { watchEffect } from 'vue';
 export default {
   name: 'toast',
   props: {
+    visible: Boolean,
     message: String
   },
-  setup() {
-    const state = reactive({
-      msg: '33'
-    });
-
-    // aa.value = props.message;
-    //监听
+  setup(props) {
+    //监听是否显示
     watchEffect(() => {
-      console.log(state.msg);
+      console.log(props.message);
     });
-    const change = () => {
-      console.log(3);
-      console.log(state.msg);
-    };
     //return
-    return {
-      ...toRefs(state),
-      change
-      // ...newProps
-    };
+    return {};
   }
 };
 </script>
