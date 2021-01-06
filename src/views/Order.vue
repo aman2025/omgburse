@@ -2,16 +2,27 @@
   <div class="order">
     <Loading v-if="isLoad" />
     <OutView title="Order Record" />
-    <NoData resultText="No order today" />
-    <Button btnText="Go to order finance" class="tipBtn" @click="goHome" />
+    <div class="money-wrap">
+      <div class="money" v-for="item in order" :key="item.id">
+        <div class="m-hd">
+          <div class="m-left">title: {{ item.title }}</div>
+          <div class="m-right">{{ item.dateline }}</div>
+        </div>
+        <div class="m-bd">
+          <div class="m-left">money: {{ item.money }}</div>
+          <div class="m-mid">permoney: {{ item.permoney }}</div>
+        </div>
+      </div>
+    </div>
+    <NoData v-if="noData" resultText="No Data!" />
+    <!-- <Button btnText="Go to order finance" class="tipBtn" @click="goHome" /> -->
     <!-- 获取订单 -->
   </div>
 </template>
 <script>
-import { onMounted, ref } from 'vue';
+import { onMounted, reactive, ref, toRefs } from 'vue';
 import request from '../utils/request';
 import OutView from '@/components/OutView.vue';
-import Button from '@/components/Button.vue';
 import NoData from '@/components/NoData.vue';
 import Loading from '@/components/Loading.vue';
 
@@ -19,19 +30,21 @@ export default {
   name: 'Order',
   components: {
     OutView,
-    Button,
     NoData,
     Loading
   },
   setup() {
     const isLoad = ref(false);
+    const state = reactive({
+      order: [],
+      noData: false
+    });
     const order = () => {
-      var orderUrl = '/Api/Change/Myorder';
+      var orderUrl = '/Api/Change/Lists';
       var params = {
         p: '1',
         limit: '10',
-        ord: '',
-        status: ''
+        ord: ''
       };
       const getOrder = param => request.get(orderUrl, param);
       getOrder({
@@ -43,16 +56,19 @@ export default {
       })
         .then(res => {
           isLoad.value = false;
-          console.log(res.data);
+          if (!res.data) {
+            state.noData = true;
+          }
+          state.order = res.data;
         })
         .catch(() => {});
     };
     onMounted(() => {
       order();
-      console.log('onMounted');
     });
     return {
-      isLoad
+      isLoad,
+      ...toRefs(state)
     };
   },
   inject: ['location'],
@@ -63,4 +79,29 @@ export default {
   }
 };
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.money {
+  border-bottom: 1px solid #ddd;
+  padding: 5px 10px;
+}
+.money .m-ft,
+.money .m-bd,
+.money .m-hd {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.money .m-mid {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  padding: 0 10px;
+}
+.money .m-left {
+  width: 200px;
+  white-space: nowrap;
+}
+.money .m-right {
+  white-space: nowrap;
+}
+</style>

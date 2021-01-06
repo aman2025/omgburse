@@ -46,7 +46,8 @@ export default {
       var vals = this.accoutValidate();
       if (vals) {
         // 校验通过并获取值
-        const accoutForm = Object.assign({}, this.accoutForm);
+        const tokenVal = JSON.parse(localStorage.token);
+        const accoutForm = Object.assign({}, this.accoutForm, { token: tokenVal });
         const url = '/Api/Account/Addinfo';
         const addinfo = user => request.post(url, user);
         addinfo(accoutForm)

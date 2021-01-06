@@ -72,7 +72,7 @@ import Toast from '@/components/Toast.vue';
 import Loading from '@/components/Loading.vue';
 import Dialog from '@/components/Dialog.vue';
 import { reactive, ref, toRefs } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import request from '../utils/request';
 
 export default {
@@ -88,6 +88,7 @@ export default {
       visible: false,
       message: ''
     });
+    const routers = useRouter();
     const router = useRoute();
     const isLoad = ref(false); // 设置isLoad=true响应
     const goodsDetail = ref({});
@@ -152,6 +153,7 @@ export default {
           isLoad.value = false;
           if (res.status == '1') {
             showToast('successful');
+            goOrder();
           } else {
             showToast('fail');
           }
@@ -185,6 +187,10 @@ export default {
     const onCancel = ref(val => {
       show.value = val;
     });
+
+    const goOrder = () => {
+      routers.push('/Order');
+    };
 
     return {
       isLoad,

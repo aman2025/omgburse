@@ -4,7 +4,7 @@
     <Welcome :panelShow="false" />
     <BoxTop />
     <ProductList :goods="goods" />
-    <div class="OrderRecord">
+    <div class="OrderRecord" @click="goOrder">
       <img src="../assets/shuadan_dt_btn_order.png" />
     </div>
     <!-- <div class="endText">No other new types of products</div> -->
@@ -55,7 +55,11 @@ export default {
       goods
     };
   },
-  methods: {}
+  methods: {
+    goOrder() {
+      this.$router.push('/Order');
+    }
+  }
 };
 </script>
 <style scoped lang="scss">
