@@ -4,10 +4,10 @@
     <!-- 头部图片 -->
     <div class="title">
       <img src="../assets/shuadan_yqlj_bg.png" />
-      <div class="titleText">{{ teamList.referral }}</div>
-      <div class="copyBtn">copy</div>
-      <div class="titleText" style="top: 43vw;">{{ teamList.referralurl }}</div>
-      <div class="copyBtn" style="top: 43vw;">copy</div>
+      <div class="titleText" ref="txt01">{{ teamList.referral }}</div>
+      <div class="copyBtn" @click="copy(txt01.innerText)">copy</div>
+      <div class="titleText" ref="txt02" style="top: 43vw;">{{ teamList.referralurl }}</div>
+      <div class="copyBtn" style="top: 43vw;" @click="copy(txt02.innerText)">copy</div>
     </div>
     <!-- 头部图片 end -->
     <!-- team size  -->
@@ -37,24 +37,33 @@
     <List :listdatas="lists" />
     <!-- team LV list component -->
     <TeamLVList :teamData="teamList.team" />
+    <Toast v-show="visible" :message="message" />
   </div>
 </template>
 <script>
 import TeamLVList from '@/components/TeamLVList.vue';
 import List from '@/components/List.vue';
-import { ref } from 'vue';
+import { reactive, ref, toRefs } from 'vue';
 import Loading from '@/components/Loading.vue';
 import request from '../utils/request';
+import Toast from '@/components/Toast.vue';
 
 export default {
   name: 'Team',
   components: {
     TeamLVList,
     List,
-    Loading
+    Loading,
+    Toast
   },
   setup() {
+    const state = reactive({
+      visible: false,
+      message: ''
+    });
     const isLoad = ref(false); // 设置isLoad=true响应
+    const txt01 = ref('');
+    const txt02 = ref('');
     var lists = [
       {
         id: 1,
@@ -90,8 +99,41 @@ export default {
     return {
       lists,
       isLoad,
-      teamList
+      txt02,
+      txt01,
+      teamList,
+      ...toRefs(state)
     };
+  },
+  methods: {
+    // 复制
+    copy(val) {
+      //创建一个input框
+      const input = document.createElement('input');
+      document.body.appendChild(input);
+      input.setAttribute('value', val);
+      input.select();
+      if (document.execCommand('copy')) {
+        document.execCommand('copy');
+      }
+      document.body.removeChild(input);
+      this.showToast('copyed successful');
+    },
+    closeToast() {
+      var timeout = null;
+      timeout && clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        this.visible = false;
+      }, 1500);
+    },
+    showToast(msg) {
+      if (this.visible) {
+        return;
+      }
+      this.visible = true;
+      this.message = msg;
+      this.closeToast();
+    }
   }
 };
 </script>
