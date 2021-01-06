@@ -1,7 +1,7 @@
 <template>
   <div class="product-list">
     <div class="product-list-container">
-      <div v-for="item in goods" :key="item.id" class="product-item" @click="showDetail">
+      <div v-for="item in goods" :key="item[0].id" class="product-item" @click="showDetail(item[0].id)">
         <div class="title-bg">
           <span class="text">{{ item[0].title }}</span>
           <span class="text" style="margin-left: 16px">{{ item[0].theusertype }}</span>
@@ -40,8 +40,8 @@ export default {
     }
   },
   methods: {
-    showDetail() {
-      this.$router.push('/ProductDetail?id=1');
+    showDetail(id) {
+      this.$router.push('/ProductDetail?id=' + id);
     }
   }
 };
