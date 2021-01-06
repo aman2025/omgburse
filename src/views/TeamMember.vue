@@ -1,47 +1,67 @@
 <template>
   <div class="recharge">
-    <OutView title="Withdrawal Record" :isBack="true" />
+    <Loading v-if="isLoad" />
+    <OutView title="TeamMember" :isBack="true" />
     <div class="money-wrap">
       <div class="money" v-for="item in moneyData" :key="item.id">
         <div class="m-hd">
-          <div class="m-left">title: {{ item.title }}</div>
-          <div class="m-mid">nowmoney: {{ item.nowmoney }}</div>
-        </div>
-        <div class="m-bd">
-          <div class="m-left">money: {{ item.money }}</div>
-          <div class="m-mid">mtype: {{ item.mtype }}</div>
+          <div class="m-left">nickname: {{ item.nickname }}</div>
+          <div class="m-right">leftmoney: {{ item.leftmoney }}</div>
         </div>
         <div class="m-foot">
           <div class="m-right">dateline: {{ item.dateline }}</div>
         </div>
       </div>
+      <NoData v-if="noData" resultText="No Data!" />
     </div>
   </div>
 </template>
 <script>
 import OutView from '@/components/OutView.vue';
+import Loading from '@/components/Loading.vue';
+import NoData from '@/components/NoData.vue';
 import request from '../utils/request';
-import { reactive, toRefs } from 'vue';
+import { reactive, ref, toRefs } from 'vue';
 
 export default {
-  name: 'WithdrawalRecord',
+  name: 'TeamMember',
   components: {
-    OutView
+    OutView,
+    NoData,
+    Loading
   },
   setup() {
+    const isLoad = ref(false);
     const state = reactive({
-      moneyData: []
+      member: [],
+      noData: false
     });
     // 金额明细
-    var url = '/Api/Money/lists';
-    const getMoney = () => request.get(url);
-    getMoney()
+    var url = '/Api/Team/Member';
+    const params = {
+      p: '',
+      limit: ''
+    };
+    const getMember = param => request.get(url, param);
+    getMember({
+      params: params,
+      beforesend() {
+        isLoad.value = true;
+      }
+    })
       .then(res => {
-        state.moneyData = res.data;
+        isLoad.value = false;
+        // 没数据
+        var data = res.data.data;
+        if (!data) {
+          state.noData = true;
+        }
+        state.member = data;
       })
       .catch(() => {});
     // return
     return {
+      isLoad,
       ...toRefs(state)
     };
   }

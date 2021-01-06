@@ -16,7 +16,7 @@
           <div class="text2">{{ item.num }}</div>
         </div>
         <div class="Details">
-          <div class="button">Details</div>
+          <div class="button" @click="showTeamDetail">Details</div>
         </div>
       </div>
       <div style="height: 60px;"></div>
@@ -29,6 +29,11 @@ export default {
   name: 'TeamList',
   props: {
     teamData: Array
+  },
+  methods: {
+    showTeamDetail() {
+      this.$router.push('/TeamMember?id=');
+    }
   }
 };
 </script>

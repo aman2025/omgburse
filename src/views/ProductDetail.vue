@@ -124,7 +124,7 @@ export default {
           orderid = res.data.orderid;
           if (res.data.status == '1') {
             show.value = true;
-            content.value = `you add a order！orderid： ${orderid}`;
+            content.value = `you add a order！`;
             callback.value = confirm;
           } else {
             show.value = true;
@@ -277,6 +277,7 @@ export default {
   border-radius: 5px;
   line-height: 36px;
   margin: 0 10px;
+  font-size: 16px !important;
 }
 .product-detail .btn-group .btn1 {
   background-color: #4765fd;

@@ -22,7 +22,7 @@
               Recharge
             </div>
           </div>
-          <div class="btnRecharge btnWithdraw">
+          <div class="btnRecharge btnWithdraw" @click="withdraw">
             <div class="image">
               <img src="" />
             </div>
@@ -81,6 +81,9 @@ export default {
   methods: {
     recharge() {
       this.$router.push('/Recharge');
+    },
+    withdraw() {
+      this.$router.push('/Withdraw');
     }
   }
 };

@@ -145,6 +145,22 @@ const routes = [
     meta: {
       showTab: false
     }
+  },
+  {
+    path: '/withdraw',
+    name: 'Withdraw',
+    component: () => import('../views/Withdraw.vue'),
+    meta: {
+      showTab: false
+    }
+  },
+  {
+    path: '/teamMember',
+    name: 'TeamMember',
+    component: () => import('../views/TeamMember.vue'),
+    meta: {
+      showTab: false
+    }
   }
 ];
 
