@@ -46,7 +46,7 @@ export default {
   -webkit-flex-direction: row;
   flex-direction: row;
   font-size: 16px;
-  margin-top: 5px;
+  border-bottom: 1px solid #eee;
   position: relative;
 }
 .list > div.listItem > div > div {

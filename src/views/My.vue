@@ -1,6 +1,6 @@
 <template>
   <div class="my">
-    <h1 class="my-title">My information</h1>
+    <!-- <h1 class="my-title">My information</h1> -->
     <BoxTop top="top" :custom="true" />
     <!-- List component  -->
     <List :listdatas="lists" :openDialog="openDialog" style="margin-top: 5px" />

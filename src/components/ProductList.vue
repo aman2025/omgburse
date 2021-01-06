@@ -49,9 +49,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.product-list {
+  padding-top: 45px;
+}
 .product-list .product-list-container {
   width: 100%;
-  padding-top: 10px;
+  padding-top: 18px;
   padding-left: 2.5%;
   padding-right: 2.5%;
   display: -webkit-box;

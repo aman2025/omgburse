@@ -153,7 +153,7 @@ export default {
 .product-type .type-bar .type-bar-name {
   width: 60px;
   text-align: center;
-  background-color: #ab6ce5;
+  background-color: #2185bf;
 }
 .product-type .type-bar .type-bar-btn {
   position: relative;

@@ -57,7 +57,7 @@ export default {
 <style scoped lang="scss">
 .total-title {
   text-align: center;
-  padding: 10px 10px 0;
+  padding: 58px 10px 0;
 }
 .total-title span {
   font-size: 18px;

@@ -7,7 +7,8 @@
     <div class="OrderRecord">
       <img src="../assets/shuadan_dt_btn_order.png" />
     </div>
-    <div class="endText" @click="go">No other new types of products</div>
+    <!-- <div class="endText">No other new types of products</div> -->
+    <div class="blank"></div>
   </div>
 </template>
 
@@ -72,5 +73,8 @@ export default {
   margin-left: -10%;
   height: 30px;
   line-height: 30px;
+}
+.blank {
+  height: 80px;
 }
 </style>
