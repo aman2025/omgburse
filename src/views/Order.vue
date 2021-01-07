@@ -8,7 +8,7 @@
           <div class="m-left m-title">{{ item.title }}</div>
         </div>
         <div class="m-bd">
-          <div class="m-left">${{ item.money }}</div>
+          <div class="m-left">₽{{ item.money }}</div>
           <div class="m-mid m-tip">({{ item.permoney }})</div>
           <div class="m-right m-dateline">{{ item.dateline }}</div>
         </div>
