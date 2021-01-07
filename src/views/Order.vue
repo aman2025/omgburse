@@ -3,7 +3,8 @@
     <Loading v-if="isLoad" />
     <OutView title="Order Record" />
     <div class="money-wrap">
-      <div class="moneyx" v-for="item in order" :key="item.id">
+      <div class="moneyx hasimg" v-for="item in order" :key="item.id">
+        <!-- <div class="mx-img"><img :src="item.img" /></div> -->
         <div class="m-hd">
           <div class="m-left m-title">{{ item.title }}</div>
         </div>

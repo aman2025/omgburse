@@ -126,10 +126,8 @@ export default {
         .then(res => {
           isLoad.value = false;
           orderid = res.data.orderid;
-          if (res.data.status == '1') {
-            show.value = true;
-            content.value = res.msg;
-            callback.value = confirm;
+          if (res.status == '1') {
+            confirm(orderid);
           } else {
             show.value = true;
             content.value = res.msg;
@@ -140,21 +138,21 @@ export default {
     };
 
     // 确认交易
-    const confirm = () => {
+    const confirm = id => {
       const url = '/Api/Change/Confirm';
       const params = {
-        orderid: orderid
+        orderid: id
       };
+      debugger;
       const getConfirm = param => request.get(url, param);
-      getConfirm({
-        params: params
-      })
+      getConfirm({ params: params })
         .then(res => {
           if (res.status == '1') {
             // 显示动图5秒
             showJiazai(res);
           } else {
-            showToast(res.msg);
+            show.value = true;
+            content.value = res.msg;
           }
         })
         .catch(() => {});

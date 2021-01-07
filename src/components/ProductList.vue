@@ -169,4 +169,14 @@ export default {
   width: 90px;
   margin-top: 3px;
 }
+@media (min-width: 380px) and (max-width: 500px) {
+  .product-list .product-list-container .product-item {
+    width: 44.7vw;
+    height: 55.7vw;
+  }
+  .product-list .product-list-container .product-item .icon {
+    height: 30.2vw;
+    line-height: 30.2vw;
+  }
+}
 </style>
