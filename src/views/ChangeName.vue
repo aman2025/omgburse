@@ -46,7 +46,7 @@ export default {
             if (res.status == 1) {
               this.$router.back(-1);
             } else {
-              this.showToast('add name is error!');
+              this.showToast(res.msg);
             }
           })
           .catch(() => {

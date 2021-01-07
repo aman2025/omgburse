@@ -93,11 +93,7 @@ export default {
         .then(res => {
           isLoad.value = false;
           console.log(res);
-          if (res.status == '1') {
-            showToast('successful');
-          } else {
-            showToast('fail');
-          }
+          showToast(res.msg);
         })
         .catch(() => {});
     };

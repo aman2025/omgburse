@@ -60,9 +60,9 @@ export default {
         Tixian(withdrawForm)
           .then(res => {
             if (res.status == 0) {
-              this.showToast('account is error');
+              this.showToast(res.msg);
             } else {
-              this.showToast('successful');
+              this.showToast(res.msg);
               this.$router.back(-1);
             }
           })

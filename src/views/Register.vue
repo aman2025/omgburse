@@ -67,7 +67,7 @@ export default {
             if (res.status == 1) {
               this.$router.push('/');
             } else {
-              this.showToast('upid is error!');
+              this.showToast(res.msg);
             }
           })
           .catch(() => {

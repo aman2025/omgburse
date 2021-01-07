@@ -55,7 +55,7 @@ export default {
             if (res.status == 1) {
               this.$router.back(-1);
             } else {
-              this.showToast('add info is error!');
+              this.showToast(res.msg);
             }
           })
           .catch(() => {
