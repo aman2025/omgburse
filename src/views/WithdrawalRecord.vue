@@ -3,9 +3,9 @@
     <Loading v-if="isLoad" />
     <OutView title="Withdrawal Record" :isBack="true" />
     <div class="money-wrap">
-      <div class="money" v-for="item in moneyData" :key="item.id">
+      <div class="moneyx" v-for="item in moneyData" :key="item.id">
         <div class="m-hd">
-          <div class="m-left">title: {{ item.title }}</div>
+          <div class="m-left m-title">title: {{ item.title }}</div>
           <div class="m-mid">nowmoney: {{ item.nowmoney }}</div>
         </div>
         <div class="m-bd">
@@ -65,29 +65,4 @@ export default {
   }
 };
 </script>
-<style scoped lang="scss">
-.money {
-  border-bottom: 1px solid #ddd;
-  padding: 5px 10px;
-}
-.money .m-ft,
-.money .m-bd,
-.money .m-hd {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-}
-.money .m-mid {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
-  padding: 0 10px;
-}
-.money .m-left {
-  width: 200px;
-  white-space: nowrap;
-}
-.money .m-right {
-  white-space: nowrap;
-}
-</style>
+<style scoped lang="scss"></style>
