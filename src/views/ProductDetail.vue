@@ -65,6 +65,9 @@
   </div>
   <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false" />
   <Toast v-show="visible" :message="message" />
+  <div class="loadingpic" v-show="isJiazai">
+    <img src="../assets/jiazai.gif" />
+  </div>
 </template>
 <script>
 import OutView from '@/components/OutView.vue';
@@ -72,7 +75,7 @@ import Toast from '@/components/Toast.vue';
 import Loading from '@/components/Loading.vue';
 import Dialog from '@/components/Dialog.vue';
 import { reactive, ref, toRefs } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import request from '../utils/request';
 
 export default {
@@ -86,9 +89,9 @@ export default {
   setup() {
     const toastState = reactive({
       visible: false,
-      message: ''
+      message: '',
+      isJiazai: false
     });
-    const routers = useRouter();
     const router = useRoute();
     const isLoad = ref(false); // 设置isLoad=true响应
     const goodsDetail = ref({});
@@ -144,16 +147,12 @@ export default {
       };
       const getConfirm = param => request.get(url, param);
       getConfirm({
-        params: params,
-        beforesend() {
-          isLoad.value = true;
-        }
+        params: params
       })
         .then(res => {
-          isLoad.value = false;
           if (res.status == '1') {
-            showToast('successful');
-            goOrder();
+            // 显示动图5秒
+            showJiazai();
           } else {
             showToast('fail');
           }
@@ -174,6 +173,17 @@ export default {
         toastState.visible = false;
       }, 1500);
     };
+    // 显示动图5秒
+    const showJiazai = () => {
+      if (toastState.isJiazai) {
+        return;
+      }
+      toastState.isJiazai = true;
+      setTimeout(() => {
+        toastState.isJiazai = false;
+        showToast('successful');
+      }, 5000);
+    };
 
     // 确定dialog
     const show = ref(false);
@@ -187,10 +197,6 @@ export default {
     const onCancel = ref(val => {
       show.value = val;
     });
-
-    const goOrder = () => {
-      routers.push('/Order');
-    };
 
     return {
       isLoad,
@@ -317,5 +323,16 @@ export default {
 .product-detail .result-group .result-info li span {
   padding: 10px 0 5px;
   display: block;
+}
+.loadingpic {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 55px;
+  text-align: center;
+  z-index: 99999;
 }
 </style>
