@@ -128,11 +128,11 @@ export default {
           orderid = res.data.orderid;
           if (res.data.status == '1') {
             show.value = true;
-            content.value = `you add a order！`;
+            content.value = res.msg;
             callback.value = confirm;
           } else {
             show.value = true;
-            content.value = 'add fail！';
+            content.value = res.msg;
           }
           // 返回的orderid
         })
@@ -152,9 +152,9 @@ export default {
         .then(res => {
           if (res.status == '1') {
             // 显示动图5秒
-            showJiazai();
+            showJiazai(res);
           } else {
-            showToast('fail');
+            showToast(res.msg);
           }
         })
         .catch(() => {});
@@ -174,14 +174,14 @@ export default {
       }, 1500);
     };
     // 显示动图5秒
-    const showJiazai = () => {
+    const showJiazai = res => {
       if (toastState.isJiazai) {
         return;
       }
       toastState.isJiazai = true;
       setTimeout(() => {
         toastState.isJiazai = false;
-        showToast('successful');
+        showToast(res.msg);
       }, 5000);
     };
 
