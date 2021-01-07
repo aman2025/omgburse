@@ -14,7 +14,9 @@ export default {
   },
   provide: {
     //全局数据
-    // location: { username: 'test' }
+    location: { username: 'test' },
+    // 全局显示属性
+    visibleGlobal: { isVisible: true, text: '1122globaltext...' }
   }
 };
 </script>

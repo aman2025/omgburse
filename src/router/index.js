@@ -161,6 +161,14 @@ const routes = [
     meta: {
       showTab: false
     }
+  },
+  {
+    path: '/messageTest',
+    name: 'MessageTest',
+    component: () => import('../views/MessageTest.vue'),
+    meta: {
+      showTab: false
+    }
   }
 ];
 
