@@ -59,7 +59,7 @@ export default {
         title: 'Withdrawal record',
         className: 'withdrawal_record',
         img: 'icon_withdraw',
-        url: '/WithdrawalRecord',
+        url: '/WithdrawalRecord?type=2',
         content: ''
       },
       {
@@ -67,7 +67,7 @@ export default {
         title: 'Recharge record',
         className: 'recharge_record',
         img: 'icon_recharge',
-        url: '/WithdrawalRecord',
+        url: '/WithdrawalRecord?type=1',
         content: ''
       },
       {

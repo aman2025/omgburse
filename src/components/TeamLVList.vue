@@ -1,7 +1,7 @@
 <template>
   <div class="LVList">
     <div>
-      <div class="item" v-for="item in teamData" :key="item.title">
+      <div class="item" v-for="(item, index) in teamData" :key="index">
         <div class="itmeImg">
           <img src="../assets/team_bg_lv.png" alt="" />
         </div>
@@ -16,7 +16,7 @@
           <div class="text2">{{ item.num }}</div>
         </div>
         <div class="Details">
-          <div class="button" @click="showTeamDetail">Details</div>
+          <div class="button" @click="showTeamDetail(index + 1)">Details</div>
         </div>
       </div>
       <div style="height: 60px;"></div>
@@ -31,8 +31,8 @@ export default {
     teamData: Array
   },
   methods: {
-    showTeamDetail() {
-      this.$router.push('/TeamMember?id=');
+    showTeamDetail(ord) {
+      this.$router.push('/TeamMember?ord=' + ord);
     }
   }
 };

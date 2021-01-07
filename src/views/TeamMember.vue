@@ -22,6 +22,7 @@ import Loading from '@/components/Loading.vue';
 import NoData from '@/components/NoData.vue';
 import request from '../utils/request';
 import { reactive, ref, toRefs } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default {
   name: 'TeamMember',
@@ -31,6 +32,8 @@ export default {
     Loading
   },
   setup() {
+    const router = useRoute();
+    const routerQuery = router.query;
     const isLoad = ref(false);
     const state = reactive({
       member: [],
@@ -40,7 +43,8 @@ export default {
     var url = '/Api/Team/Member';
     const params = {
       p: '',
-      limit: ''
+      limit: '',
+      ord: routerQuery.ord
     };
     const getMember = param => request.get(url, param);
     getMember({

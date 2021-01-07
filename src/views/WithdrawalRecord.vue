@@ -1,5 +1,6 @@
 <template>
   <div class="recharge">
+    <Loading v-if="isLoad" />
     <OutView title="Withdrawal Record" :isBack="true" />
     <div class="money-wrap">
       <div class="money" v-for="item in moneyData" :key="item.id">
@@ -20,23 +21,40 @@
 </template>
 <script>
 import OutView from '@/components/OutView.vue';
+import Loading from '@/components/Loading.vue';
 import request from '../utils/request';
-import { reactive, toRefs } from 'vue';
+import { reactive, ref, toRefs } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default {
   name: 'WithdrawalRecord',
   components: {
-    OutView
+    OutView,
+    Loading
   },
   setup() {
+    const router = useRoute();
+    const routerQuery = router.query;
+    const isLoad = ref(false);
     const state = reactive({
       moneyData: []
     });
     // 金额明细
     var url = '/Api/Money/lists';
-    const getMoney = () => request.get(url);
-    getMoney()
+    const params = {
+      p: '1',
+      limit: '10',
+      type: routerQuery.type
+    };
+    const getMoney = param => request.get(url, param);
+    getMoney({
+      params: params,
+      beforesend() {
+        isLoad.value = true;
+      }
+    })
       .then(res => {
+        isLoad.value = false;
         state.moneyData = res.data;
       })
       .catch(() => {});

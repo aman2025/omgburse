@@ -65,13 +65,13 @@ const request = () => {
         } else if (typeof data === 'object') {
           message = data.message;
         }
-        message.indexOf('exist') === -1 && alert(message);
+        message.indexOf('exist') === -1 && console.log(message);
         if ([401, 403].includes(status) && ['unknown user!', 'token invalid!', 'token expired!'].includes(message)) {
           goLogin();
         }
         return Promise.reject(error.response);
       }
-      alert(API_GENERAL_ERROR_MESSAGE);
+      console.log(API_GENERAL_ERROR_MESSAGE);
       return Promise.reject(error);
     }
   );

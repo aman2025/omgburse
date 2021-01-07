@@ -30,7 +30,7 @@
           <div><div></div></div>
         </div>
       </div>
-      <div class="text3">{{ teamList.teamnum }}</div>
+      <div class="text3" @click="showTeamDetail()">{{ teamList.teamnum }}</div>
       <div class="text4">{{ teamList.teamcontribution }}</div>
     </div>
     <!-- List component  -->
@@ -77,7 +77,7 @@ export default {
         title: 'Income list',
         className: 'shuadan_btn_incomelist',
         img: 'shuadan_btn_incomelist',
-        url: '/TotalTeamContribution'
+        url: '/WithdrawalRecord?type=3'
       }
     ];
     // 团队
@@ -133,6 +133,9 @@ export default {
       this.visible = true;
       this.message = msg;
       this.closeToast();
+    },
+    showTeamDetail() {
+      this.$router.push('/TeamMember?ord=');
     }
   }
 };
