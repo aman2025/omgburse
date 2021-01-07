@@ -1,19 +1,15 @@
 <template>
   <div class="recharge">
     <Loading v-if="isLoad" />
-    <OutView title="Withdrawal Record" :isBack="true" />
+    <OutView :title="outViewTitle" :isBack="true" />
     <div class="money-wrap">
       <div class="moneyx" v-for="item in moneyData" :key="item.id">
         <div class="m-hd">
-          <div class="m-left m-title">title: {{ item.title }}</div>
-          <div class="m-mid">nowmoney: {{ item.nowmoney }}</div>
+          <div class="m-left m-title">{{ item.title }}</div>
         </div>
         <div class="m-bd">
-          <div class="m-left">money: {{ item.money }}</div>
-          <div class="m-mid">mtype: {{ item.mtype }}</div>
-        </div>
-        <div class="m-foot">
-          <div class="m-right">dateline: {{ item.dateline }}</div>
+          <div class="m-left">₽{{ item.money }}</div>
+          <div class="m-right m-dateline">{{ item.dateline }}</div>
         </div>
       </div>
     </div>
@@ -23,7 +19,7 @@
 import OutView from '@/components/OutView.vue';
 import Loading from '@/components/Loading.vue';
 import request from '../utils/request';
-import { reactive, ref, toRefs } from 'vue';
+import { computed, reactive, ref, toRefs } from 'vue';
 import { useRoute } from 'vue-router';
 
 export default {
@@ -38,6 +34,17 @@ export default {
     const isLoad = ref(false);
     const state = reactive({
       moneyData: []
+    });
+    // 计算outViewTitle值
+    const types = routerQuery.type;
+    const outViewTitle = computed(() => {
+      if (types == '2') {
+        return 'Withdrawl Record';
+      } else if (types == '1') {
+        return 'Recharge Record';
+      } else {
+        return 'Income List';
+      }
     });
     // 金额明细
     var url = '/Api/Money/lists';
@@ -60,7 +67,8 @@ export default {
       .catch(() => {});
     // return
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      outViewTitle
     };
   }
 };
