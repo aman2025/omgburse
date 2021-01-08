@@ -19,8 +19,8 @@
         <img :src="goodsDetail.cateimg" />
       </div>
       <div class="g-foot">
-        <span>Ornaments</span>
-        <em>{{ goodsDetail.price }}</em>
+        <span>profit</span>
+        <em>{{ goodsDetail.price }}RS</em>
       </div>
     </div>
     <div class="btn-group">
@@ -180,6 +180,7 @@ export default {
       setTimeout(() => {
         toastState.isJiazai = false;
         showToast(res.msg);
+        // 刷新页面
         routes.go(0);
       }, 5000);
     };

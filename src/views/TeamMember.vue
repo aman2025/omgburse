@@ -3,13 +3,14 @@
     <Loading v-if="isLoad" />
     <OutView title="TeamMember" :isBack="true" />
     <div class="money-wrap">
-      <div class="moneyx" v-for="item in moneyData" :key="item.id">
+      <div class="moneyx" v-for="item in member" :key="item.id">
         <div class="m-hd">
-          <div class="m-left">nickname: {{ item.nickname }}</div>
-          <div class="m-right">leftmoney: {{ item.leftmoney }}</div>
+          <div class="m-left m-title">{{ item.uname }}</div>
         </div>
-        <div class="m-foot">
-          <div class="m-right">dateline: {{ item.dateline }}</div>
+        <div class="m-bd">
+          <div class="m-left">₽{{ item.leftmoney }}</div>
+          <div class="m-mid m-tip">(tel: {{ item.uphone }})</div>
+          <div class="m-right m-dateline">{{ item.dateline }}</div>
         </div>
       </div>
       <NoData v-if="noData" resultText="No Data!" />
@@ -42,8 +43,8 @@ export default {
     // 金额明细
     var url = '/Api/Team/Member';
     const params = {
-      p: '',
-      limit: '',
+      p: '1',
+      limit: '10',
       ord: routerQuery.ord
     };
     const getMember = param => request.get(url, param);
