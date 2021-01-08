@@ -1,8 +1,10 @@
 <template>
   <teleport to="body">
-    <div v-show="messageGlb.visible" class="a-message">
-      <span>{{ messageGlb.msg }}</span>
-    </div>
+    <transition name="alert-fade">
+      <div v-show="messageGlb.visible" class="a-message">
+        <span>{{ messageGlb.msg }}</span>
+      </div>
+    </transition>
   </teleport>
 </template>
 <script>
@@ -19,6 +21,14 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.alert-fade-enter-active,
+.alert-fade-leave-active {
+  transition: opacity 0.3s;
+}
+.alert-fade-enter,
+.alert-fade-leave-to {
+  opacity: 0;
+}
 .a-message {
   position: fixed;
   top: 50%;

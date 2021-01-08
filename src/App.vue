@@ -9,6 +9,7 @@
 import Tabbar from '@/components/Tabbar.vue';
 import { provide, reactive, ref } from 'vue';
 import Message from '@/components/Message.vue';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'Home',
@@ -17,8 +18,8 @@ export default {
     Message
   },
   setup() {
+    //测试修改全局状态
     const users = ref('a1a');
-    let timeout = null;
     provide('users', users);
     const updateUser = val => {
       users.value = val;
@@ -26,6 +27,7 @@ export default {
     provide('updateUser', updateUser);
 
     // message组件的全局属性
+    let timeout = null;
     const messageGlb = reactive({
       msg: '',
       visible: false
@@ -43,10 +45,17 @@ export default {
       timeout && clearTimeout(timeout);
       timeout = setTimeout(() => {
         messageGlb.visible = false;
-      }, 2000);
+      }, 3000);
     };
     provide('messageGlb', messageGlb);
     provide('showMessage', showMessage);
+
+    // 全局监听路由变化,
+    const router = useRouter();
+    router.beforeEach(() => {
+      // 路由切换或返回，message窗口关闭
+      messageGlb.visible = false;
+    });
   }
 };
 </script>
