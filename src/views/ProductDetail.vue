@@ -19,7 +19,7 @@
         <img :src="goodsDetail.cateimg" />
       </div>
       <div class="g-foot">
-        <span>profit</span>
+        <span>price</span>
         <em>{{ goodsDetail.price }}RS</em>
       </div>
     </div>
