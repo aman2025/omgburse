@@ -75,7 +75,7 @@ import Toast from '@/components/Toast.vue';
 import Loading from '@/components/Loading.vue';
 import Dialog from '@/components/Dialog.vue';
 import { reactive, ref, toRefs } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import request from '../utils/request';
 
 export default {
@@ -92,6 +92,7 @@ export default {
       message: '',
       isJiazai: false
     });
+    const routes = useRouter();
     const router = useRoute();
     const isLoad = ref(false); // 设置isLoad=true响应
     const goodsDetail = ref({});
@@ -143,7 +144,6 @@ export default {
       const params = {
         orderid: id
       };
-      debugger;
       const getConfirm = param => request.get(url, param);
       getConfirm({ params: params })
         .then(res => {
@@ -180,6 +180,7 @@ export default {
       setTimeout(() => {
         toastState.isJiazai = false;
         showToast(res.msg);
+        routes.go(0);
       }, 5000);
     };
 
@@ -255,6 +256,7 @@ export default {
 }
 .product-detail .goods .g-pic {
   padding: 10px 0;
+  text-align: center;
 }
 .product-detail .goods .g-logo {
   padding: 1px 0 10px;
