@@ -17,9 +17,9 @@
           <img :src="item[0].cateimg" />
         </div>
         <div class="bottom">
-          <div class="price">{{ $filters.toPercent(item[0].per) }}</div>
+          <div class="price"><span class="profit">profit</span>{{ $filters.toPercent(item[0].per) }}</div>
           <div style="display: flex; flex-direction: column; justify-content: space-around;">
-            <div class="info">profit</div>
+            <div class="info">price</div>
             <div class="price1">{{ item[0].price }}RS</div>
           </div>
         </div>
@@ -153,6 +153,15 @@ export default {
   padding-left: 6px;
   color: #fff;
   width: 60px;
+  position: relative;
+}
+.product-list .product-list-container .product-item .bottom .price .profit {
+  position: absolute;
+  top: -5px;
+  left: 5px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: normal;
 }
 .product-list .product-list-container .product-item .bottom .info {
   width: 77px;
