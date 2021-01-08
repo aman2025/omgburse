@@ -1,27 +1,19 @@
 <template>
-  <div v-show="visibleGlobal.isVisible" class="a-message">
-    <span>message...</span>
-    <p>{{ visibleGlobal.text }}</p>
-  </div>
+  <teleport to="body">
+    <div v-show="messageGlb.visible" class="a-message">
+      <span>{{ messageGlb.msg }}</span>
+    </div>
+  </teleport>
 </template>
 <script>
-import { watchEffect } from 'vue';
 export default {
   name: 'Message',
   components: {},
-  props: {
-    vib: Boolean
-  },
-  inject: ['visibleGlobal'],
+  props: {},
+  inject: ['messageGlb'],
   setup() {
-    const closex = () => {
-      console.log(12);
-      setTimeout(() => {}, 1000);
-    };
-    //监听是否显示
-    watchEffect(() => {});
     // return
-    return { closex };
+    return {};
   },
   methods: {}
 };
