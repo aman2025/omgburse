@@ -10,6 +10,7 @@ import Tabbar from '@/components/Tabbar.vue';
 import { provide, reactive, ref } from 'vue';
 import Message from '@/components/Message.vue';
 import { useRouter } from 'vue-router';
+import request from './utils/request';
 
 export default {
   name: 'Home',
@@ -29,9 +30,11 @@ export default {
     // message组件的全局属性
     let timeout = null;
     const messageGlb = reactive({
-      msg: '',
+      msg: '11msg',
       visible: false
     });
+    console.log(messageGlb);
+    console.log(messageGlb.msg);
     const showMessage = (val, cb) => {
       if (messageGlb.visible) {
         return;
@@ -56,6 +59,19 @@ export default {
       // 路由切换或返回，message窗口关闭
       messageGlb.visible = false;
     });
+
+    // 获取用户作为全局的状态,异步获取，
+    const url = '/Api/Account/UserInfo';
+    let userinfoState = reactive({
+      userinfo: {}
+    });
+    provide('userinfo', userinfoState); // 异步数据，先provide然后再赋值，其他组件才能用
+    const getUserinfo = () => request.get(url);
+    getUserinfo()
+      .then(res => {
+        userinfoState.userinfo = res.data;
+      })
+      .catch(() => {});
   }
 };
 </script>

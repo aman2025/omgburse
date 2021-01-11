@@ -8,6 +8,10 @@
       <img src="../assets/shuadan_dt_btn_order.png" />
     </div>
     <!-- <div class="endText">No other new types of products</div> -->
+    <!-- 全局异步数据双向绑定 -->
+    <input type="text" v-model="bb.userinfo.id" />
+    {{ bb.userinfo.id }}
+    {{ msgglb.msg }}
     <div class="blank"></div>
   </div>
 </template>
@@ -18,7 +22,7 @@ import ProductList from '@/components/ProductList.vue';
 import Welcome from '@/components/Welcome.vue';
 import Loading from '@/components/Loading.vue';
 // import request from '../utils/request';
-import { ref } from 'vue';
+import { inject, onMounted, ref } from 'vue';
 import request from '../utils/request';
 
 export default {
@@ -50,14 +54,28 @@ export default {
         goods.value = res.data;
       })
       .catch(() => {});
+    // 测试全局异步请求，生命周期
+    const bb = inject('userinfo');
+    const msgglb = inject('messageGlb');
+    onMounted(() => {
+      console.log(bb.userinfo.id); //setup中取不到值
+      console.log(msgglb.msg);
+      msgglb.msg = 'ogo22';
+    });
+
+    // return
     return {
       isLoad,
-      goods
+      goods,
+      bb,
+      msgglb
     };
   },
   methods: {
     goOrder() {
-      this.$router.push('/Order');
+      console.log(this.bb);
+      // this.$router.push('/Order');
+      this.bb.userinfo.id = '1225558'; // method中才能取值，并修改
     }
   }
 };

@@ -131,7 +131,6 @@ export default {
       callback
     };
   },
-  inject: ['userinfo'],
   methods: {
     makeMoney() {
       this.$router.push('/MakeMoney');

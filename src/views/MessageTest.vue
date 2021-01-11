@@ -8,6 +8,7 @@
     <div>{{ users }}</div>
     <hr />
     <h3>全局变量</h3>
+    <h3>{{ bb.userinfo.id }}</h3>
   </div>
 </template>
 <script>
@@ -29,12 +30,14 @@ export default {
         router.back(-1);
       }, 5000);
     };
-    // 显示message
+    // 全局异步请求数据
+    const bb = inject('userinfo');
     // return
     return {
       updateUser,
       users,
-      goback
+      goback,
+      bb
     };
   }
 };
