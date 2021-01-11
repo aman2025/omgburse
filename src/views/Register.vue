@@ -127,7 +127,7 @@ export default {
   background-image: url(../assets/loginbg.png);
   background-size: 100%;
   background-position: left bottom;
-  border: 1px solid #000;
+  position: relative;
 }
 .login-bd {
   padding: 35px 10px;
@@ -157,10 +157,10 @@ export default {
   background-position: 0 -19px;
 }
 .login-register {
-  position: fixed;
+  position: absolute;
   text-align: center;
   left: 0;
-  bottom: 35px;
+  top: 98vw;
   right: 0;
   color: #fb6500;
   font-weight: 700;

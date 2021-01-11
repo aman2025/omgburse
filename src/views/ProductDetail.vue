@@ -19,7 +19,7 @@
         <img :src="goodsDetail.cateimg" />
       </div>
       <div class="g-foot">
-        <span>profit</span>
+        <span>price</span>
         <em>{{ goodsDetail.price }}RS</em>
       </div>
     </div>
@@ -75,7 +75,7 @@ import Toast from '@/components/Toast.vue';
 import Loading from '@/components/Loading.vue';
 import Dialog from '@/components/Dialog.vue';
 import { reactive, ref, toRefs } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import request from '../utils/request';
 
 export default {
@@ -92,7 +92,7 @@ export default {
       message: '',
       isJiazai: false
     });
-    const routes = useRouter();
+    // const routes = useRouter();
     const router = useRoute();
     const isLoad = ref(false); // 设置isLoad=true响应
     const goodsDetail = ref({});
@@ -181,7 +181,8 @@ export default {
         toastState.isJiazai = false;
         showToast(res.msg);
         // 刷新页面
-        routes.go(0);
+        // routes.go(0);
+        location.reload();
       }, 5000);
     };
 

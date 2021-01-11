@@ -8,7 +8,7 @@
         <Input placeholder="Enter your username" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" />
       </div>
       <div>
-        <Input placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
+        <Input type="password" placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
       </div>
       <div class="login-remember">
         <label for="rm">
@@ -19,11 +19,12 @@
       <div class="login-btn-wrap">
         <Button btnText="Login" theme="primary" class="tipBtn" @click="handleSubmit" />
       </div>
-      <div class="login-register">
-        <span @click="goRegister">Register</span>
-        <em>|</em>
-        <span>Forget password</span>
-      </div>
+    </div>
+
+    <div class="login-register">
+      <span @click="goRegister">Register</span>
+      <em>|</em>
+      <span>Forget password</span>
     </div>
     <Toast v-show="visible" :message="message" />
   </div>
@@ -60,7 +61,7 @@ export default {
             //登录成功
             this.$router.push('/');
           } else {
-            console.log('登录失败！');
+            this.showToast(res.msg);
           }
         })
         .catch(() => {
@@ -115,7 +116,7 @@ export default {
   background-image: url(../assets/loginbg.png);
   background-size: 100%;
   background-position: left bottom;
-  border: 1px solid #000;
+  position: relative;
 }
 .login-bd {
   padding: 35px 10px;
@@ -145,10 +146,10 @@ export default {
   background-position: 0 -19px;
 }
 .login-register {
-  position: fixed;
+  position: absolute;
   text-align: center;
   left: 0;
-  bottom: 35px;
+  top: 138vw;
   right: 0;
   color: #fb6500;
   font-weight: 700;

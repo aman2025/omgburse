@@ -14,7 +14,7 @@
     <div class="playerInfo">
       <div class="text1">Team size</div>
       <div class="text2">Total team contribution</div>
-      <div class="uni-image image1" style="height: 26px;">
+      <div class="uni-image image1" style="height: 26px;" @click="showTeamDetail()">
         <div></div>
         <img src="../assets/xiaji_bg_btn2.png" />
         <div class="resize-sensor">
@@ -65,13 +65,6 @@ export default {
     const txt01 = ref('');
     const txt02 = ref('');
     var lists = [
-      {
-        id: 1,
-        title: 'Mission',
-        className: 'icon_mission',
-        img: 'icon_mission',
-        url: '/Mission'
-      },
       {
         id: 2,
         title: 'Income list',

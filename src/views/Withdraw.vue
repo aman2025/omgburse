@@ -2,7 +2,7 @@
   <div class="recharge">
     <Loading v-if="isLoad" />
     <Toast v-show="visible" :message="message" />
-    <OutView title="Recharge" :isBack="true" />
+    <OutView title="Withdraw" :isBack="true" />
     <div class="box-ipt">
       <h3>Money</h3>
       <div>
