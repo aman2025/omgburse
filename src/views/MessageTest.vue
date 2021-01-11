@@ -9,6 +9,7 @@
     <hr />
     <h3>全局变量</h3>
     <h3>{{ bb.userinfo.id }}</h3>
+    <button @click="editGlb" class="btn">修改全局异步数据</button>
   </div>
 </template>
 <script>
@@ -32,6 +33,7 @@ export default {
     };
     // 全局异步请求数据
     const bb = inject('userinfo');
+    console.log(bb);
     // return
     return {
       updateUser,
@@ -39,6 +41,12 @@ export default {
       goback,
       bb
     };
+  },
+  methods: {
+    editGlb() {
+      // this.$router.push('/Order');
+      this.bb.userinfo.id = '1225558--ok'; // 方法一：在method中才能取值，并修改
+    }
   }
 };
 </script>

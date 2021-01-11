@@ -10,7 +10,7 @@ import Tabbar from '@/components/Tabbar.vue';
 import { provide, reactive, ref } from 'vue';
 import Message from '@/components/Message.vue';
 import { useRouter } from 'vue-router';
-import request from './utils/request';
+// import request from './utils/request';
 
 export default {
   name: 'Home',
@@ -61,17 +61,17 @@ export default {
     });
 
     // 获取用户作为全局的状态,异步获取，
-    const url = '/Api/Account/UserInfo';
-    let userinfoState = reactive({
-      userinfo: {}
-    });
-    provide('userinfo', userinfoState); // 异步数据，先provide然后再赋值，其他组件才能用
-    const getUserinfo = () => request.get(url);
-    getUserinfo()
-      .then(res => {
-        userinfoState.userinfo = res.data;
-      })
-      .catch(() => {});
+    // const url = '/Api/Account/UserInfo';
+    // let userinfoState = reactive({
+    //   userinfo: {}
+    // });
+    // provide('userinfo', userinfoState); // 异步数据，先provide然后再赋值，其他组件才能用
+    // const getUserinfo = () => request.get(url);
+    // getUserinfo()
+    //   .then(res => {
+    //     userinfoState.userinfo = res.data;
+    //   })
+    //   .catch(() => {});
   }
 };
 </script>

@@ -22,7 +22,7 @@ import ProductList from '@/components/ProductList.vue';
 import Welcome from '@/components/Welcome.vue';
 import Loading from '@/components/Loading.vue';
 // import request from '../utils/request';
-import { inject, onMounted, ref } from 'vue';
+import { inject, ref } from 'vue';
 import request from '../utils/request';
 
 export default {
@@ -56,26 +56,20 @@ export default {
       .catch(() => {});
     // 测试全局异步请求，生命周期
     const bb = inject('userinfo');
-    const msgglb = inject('messageGlb');
-    onMounted(() => {
-      console.log(bb.userinfo.id); //setup中取不到值
-      console.log(msgglb.msg);
-      msgglb.msg = 'ogo22';
-    });
+    // 方法二： 通过全局方法修改全局异步数据
 
     // return
     return {
       isLoad,
       goods,
-      bb,
-      msgglb
+      bb
     };
   },
   methods: {
     goOrder() {
       console.log(this.bb);
       // this.$router.push('/Order');
-      this.bb.userinfo.id = '1225558'; // method中才能取值，并修改
+      this.bb.userinfo.id = '1225558'; // 方法一：在method中才能取值，并修改
     }
   }
 };
