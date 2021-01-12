@@ -10,6 +10,9 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    'spaced-comment': [1, 'always', {
+      'markers': ['global', 'globals', 'eslint', 'eslint-disable', '*package', '!', ',']
+    }]
   },
   overrides: [
     {

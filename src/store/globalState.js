@@ -24,5 +24,14 @@ export default {
         console.log(res.data);
       })
       .catch(() => {});
+
+    // 4. 全局过滤函数
+    // 小数点转百分比
+    app.config.globalProperties.$filters = {
+      toPercent(value) {
+        let realVal = Number(value * 100).toFixed(1);
+        return Number(realVal) + '%';
+      }
+    };
   }
 };
