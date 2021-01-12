@@ -5,7 +5,6 @@
       <Input placeholder="Enter your name" iconuser="icon-q01" :hasIcon="true" objkey="uname" v-model:formData="accoutForm" />
     </div>
     <Button btnText="save" theme="primary" class="tipBtn" @click="saveName" />
-    <Toast v-show="visible" :message="message" />
   </div>
 </template>
 <script>
@@ -22,6 +21,7 @@ export default {
     Button,
     Input
   },
+  inject: ['showToast2'],
   setup() {
     const state = reactive({
       accoutForm: { uname: '' },
@@ -68,23 +68,10 @@ export default {
         return val;
       });
       if (vals.filter(v => v).length !== 1) {
-        this.showToast(errorsLog[0]);
+        this.showToast2(errorsLog[0]);
         return null;
       }
       return vals;
-    },
-    // 显示隐藏toast
-    showToast(msg) {
-      if (this.visible) {
-        return;
-      }
-      this.visible = true;
-      this.message = msg;
-      var timeout = null;
-      timeout && clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        this.visible = false;
-      }, 1500);
     }
   }
 };

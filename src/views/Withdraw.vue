@@ -1,7 +1,6 @@
 <template>
   <div class="recharge">
     <Loading v-if="isLoad" />
-    <Toast v-show="visible" :message="message" />
     <OutView title="Recharge" :isBack="true" />
     <div class="box-ipt">
       <h3>Money</h3>
@@ -26,16 +25,15 @@ import Button from '@/components/Button.vue';
 import { reactive, ref, toRefs } from 'vue';
 import request from '../utils/request';
 import Loading from '@/components/Loading.vue';
-import Toast from '@/components/Toast.vue';
 
 export default {
   name: 'Withdraw',
   components: {
     OutView,
     Button,
-    Loading,
-    Toast
+    Loading
   },
+  inject: ['showToast2'],
   setup() {
     const isLoad = ref(false); // 设置isLoad=true响应
     const state = reactive({
@@ -60,31 +58,16 @@ export default {
         Tixian(withdrawForm)
           .then(res => {
             if (res.status == 0) {
-              this.showToast('account is error');
+              this.showToast2('account is error');
             } else {
-              this.showToast('successful');
+              this.showToast2('successful');
               this.$router.back(-1);
             }
           })
           .catch(() => {});
       } else {
-        this.showToast('money can not be empty');
+        this.showToast2('money can not be empty');
       }
-    },
-    closeToast() {
-      var timeout = null;
-      timeout && clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        this.visible = false;
-      }, 1500);
-    },
-    showToast(msg) {
-      if (this.visible) {
-        return;
-      }
-      this.visible = true;
-      this.message = msg;
-      this.closeToast();
     }
   }
 };
