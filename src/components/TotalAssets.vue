@@ -2,7 +2,6 @@
   <div class="total-assets">
     <div>
       <h3 class="total-title">
-        <!-- todo: 异步问题,或数据问题 -->
         <span>{{ userinfo.ymoney }}</span>
         <em>Your total assets</em>
       </h3>
@@ -27,28 +26,17 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
-import request from '../utils/request';
+import { inject, toRefs } from 'vue';
 export default {
   name: 'TotalAssets',
   props: {
     depositLogs: Object
   },
   setup() {
-    // 团队
-    const state = reactive({
-      userinfo: {}
-    });
-    const url = '/Api/Account/UserInfo';
-    const getUserinfo = () => request.get(url);
-    getUserinfo()
-      .then(res => {
-        state.userinfo = res.data;
-      })
-      .catch(() => {});
+    const userinfoState = inject('userinfo');
     // return
     return {
-      ...toRefs(state)
+      ...toRefs(userinfoState)
     };
   }
 };

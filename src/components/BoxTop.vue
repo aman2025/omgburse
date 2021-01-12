@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
-import request from '../utils/request';
+import { inject, toRefs } from 'vue';
+// import request from '../utils/request';
 export default {
   name: 'ProductList',
   props: {
@@ -62,20 +62,10 @@ export default {
     custom: Boolean
   },
   setup() {
-    // 团队
-    const state = reactive({
-      userinfo: {}
-    });
-    var url = '/Api/Account/UserInfo';
-    const getUserinfo = () => request.get(url);
-    getUserinfo()
-      .then(res => {
-        state.userinfo = res.data;
-      })
-      .catch(() => {});
+    const userinfoState = inject('userinfo');
     // return
     return {
-      ...toRefs(state)
+      ...toRefs(userinfoState)
     };
   },
   methods: {

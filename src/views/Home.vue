@@ -9,9 +9,8 @@
     </div>
     <!-- <div class="endText">No other new types of products</div> -->
     <!-- 全局异步数据双向绑定 -->
-    <input type="text" v-model="bb.userinfo.id" />
-    {{ bb.userinfo.id }}
-    {{ msgglb.msg }}
+    <input type="text" v-model="userinfo.id" />
+    {{ userinfo.id }}
     <div class="blank"></div>
   </div>
 </template>
@@ -22,7 +21,7 @@ import ProductList from '@/components/ProductList.vue';
 import Welcome from '@/components/Welcome.vue';
 import Loading from '@/components/Loading.vue';
 // import request from '../utils/request';
-import { inject, ref } from 'vue';
+import { inject, ref, toRefs } from 'vue';
 import request from '../utils/request';
 
 export default {
@@ -55,21 +54,21 @@ export default {
       })
       .catch(() => {});
     // 测试全局异步请求，生命周期
-    const bb = inject('userinfo');
     // 方法二： 通过全局方法修改全局异步数据
+    const userinfoState = inject('userinfo');
 
     // return
     return {
       isLoad,
       goods,
-      bb
+      ...toRefs(userinfoState)
     };
   },
   methods: {
     goOrder() {
       console.log(this.bb);
       // this.$router.push('/Order');
-      this.bb.userinfo.id = '1225558'; // 方法一：在method中才能取值，并修改
+      this.userinfo.id = '1225558'; // 方法一：在method中才能取值，并修改
     }
   }
 };

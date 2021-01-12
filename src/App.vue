@@ -60,7 +60,8 @@ export default {
       messageGlb.visible = false;
     });
 
-    // 获取用户作为全局的状态,异步获取，
+    // ★获取用户作为全局的状态,异步获取，
+    // 方法二，已经在globalState中请求，在main.js引用
     // const url = '/Api/Account/UserInfo';
     // let userinfoState = reactive({
     //   userinfo: {}
