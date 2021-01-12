@@ -2,14 +2,15 @@ import { reactive } from 'vue';
 import request from '../utils/request';
 export default {
   install(app) {
-    // 提供全局常量数据，可以响应
+    // 1.提供全局响应数据
     const rdata = reactive({
       name: 'John'
     });
     app.provide('rdata', rdata);
-    // 普通数据
+    // 2.普通数据
     app.provide('temp', '11a11');
-    // 获取用户作为全局的状态
+
+    // 3.获取异步请求全局数据响应--用户信息
     let userinfoState = reactive({
       userinfo: {}
     });
@@ -18,7 +19,7 @@ export default {
     const getUserinfo = () => request.get(url);
     getUserinfo()
       .then(res => {
-        userinfoState.userinfo = res.data; // 子组件获取不到userinfo
+        userinfoState.userinfo = res.data; // 先provide，然后再then中赋值，这样子组件才能或数据
         console.log(app);
         console.log(res.data);
       })
