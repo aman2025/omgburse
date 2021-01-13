@@ -21,7 +21,7 @@ export default {
     Button,
     Input
   },
-  inject: ['showToast2'],
+  inject: ['showToast'],
   setup() {
     const state = reactive({
       accoutForm: { uname: '' },
@@ -68,7 +68,7 @@ export default {
         return val;
       });
       if (vals.filter(v => v).length !== 1) {
-        this.showToast2(errorsLog[0]);
+        this.showToast({ msg: 'a messag122es1...' }); // 参数为组件的props属性
         return null;
       }
       return vals;

@@ -3,7 +3,6 @@
     <Tabbar v-if="this.$route.meta.showTab" />
     <router-view />
     <Message />
-    <Toast />
   </div>
 </template>
 <script>
@@ -11,16 +10,13 @@ import Tabbar from '@/components/Tabbar.vue';
 import { provide, reactive, ref } from 'vue';
 import Message from '@/components/Message.vue';
 import { useRouter } from 'vue-router';
-import Toast from '@/components/toast/Toast.vue';
-import { useToast } from '@/components/toast/index.js';
 // import request from './utils/request';
 
 export default {
   name: 'Home',
   components: {
     Tabbar,
-    Message,
-    Toast
+    Message
   },
   setup() {
     // 测试修改全局状态
@@ -77,11 +73,6 @@ export default {
     //     userinfoState.userinfo = res.data;
     //   })
     //   .catch(() => {});
-
-    // 调用全局Toast
-    const { toastGlb, showToast2 } = useToast();
-    provide('toastGlb', toastGlb);
-    provide('showToast2', showToast2);
   }
 };
 </script>
