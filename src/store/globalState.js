@@ -19,9 +19,14 @@ export default {
     const getUserinfo = () => request.get(url);
     getUserinfo()
       .then(res => {
-        userinfoState.userinfo = res.data; // 先provide，然后再then中赋值，这样子组件才能或数据
-        console.log(app);
-        console.log(res.data);
+        if (res.status == '0') {
+          // 在main.js中router还没创建，不能用路由
+          window.location.href = '#/Login';
+        } else {
+          userinfoState.userinfo = res.data; // 先provide，然后再then中赋值，这样子组件才能或数据
+          console.log(app);
+          console.log(res.data);
+        }
       })
       .catch(() => {});
 

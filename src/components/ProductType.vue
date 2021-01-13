@@ -27,25 +27,23 @@
       </template>
     </Dialog>
     <Loading v-if="isLoad" />
-    <Toast v-show="visible" :message="message" />
   </div>
 </template>
 
 <script>
 import Dialog from '@/components/Dialog.vue';
-import Toast from '@/components/Toast.vue';
-import { reactive, ref, toRefs } from 'vue';
+import { inject, reactive, ref, toRefs } from 'vue';
 import request from '../utils/request';
 export default {
   name: 'ProductType',
   components: {
-    Dialog,
-    Toast
+    Dialog
   },
   props: {
     depositLists: Array
   },
   setup() {
+    let showToast = inject('showToast');
     const toastState = reactive({
       visible: false,
       message: ''
@@ -60,7 +58,7 @@ export default {
       show.value = val;
       callback.value();
     });
-    //关闭dialog
+    // 关闭dialog
     const onCancel = ref(val => {
       show.value = val;
     });
@@ -93,29 +91,12 @@ export default {
         .then(res => {
           isLoad.value = false;
           console.log(res);
-          if (res.status == '1') {
-            showToast('successful');
-          } else {
-            showToast('fail');
-          }
+          showToast({ msg: res.msg });
         })
         .catch(() => {});
     };
 
-    // 显示隐藏toast
-    const showToast = msg => {
-      if (toastState.visible) {
-        return;
-      }
-      toastState.visible = true;
-      toastState.message = msg;
-      var timeout = null;
-      timeout && clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        toastState.visible = false;
-      }, 1500);
-    };
-    //return
+    // return
     return {
       isLoad,
       content,

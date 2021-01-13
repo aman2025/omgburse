@@ -23,7 +23,6 @@
         <span @click="goLogin">Login</span>
       </div>
     </div>
-    <Toast v-show="visible" :message="message" />
   </div>
 </template>
 <script>
@@ -31,12 +30,12 @@ import request from '../utils/request';
 import { toRefs, reactive } from 'vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
-import Toast from '@/components/Toast.vue';
 import { useRoute } from 'vue-router';
 
 export default {
   name: 'Register',
-  components: { Input, Button, Toast },
+  components: { Input, Button },
+  inject: ['showToast'],
   setup() {
     // const { ctx } = getCurrentInstance();
     const router = useRoute();
@@ -53,7 +52,6 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.closeToast();
       var vals = this.loginValidate();
       if (vals) {
         // 校验通过并获取值
@@ -67,7 +65,7 @@ export default {
             if (res.status == 1) {
               this.$router.push('/');
             } else {
-              this.showToast('upid is error!');
+              this.showToast({ msg: 'upid is error!' });
             }
           })
           .catch(() => {
@@ -96,26 +94,15 @@ export default {
       console.log(vals);
       console.log(errorsLog);
       if (vals.filter(v => v).length !== 3) {
-        this.showToast(errorsLog[0]);
+        this.showToast({ msg: errorsLog[0] });
         return null;
       }
       const [password, repassword] = ['password', 'repassword'].map(k => this.loginForm[k]);
       if (password !== repassword) {
-        this.showToast('Passwords are inconsistent!');
+        this.showToast({ msg: 'Passwords are inconsistent!' });
         return null;
       }
       return vals;
-    },
-    closeToast() {
-      var timeout = null;
-      timeout && clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        this.visible = false;
-      }, 1500);
-    },
-    showToast(msg) {
-      this.visible = true;
-      this.message = msg;
     }
   }
 };

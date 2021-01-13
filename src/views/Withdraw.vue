@@ -33,7 +33,7 @@ export default {
     Button,
     Loading
   },
-  inject: ['showToast2'],
+  inject: ['showToast'],
   setup() {
     const isLoad = ref(false); // 设置isLoad=true响应
     const state = reactive({
@@ -58,15 +58,15 @@ export default {
         Tixian(withdrawForm)
           .then(res => {
             if (res.status == 0) {
-              this.showToast2('account is error');
+              this.showToast({ msg: 'account is error' });
             } else {
-              this.showToast2('successful');
+              this.showToast({ msg: 'successful' });
               this.$router.back(-1);
             }
           })
           .catch(() => {});
       } else {
-        this.showToast2('money can not be empty');
+        this.showToast({ msg: 'money can not be empty' });
       }
     }
   }

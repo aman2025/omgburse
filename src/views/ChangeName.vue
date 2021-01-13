@@ -68,7 +68,7 @@ export default {
         return val;
       });
       if (vals.filter(v => v).length !== 1) {
-        this.showToast({ msg: 'a messag122es1...' }); // 参数为组件的props属性
+        this.showToast({ msg: 'name can not be empty' }); // 参数为组件的props属性
         return null;
       }
       return vals;

@@ -25,7 +25,6 @@
         <span>Forget password</span>
       </div>
     </div>
-    <Toast v-show="visible" :message="message" />
   </div>
 </template>
 <script>
@@ -33,16 +32,14 @@ import request from '../utils/request';
 import { toRefs, reactive } from 'vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
-import Toast from '@/components/Toast.vue';
 
 export default {
   name: 'Login',
-  components: { Input, Button, Toast },
+  components: { Input, Button },
+  inject: ['showToast'],
   setup() {
     const state = reactive({
-      loginForm: { username: '', password: '' },
-      visible: false,
-      message: ''
+      loginForm: { username: '', password: '' }
     });
     return {
       ...toRefs(state)
@@ -57,7 +54,7 @@ export default {
         .then(res => {
           localStorage.setItem('token', JSON.stringify(res.token));
           if (res.status == 1) {
-            //登录成功
+            // 登录成功
             this.$router.push('/');
           } else {
             console.log('登录失败！');
@@ -83,27 +80,12 @@ export default {
       if (vals.filter(v => v).length === 2) {
         return vals;
       } else {
-        this.showToast(errorsLog[0]);
+        this.showToast({ msg: errorsLog[0] });
       }
       return null;
     },
     goRegister() {
       this.$router.push('/Register');
-    },
-    closeToast() {
-      var timeout = null;
-      timeout && clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        this.visible = false;
-      }, 1500);
-    },
-    showToast(msg) {
-      if (this.visible) {
-        return;
-      }
-      this.visible = true;
-      this.message = msg;
-      this.closeToast();
     }
   }
 };

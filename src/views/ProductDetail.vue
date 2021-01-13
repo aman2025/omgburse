@@ -64,14 +64,12 @@
     </div>
   </div>
   <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false" />
-  <Toast v-show="visible" :message="message" />
 </template>
 <script>
 import OutView from '@/components/OutView.vue';
-import Toast from '@/components/Toast.vue';
 import Loading from '@/components/Loading.vue';
 import Dialog from '@/components/Dialog.vue';
-import { reactive, ref, toRefs } from 'vue';
+import { inject, reactive, ref, toRefs } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import request from '../utils/request';
 
@@ -80,10 +78,10 @@ export default {
   components: {
     OutView,
     Loading,
-    Dialog,
-    Toast
+    Dialog
   },
   setup() {
+    const showToast = inject('showToast');
     const toastState = reactive({
       visible: false,
       message: ''
@@ -152,27 +150,13 @@ export default {
         .then(res => {
           isLoad.value = false;
           if (res.status == '1') {
-            showToast('successful');
+            showToast({ msg: 'successful' });
             goOrder();
           } else {
-            showToast('fail');
+            showToast({ msg: 'fail' });
           }
         })
         .catch(() => {});
-    };
-
-    // 显示隐藏toast
-    const showToast = msg => {
-      if (toastState.visible) {
-        return;
-      }
-      toastState.visible = true;
-      toastState.message = msg;
-      var timeout = null;
-      timeout && clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        toastState.visible = false;
-      }, 1500);
     };
 
     // 确定dialog
@@ -183,7 +167,7 @@ export default {
       show.value = val;
       callback.value();
     });
-    //关闭dialog
+    // 关闭dialog
     const onCancel = ref(val => {
       show.value = val;
     });

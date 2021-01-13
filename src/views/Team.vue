@@ -37,7 +37,6 @@
     <List :listdatas="lists" />
     <!-- team LV list component -->
     <TeamLVList :teamData="teamList.team" />
-    <Toast v-show="visible" :message="message" />
   </div>
 </template>
 <script>
@@ -46,16 +45,15 @@ import List from '@/components/List.vue';
 import { reactive, ref, toRefs } from 'vue';
 import Loading from '@/components/Loading.vue';
 import request from '../utils/request';
-import Toast from '@/components/Toast.vue';
 
 export default {
   name: 'Team',
   components: {
     TeamLVList,
     List,
-    Loading,
-    Toast
+    Loading
   },
+  inject: ['showToast'],
   setup() {
     const state = reactive({
       visible: false,
@@ -108,7 +106,7 @@ export default {
   methods: {
     // 复制
     copy(val) {
-      //创建一个input框
+      // 创建一个input框
       const input = document.createElement('input');
       document.body.appendChild(input);
       input.setAttribute('value', val);
@@ -117,7 +115,7 @@ export default {
         document.execCommand('copy');
       }
       document.body.removeChild(input);
-      this.showToast('copyed successful');
+      this.showToast({ msg: 'copyed successful' });
     },
     closeToast() {
       var timeout = null;
@@ -125,14 +123,6 @@ export default {
       timeout = setTimeout(() => {
         this.visible = false;
       }, 1500);
-    },
-    showToast(msg) {
-      if (this.visible) {
-        return;
-      }
-      this.visible = true;
-      this.message = msg;
-      this.closeToast();
     },
     showTeamDetail() {
       this.$router.push('/TeamMember?ord=');

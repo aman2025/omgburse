@@ -21,6 +21,7 @@
     <hr />
     <h3>动态改变全局组件</h3>
     <button @click="showToast" class="btn">showToast</button>
+    <!-- 测试标签引入toast组件，不建议 -->
     <Toast v-model="isshow" msg="message" />
   </div>
 </template>
