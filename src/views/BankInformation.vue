@@ -3,12 +3,12 @@
     <OutView title="Fill in personal information" :isBack="true" />
     <div class="out-wraper">
       <div class="form-title">Bank information</div>
-      <Input placeholder="Enter your name" iconuser="icon-q01" :hasIcon="true" objkey="uname" v-model:formData="accoutForm" />
-      <Input placeholder="Enter your mobile phone number" iconuser="icon-q02" :hasIcon="true" objkey="uphone" v-model:formData="accoutForm" />
-      <Input placeholder="Enter your bank account" iconuser="icon-q03" :hasIcon="true" objkey="yhcode" v-model:formData="accoutForm" />
-      <Input placeholder="Enter your bank name" iconuser="icon-q04" :hasIcon="true" objkey="bankname" v-model:formData="accoutForm" />
-      <Input type="password" placeholder="Enter password" iconuser="icon-q05" :hasIcon="true" objkey="password" v-model:formData="accoutForm" />
-      <Input type="password" placeholder="Enter repassword" iconuser="icon-q06" :hasIcon="true" objkey="repassword" v-model:formData="accoutForm" />
+      <Input placeholder="Enter your name" iconuser="icon-q01" :hasIcon="true" v-model="accoutForm.uname" />
+      <Input placeholder="Enter your mobile phone number" iconuser="icon-q02" :hasIcon="true" v-model="accoutForm.uphone" />
+      <Input placeholder="Enter your bank account" iconuser="icon-q03" :hasIcon="true" v-model="accoutForm.yhcode" />
+      <Input placeholder="Enter your bank name" iconuser="icon-q04" :hasIcon="true" v-model="accoutForm.bankname" />
+      <Input type="password" placeholder="Enter password" iconuser="icon-q05" :hasIcon="true" v-model="accoutForm.password" />
+      <Input type="password" placeholder="Enter repassword" iconuser="icon-q06" :hasIcon="true" v-model="accoutForm.repassword" />
     </div>
     <Button btnText="save" theme="primary" class="tipBtn" @click="saveAccount" />
   </div>
@@ -30,9 +30,7 @@ export default {
   inject: ['showToast'],
   setup() {
     const state = reactive({
-      accoutForm: { uname: '', uphone: '', yhcode: '', bankname: '', password: '', repassword: '' },
-      visible: false,
-      message: ''
+      accoutForm: { uname: '', uphone: '', yhcode: '', bankname: '', password: '', repassword: '' }
     });
     return {
       ...toRefs(state)
@@ -48,6 +46,7 @@ export default {
         const accoutForm = Object.assign({}, this.accoutForm, { token: tokenVal });
         const url = '/Api/Account/Addinfo';
         const addinfo = user => request.post(url, user);
+        console.log(accoutForm);
         addinfo(accoutForm)
           .then(res => {
             if (res.status == 1) {

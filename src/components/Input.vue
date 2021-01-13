@@ -1,33 +1,30 @@
 <template>
   <div class="wraper">
     <i v-if="hasIcon" :class="iconuser"></i>
-    <input :type="type ? type : 'text'" :placeholder="placeholder" @input="getValue" :class="'ipt ' + (hasIcon ? 'iptpadd' : '')" />
+    <input :type="type ? type : 'text'" :placeholder="placeholder" :value="modelValue" @input="getValue" :class="'ipt ' + (hasIcon ? 'iptpadd' : '')" />
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
 export default {
   name: 'Button',
   props: {
+    modelValue: String,
     placeholder: String,
     iconuser: String,
     hasIcon: Boolean,
-    formData: Object,
-    type: String,
-    objkey: String
+    type: String
   },
-  setup(props) {
-    var newFormData = ref(props.formData);
-    return {
-      newFormData
+  emits: ['update:modelValue'],
+  setup(props, context) {
+    const getValue = e => {
+      context.emit('update:modelValue', e.target.value);
     };
-  },
-  methods: {
-    getValue(event) {
-      const el = event.target;
-      this.newFormData[this.objkey] = el.value;
-    }
+
+    // return
+    return {
+      getValue
+    };
   }
 };
 </script>

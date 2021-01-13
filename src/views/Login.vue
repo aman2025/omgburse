@@ -5,10 +5,10 @@
     </div>
     <div class="login-bd">
       <div>
-        <Input placeholder="Enter your username" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" />
+        <Input placeholder="Enter your username" v-model="loginForm.username" iconuser="icon-q02" :hasIcon="true" />
       </div>
       <div>
-        <Input placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
+        <Input type="password" placeholder="Enter your password" v-model="loginForm.password" iconuser="icon-q05" :hasIcon="true" />
       </div>
       <div class="login-remember">
         <label for="rm">

@@ -5,16 +5,16 @@
     </div>
     <div class="login-bd">
       <div>
-        <Input placeholder="Enter your username" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" />
+        <Input placeholder="Enter your username" v-model="loginForm.username" iconuser="icon-q02" :hasIcon="true" />
       </div>
       <div>
-        <Input type="password" placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
+        <Input type="password" placeholder="Enter your password" v-model="loginForm.password" iconuser="icon-q05" :hasIcon="true" />
       </div>
       <div>
-        <Input type="password" placeholder="Repeat your password" objkey="repassword" v-model:formData="loginForm" iconuser="icon-q06" :hasIcon="true" />
+        <Input type="password" placeholder="Repeat your password" v-model="loginForm.repassword" iconuser="icon-q06" :hasIcon="true" />
       </div>
       <!-- <div>
-        <Input placeholder="Enter upid" objkey="upid" v-model:formData="loginForm" iconuser="icon-q03" :hasIcon="true" />
+        <Input placeholder="Enter upid" objkey="" v-model="loginForm.upid" iconuser="icon-q03" :hasIcon="true" />
       </div> -->
       <div class="login-btn-wrap">
         <Button btnText="Register" theme="primary" class="tipBtn" @click="handleSubmit" />

@@ -2,7 +2,7 @@
   <div class="order">
     <OutView title="Change Name" :isBack="true" />
     <div class="out-wraper">
-      <Input placeholder="Enter your name" iconuser="icon-q01" :hasIcon="true" objkey="uname" v-model:formData="accoutForm" />
+      <Input placeholder="Enter your name" iconuser="icon-q01" :hasIcon="true" v-model="accoutForm.uname" />
     </div>
     <Button btnText="save" theme="primary" class="tipBtn" @click="saveName" />
   </div>
@@ -40,14 +40,14 @@ export default {
         const tokenVal = JSON.parse(localStorage.token);
         const accoutForm = Object.assign({}, this.accoutForm, { token: tokenVal });
         const url = '/Api/Account/ChangeName';
-        const addName = user => request.post(url, user);
+        const addName = params => request.post(url, params);
+        console.log(accoutForm);
         addName(accoutForm)
           .then(res => {
             if (res.status == 1) {
               this.$router.back(-1);
-            } else {
-              this.showToast('add name is error!');
             }
+            this.showToast({ msg: res.msg });
           })
           .catch(() => {
             alert('login fail!');
