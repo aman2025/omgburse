@@ -15,7 +15,7 @@ export default {
     msg: String,
     remove: Function
   },
-  // emits: ['update:modeValue'],
+  emits: ['update:modelValue'], // 用于标签方式更新modelValue,不建议
   setup(props, context) {
     console.log(context);
     console.log(props.modelValue);
@@ -24,8 +24,10 @@ export default {
     const close = () => {
       timeout && clearTimeout(timeout);
       timeout = setTimeout(() => {
-        // context.emit('update:modeValue', false);
-        props.remove();
+        console.log('close...');
+        // update:modelValue 在用动态全局创建组件时是无效的，因为 Toast的props属性是只读的；
+        context.emit('update:modelValue', false); // 用标签方式<Toast />引入是有效的，不建议用标签方式，因为instance读取不到，两个会混肴
+        props.remove && props.remove();
       }, 1230);
     };
     // 监听显示属性

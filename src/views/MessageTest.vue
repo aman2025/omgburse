@@ -2,29 +2,48 @@
   <div>
     <h3>弹出message</h3>
     <button @click="showMessage('122256666', goback)" class="btn">show Message</button>
+    <div class="blank"></div>
     <hr />
     <h3>修改字符串</h3>
     <button @click="updateUser('o1k1')" class="btn">pop</button>
     <div>{{ users }}</div>
+    <div class="blank"></div>
     <hr />
     <h3>全局变量</h3>
     <h3>{{ bb.userinfo.id }}</h3>
     <button @click="editGlb" class="btn">修改全局异步数据</button>
+    <div class="blank"></div>
+    <hr />
+    <h3>多个v-model</h3>
+    <TestVmodel v-model="txt" v-model:text="message" />
+    {{ txt }} -- {{ message }}
+    <div class="blank"></div>
+    <hr />
+    <h3>动态改变全局组件</h3>
+    <button @click="showToast" class="btn">showToast</button>
+    <Toast v-model="isshow" msg="message" />
   </div>
 </template>
 <script>
-import { inject } from 'vue';
+import { inject, reactive, toRefs } from 'vue';
 import { useRouter } from 'vue-router';
+import TestVmodel from '../components/TestVmodel.vue';
+import Toast from '../components/toast/Toast.vue';
 export default {
   name: 'MessageTest',
-  components: {},
-  inject: ['showMessage'],
+  components: { TestVmodel, Toast },
+  inject: ['showMessage', 'showToast'],
   setup() {
     let users = inject('users');
     const temp = inject('temp');
+    const state = reactive({
+      message: 'msg...',
+      txt: 'txt...',
+      isshow: true
+    });
     console.log(temp);
     const updateUser = inject('updateUser');
-    //返回，显示message一秒后路由返回
+    // 返回，显示message一秒后路由返回
     const router = useRouter();
     const goback = () => {
       setTimeout(() => {
@@ -39,7 +58,8 @@ export default {
       updateUser,
       users,
       goback,
-      bb
+      bb,
+      ...toRefs(state)
     };
   },
   methods: {
@@ -53,5 +73,8 @@ export default {
 <style scoped lang="scss">
 .btn {
   border: 1px solid #000;
+}
+.blank {
+  height: 50px;
 }
 </style>

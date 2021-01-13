@@ -28,7 +28,7 @@ function ShowToast(options = {}) {
 
   if ($inst) {
     console.log('instance is exist');
-    // 读取动态创建实例的属性, 只读属性，不能修改，改成ref响应数据也不能
+    // 动态创建实例的属性props, 只读属性，不能修改，改成ref响应数据也不能
     console.log($inst.$props.modelValue);
     return;
   }
