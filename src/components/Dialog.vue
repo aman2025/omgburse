@@ -1,39 +1,51 @@
 <template>
-  <div>
-    <div class="dialog">
-      <h3 class="dl-hd">
-        <span v-show="hasHead">{{ title }}</span>
-      </h3>
-      <h3 class="dl-bd" @click="sonClick">
-        {{ content }}
-        <slot></slot>
-      </h3>
-      <h3 class="dl-ft">
-        <button class="cancel" @click="onCancel(false)">NO</button>
-        <button class="ok" @click="onOk(false)">YES</button>
-      </h3>
+  <teleport to="body">
+    <div v-show="modelValue">
+      <div class="dialog">
+        <h3 class="dl-hd">
+          <span v-show="hasHead">{{ title }}</span>
+        </h3>
+        <h3 class="dl-bd" @click="sonClick">
+          {{ content }}
+          <slot></slot>
+        </h3>
+        <h3 class="dl-ft">
+          <button class="cancel" @click="onClose" v-show="type == 'info' ? false : true">NO</button>
+          <button class="ok" @click="onOk">YES</button>
+        </h3>
+      </div>
+      <div class="dialog-mask"></div>
     </div>
-    <div class="dialog-mask"></div>
-  </div>
+  </teleport>
 </template>
 
 <script>
 export default {
   name: 'Dialog',
   props: {
+    modelValue: Boolean,
     content: String,
     title: String,
     hasHead: Boolean,
-    onCancel: Function,
-    onOk: Function
+    type: String,
+    ok: Function
   },
-  setup() {
-    // const onOk = () => {
-    //   console.log('onOk...');
-    // };
-    // return {
-    //   onOk
-    // };
+  emits: ['update:modelValue', 'ok'],
+  setup(props, context) {
+    // 点击确定
+    const onOk = () => {
+      onClose();
+      context.emit('ok'); // 触发父组件的事件，类似回调
+    };
+
+    // 点击取消
+    const onClose = () => {
+      context.emit('update:modelValue', false);
+    };
+    return {
+      onOk,
+      onClose
+    };
   },
   methods: {},
   components: {}
@@ -102,5 +114,8 @@ export default {
 }
 .dialog .dl-ft .cancel {
   background-color: #ff7335;
+}
+.btntest {
+  border: 1px solid #000;
 }
 </style>

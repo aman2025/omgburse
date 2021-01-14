@@ -23,16 +23,22 @@
     <button @click="showToast" class="btn">showToast</button>
     <!-- 测试标签引入toast组件，不建议 -->
     <Toast v-model="isshow" msg="message" />
+    <hr />
+    <h3>Dialog组件</h3>
+    <button @click="showDialog" class="btn">showDialog</button>
+    <!-- 测试标签引入toast组件，不建议 -->
+    <Dialog v-model="visible" title="标题" :hasHead="true" content="内容" @ok="onOk" />
   </div>
 </template>
 <script>
 import { inject, reactive, toRefs } from 'vue';
 import { useRouter } from 'vue-router';
 import TestVmodel from '../components/TestVmodel.vue';
+import Dialog from '../components/Dialog.vue';
 import Toast from '../components/toast/Toast.vue';
 export default {
   name: 'MessageTest',
-  components: { TestVmodel, Toast },
+  components: { TestVmodel, Toast, Dialog },
   inject: ['showMessage', 'showToast'],
   setup() {
     let users = inject('users');
@@ -40,7 +46,8 @@ export default {
     const state = reactive({
       message: 'msg...',
       txt: 'txt...',
-      isshow: true
+      isshow: true,
+      visible: false
     });
     console.log(temp);
     const updateUser = inject('updateUser');
@@ -54,11 +61,17 @@ export default {
     // 全局异步请求数据
     const bb = inject('userinfo');
     console.log(bb);
+
+    // onOk
+    const onOk = () => {
+      console.log('onok1...');
+    };
     // return
     return {
       updateUser,
       users,
       goback,
+      onOk,
       bb,
       ...toRefs(state)
     };
@@ -67,6 +80,9 @@ export default {
     editGlb() {
       // this.$router.push('/Order');
       this.bb.userinfo.id = '1225558--ok'; // 方法一：在method中才能取值，并修改
+    },
+    showDialog() {
+      this.visible = true;
     }
   }
 };

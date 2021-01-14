@@ -18,7 +18,7 @@
         <span>Deposit</span>
       </div>
     </div>
-    <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false">
+    <Dialog v-model="show" :content="content" @ok="depositeSubmit" :hasHead="false">
       <template v-slot>
         <div class="depositeText">
           <span>amount:</span>
@@ -32,7 +32,7 @@
 
 <script>
 import Dialog from '@/components/Dialog.vue';
-import { inject, reactive, ref, toRefs } from 'vue';
+import { inject, ref } from 'vue';
 import request from '../utils/request';
 export default {
   name: 'ProductType',
@@ -44,36 +44,25 @@ export default {
   },
   setup() {
     let showToast = inject('showToast');
-    const toastState = reactive({
-      visible: false,
-      message: ''
-    });
     // 确定dialog
     const show = ref(false);
     const content = ref('');
     const depositeId = ref('');
     const money = ref('');
     const callback = ref(function() {});
-    const onOk = ref(val => {
-      show.value = val;
-      callback.value();
-    });
-    // 关闭dialog
-    const onCancel = ref(val => {
-      show.value = val;
-    });
     const isLoad = ref(false);
     // 点击 deposite
     const onDeposite = sid => {
-      depositeId.value = sid;
+      money.value = '';
       show.value = true;
-      callback.value = depositeSubmit;
+      depositeId.value = sid;
     };
+
+    // 点击确定提交
     const depositeSubmit = () => {
       // 金额为空返回
-      if (!money.value) {
-        toastState.visible = true;
-        toastState.message = 'money can not be empty';
+      if (money.value == '') {
+        showToast({ msg: 'money can not be empty' });
         return;
       }
       const url = '/Api/Deposit/Addthedeposit';
@@ -101,12 +90,10 @@ export default {
       isLoad,
       content,
       callback,
-      onOk,
-      onCancel,
+      depositeSubmit,
       onDeposite,
       depositeId,
       money,
-      ...toRefs(toastState),
       show
     };
   },

@@ -63,13 +63,13 @@
       </div>
     </div>
   </div>
-  <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false" />
+  <Dialog v-model="show" :content="content" @ok="onOk" :hasHead="false" :type="type" />
 </template>
 <script>
 import OutView from '@/components/OutView.vue';
 import Loading from '@/components/Loading.vue';
 import Dialog from '@/components/Dialog.vue';
-import { inject, reactive, ref, toRefs } from 'vue';
+import { inject, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import request from '../utils/request';
 
@@ -82,10 +82,6 @@ export default {
   },
   setup() {
     const showToast = inject('showToast');
-    const toastState = reactive({
-      visible: false,
-      message: ''
-    });
     const routers = useRouter();
     const router = useRoute();
     const isLoad = ref(false); // 设置isLoad=true响应
@@ -120,6 +116,7 @@ export default {
       })
         .then(res => {
           isLoad.value = false;
+          // bug: 添加失败也返回了一个orderid
           orderid = res.data.orderid;
           if (res.data.status == '1') {
             show.value = true;
@@ -127,6 +124,7 @@ export default {
             callback.value = confirm;
           } else {
             show.value = true;
+            type.value = 'info';
             content.value = 'add fail！';
           }
           // 返回的orderid
@@ -162,15 +160,11 @@ export default {
     // 确定dialog
     const show = ref(false);
     const content = ref('');
-    const callback = ref(function() {});
-    const onOk = ref(val => {
-      show.value = val;
+    const type = ref('confirm');
+    const callback = ref(function() {}); // onOk的回调函数
+    const onOk = () => {
       callback.value();
-    });
-    // 关闭dialog
-    const onCancel = ref(val => {
-      show.value = val;
-    });
+    };
 
     const goOrder = () => {
       routers.push('/Order');
@@ -181,11 +175,10 @@ export default {
       goodsDetail,
       addOrder,
       show,
+      type,
       onOk,
-      onCancel,
       callback,
-      content,
-      ...toRefs(toastState)
+      content
     };
   },
   methods: {
