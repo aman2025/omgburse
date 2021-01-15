@@ -5,7 +5,7 @@
         <h3 class="dl-hd">
           <span v-show="hasHead">{{ title }}</span>
         </h3>
-        <h3 class="dl-bd" @click="sonClick">
+        <h3 class="dl-bd">
           {{ content }}
           <slot></slot>
         </h3>

@@ -19,15 +19,16 @@
     {{ txt }} -- {{ message }}
     <div class="blank"></div>
     <hr />
-    <h3>动态改变全局组件</h3>
+    <h3>挂载全局组件Toast</h3>
     <button @click="showToast" class="btn">showToast</button>
     <!-- 测试标签引入toast组件，不建议 -->
     <Toast v-model="isshow" msg="message" />
+    <div class="blank"></div>
     <hr />
     <h3>Dialog组件</h3>
     <button @click="showDialog" class="btn">showDialog</button>
     <!-- 测试标签引入toast组件，不建议 -->
-    <Dialog v-model="visible" title="标题" :hasHead="true" content="内容" @ok="onOk" />
+    <Dialog v-model="visible" title="标题" type="confirm" :hasHead="true" content="内容" @ok="onOk" />
   </div>
 </template>
 <script>
