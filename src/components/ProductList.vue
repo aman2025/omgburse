@@ -195,4 +195,54 @@ export default {
     line-height: 30.2vw;
   }
 }
+@media (min-width: 800px) {
+  .product-list .product-list-container .product-item .title-bg .text {
+    font-size: 18px;
+    margin-top: 1vw;
+  }
+  .product-list .product-list-container .product-item .icon {
+    padding-top: 10vw;
+    height: 37vw;
+  }
+  .product-list .product-list-container .product-item .icon img {
+    height: 16vw;
+  }
+  .product-list .product-list-container .product-item .title-bg .text:last-child {
+    right: 20px;
+    top: 0.5vw;
+  }
+  .product-list .product-list-container .product-item .bottom .price {
+    font-size: 5vw;
+    width: 21vw;
+    padding-top: 1.1vw;
+  }
+  .product-list .product-list-container .product-item .bottom .price .profit {
+    left: 1vw;
+    font-size: 2vw;
+  }
+  .product-list .product-list-container .product-item .bottom .info {
+    font-size: 2vw;
+    margin-left: 6vw;
+    height: auto;
+    line-height: 6.8vw;
+    width: auto;
+  }
+  .product-list .product-list-container .product-item .bottom .price1 {
+    font-size: 2.5vw;
+    line-height: 2.5vw;
+    margin-left: 5vw;
+    width: auto;
+    margin-top: auto;
+  }
+}
+@media (min-width: 1280px) {
+  .product-list .product-list-container .product-item .title-bg .text {
+    font-size: 22px;
+    margin-top: 2vw;
+  }
+  .product-list .product-list-container .product-item .icon {
+    padding-top: 10vw;
+    height: 38vw;
+  }
+}
 </style>

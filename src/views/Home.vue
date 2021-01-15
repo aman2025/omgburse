@@ -68,6 +68,7 @@ export default {
   margin-left: 5%;
   margin-top: 5%;
   height: 50px;
+  text-align: center;
 }
 .endText {
   margin-top: 5%;
@@ -79,6 +80,6 @@ export default {
   line-height: 30px;
 }
 .blank {
-  height: 80px;
+  height: 12vw;
 }
 </style>
