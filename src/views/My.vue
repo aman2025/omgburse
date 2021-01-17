@@ -83,7 +83,7 @@ export default {
         title: 'Introduction',
         className: 'introduction',
         img: 'icon_introduction',
-        url: '/Introduction',
+        url: '/Introduce',
         content: ''
       },
       {

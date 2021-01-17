@@ -75,6 +75,14 @@ const routes = [
     }
   },
   {
+    path: '/introduce',
+    name: 'Introduce',
+    component: () => import('../views/Introduce.vue'),
+    meta: {
+      showTab: false
+    }
+  },
+  {
     path: '/changeName',
     name: 'ChangeName',
     component: () => import('../views/ChangeName.vue'),
