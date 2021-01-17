@@ -184,7 +184,7 @@ export default {
 }
 .phone-prev-warp .phone-prev {
   position: absolute;
-  top: 5vw;
-  left: 18vw;
+  top: 20px;
+  left: 68px;
 }
 </style>
