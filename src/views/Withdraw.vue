@@ -17,6 +17,9 @@
         <textarea v-model="mark" />
       </div>
     </div>
+    <div class="illustration">
+      {{ illustration }}
+    </div>
     <Button btnText="Withdraw" theme="primary" class="tipBtn" @click="withdraw" />
   </div>
 </template>
@@ -44,9 +47,19 @@ export default {
       visible: false,
       message: ''
     });
+    const illustration = ref('');
+    const url = 'Api/System/Withdraw';
+    const illustrate = () => request.post(url);
+    illustrate()
+      .then(res => {
+        console.log(res);
+        illustration.value = res.data.content;
+      })
+      .catch(() => {});
     // return
     return {
       isLoad,
+      illustration,
       ...toRefs(state)
     };
   },
@@ -123,6 +136,11 @@ export default {
   padding: 10px 10px;
   font-size: 18px;
   width: 100%;
-  height: 50vw;
+  height: 22vw;
+}
+.illustration {
+  font-size: 12px;
+  color: #333;
+  padding: 0 0 20px;
 }
 </style>
