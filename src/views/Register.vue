@@ -7,8 +7,9 @@
       <div>
         <Input placeholder="Enter your username" objkey="username" v-model:formData="loginForm" iconuser="icon-q01" :hasIcon="true" />
       </div>
-      <div>
-        <Input placeholder="Enter your phone" objkey="uphone" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" maxLen="10" />
+      <div class="phone-prev-warp">
+        <span class="phone-prev">+91</span>
+        <Input placeholder="Enter your phone" objkey="uphone" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" maxLen="10" class="ipadd" />
       </div>
       <div>
         <Input type="password" placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
@@ -177,5 +178,13 @@ export default {
 }
 .login-register em {
   margin: 0 10px;
+}
+.phone-prev-warp {
+  position: relative;
+}
+.phone-prev-warp .phone-prev {
+  position: absolute;
+  top: 5vw;
+  left: 18vw;
 }
 </style>

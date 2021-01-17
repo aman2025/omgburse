@@ -17,9 +17,7 @@
         <textarea v-model="mark" />
       </div>
     </div>
-    <div class="illustration">
-      {{ illustration }}
-    </div>
+    <div class="illustration" v-html="illustration"></div>
     <Button btnText="Withdraw" theme="primary" class="tipBtn" @click="withdraw" />
   </div>
 </template>
@@ -142,5 +140,6 @@ export default {
   font-size: 12px;
   color: #333;
   padding: 0 0 20px;
+  white-space: pre-wrap;
 }
 </style>
