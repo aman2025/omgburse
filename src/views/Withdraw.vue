@@ -65,7 +65,8 @@ export default {
     withdraw() {
       if (this.money) {
         const url = '/Api/Money/Tixian';
-        var withdrawForm = { money: this.money, mark: this.mark };
+        const tokenVal = JSON.parse(localStorage.token);
+        var withdrawForm = { money: this.money, mark: this.mark, token: tokenVal };
         console.log(withdrawForm);
         const Tixian = param => request.post(url, param);
         Tixian(withdrawForm)
@@ -74,7 +75,9 @@ export default {
               this.showToast(res.msg);
             } else {
               this.showToast(res.msg);
-              this.$router.back(-1);
+              setTimeout(() => {
+                this.$router.back(-1);
+              }, 2000);
             }
           })
           .catch(() => {});
