@@ -61,8 +61,12 @@ export default {
   font-size: 16px;
 }
 .marquee ul {
-  height: 100px;
+  height: 118px;
   overflow: hidden;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 10px;
+  border-bottom: 12px solid #fff;
 }
 .marquee li {
   font-weight: bold;

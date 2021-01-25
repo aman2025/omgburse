@@ -64,11 +64,16 @@ export default {
   padding: 10px;
 }
 .welcome .welcome-box {
-  margin-top: 15%;
+  position: fixed;
   padding: 0 25px 35px;
   background-color: #ffffff;
   border: 2px solid #ffb101;
   border-radius: 5px;
+  width: 92%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 .welcome h1 {
   text-align: center;
@@ -91,7 +96,7 @@ export default {
   font-weight: normal;
   padding: 2px;
   white-space: pre-wrap;
-  min-height: 100px;
+  min-height: 180px;
 }
 .w-blank {
   height: 25px;
