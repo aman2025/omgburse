@@ -2,13 +2,8 @@
   <div class="welcome" v-show="ps">
     <div class="welcome-box">
       <h1>Welcome</h1>
-      <h3>Goods news</h3>
       <div class="info">
-        <p>The latest good news, OMG will resume normal withdrawals next Monday, and all rewards will be credited immediately.</p>
-      </div>
-      <h3>Important Notice</h3>
-      <div class="info">
-        <p>Christmas is coming soon. In order to thank users for their long-term trust and support, OMG presents the third Christmas gift for everyone, and 100% ofthe recharge will be given immediately. Thank you for your support to OMG.</p>
+        <p v-html="content"></p>
       </div>
       <div class="w-blank"></div>
       <Button btnText="Got it" class="tipBtn" @click="gotIt" />
@@ -18,7 +13,8 @@
 
 <script>
 import Button from '@/components/Button.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import request from '../utils/request';
 
 export default {
   name: 'Welcome',
@@ -29,9 +25,22 @@ export default {
     Button
   },
   setup(props) {
+    var content = ref('');
+    // onMounted
+    onMounted(() => {
+      const url = '/Api/System/Notice';
+      const getNotice = () => request.get(url);
+      getNotice()
+        .then(res => {
+          console.log(res.data);
+          content.value = res.data.content;
+        })
+        .catch(() => {});
+    });
     var ps = ref(props.panelShow);
     return {
-      ps
+      ps,
+      content
     };
   },
   methods: {
@@ -81,6 +90,8 @@ export default {
   background-color: #fefad5;
   font-weight: normal;
   padding: 2px;
+  white-space: pre-wrap;
+  min-height: 100px;
 }
 .w-blank {
   height: 25px;

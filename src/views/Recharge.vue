@@ -8,6 +8,14 @@
         <span class="pri-symbol">₽</span>
         <input type="text" readonly v-model="money" />
       </div>
+      <h3 class="typeTitle">Recharge Type</h3>
+      <div class="sel-ipt-wrap ">
+        <select name="" id="" class="sel-ipt" v-model="ptype">
+          <option value="1">Transfer payment</option>
+          <option value="2">Payment by scanning code</option>
+        </select>
+        <span class="caret"></span>
+      </div>
     </div>
     <div class="box-opt">
       <ul>
@@ -35,6 +43,7 @@ export default {
     const state = reactive({
       visible: false,
       message: '',
+      ptype: '1',
       moneyList: [],
       isChange: -1
     });
@@ -64,7 +73,7 @@ export default {
       if (this.money) {
         const urlOther = '/Api/Demo/ttopay';
         const tokenVal = JSON.parse(localStorage.token);
-        window.location.href = `${urlOther}?money=${this.money}&token=${tokenVal}`;
+        window.location.href = `${urlOther}?money=${this.money}&token=${tokenVal}&ptype=${this.ptype}`;
       } else {
         this.showToast('money can not be empty');
       }
@@ -89,7 +98,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .box-opt {
-  padding: 0 0 10px;
+  padding: 10px 0 10px;
 }
 .box-opt ul {
   display: -webkit-box;
@@ -155,5 +164,35 @@ export default {
   font-size: 18px;
   width: 100%;
   height: 50vw;
+}
+.typeTitle {
+  padding-top: 10px;
+}
+.sel-ipt {
+  border-radius: 5px;
+  background-color: #fff;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 10px 0 8px;
+  font-size: 14px;
+  width: 100%;
+  color: #555;
+}
+.sel-ipt-wrap {
+  position: relative;
+}
+.sel-ipt-wrap .caret {
+  position: absolute;
+  top: 18px;
+  right: 12px;
+  display: block;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  border-left: 5px solid #5096ac;
+  height: 0;
+  width: 0;
+  z-index: 99;
+  transform: rotate3d(0, 0, 1, 90deg);
 }
 </style>

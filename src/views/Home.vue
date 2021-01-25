@@ -1,8 +1,10 @@
 <template>
   <div class="home">
     <Loading v-if="isLoad" />
-    <Welcome :panelShow="false" />
+    <Welcome :panelShow="true" />
     <BoxTop />
+    <!-- memberDynamic -->
+    <Marquee />
     <ProductList :goods="goods" />
     <div class="OrderRecord" @click="goOrder">
       <img src="../assets/shuadan_dt_btn_order.png" />
@@ -16,6 +18,7 @@
 import BoxTop from '@/components/BoxTop.vue';
 import ProductList from '@/components/ProductList.vue';
 import Welcome from '@/components/Welcome.vue';
+import Marquee from '@/components/Marquee.vue';
 import Loading from '@/components/Loading.vue';
 // import request from '../utils/request';
 import { ref } from 'vue';
@@ -27,6 +30,7 @@ export default {
     ProductList,
     BoxTop,
     Welcome,
+    Marquee,
     Loading
   },
   setup() {
