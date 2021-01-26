@@ -37,10 +37,9 @@ export default {
         .then(res => {
           console.log(res.data);
           memberDynamic.value = res.data;
+          setInterval(scrollAnimate, 1500);
         })
         .catch(() => {});
-
-      setInterval(scrollAnimate, 1500);
     });
     return {
       memberDynamic
@@ -64,9 +63,9 @@ export default {
   height: 118px;
   overflow: hidden;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: #e6e6ec;
   padding: 10px;
-  border-bottom: 12px solid #fff;
+  border-bottom: 12px solid #e6e6ec;
 }
 .marquee li {
   font-weight: bold;

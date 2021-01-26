@@ -5,7 +5,7 @@
     </div>
     <div class="login-bd">
       <div>
-        <Input placeholder="Enter your username" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" />
+        <Input placeholder="Enter your username" objkey="username" v-model:formData="loginForm" maxLen="10" iconuser="icon-q02" :hasIcon="true" />
       </div>
       <div>
         <Input type="password" placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
@@ -70,7 +70,7 @@ export default {
     },
     loginValidate() {
       var errors = {
-        username: 'username cannot be empty',
+        username: 'your phone cannot be empty',
         password: 'password cannot be empty'
       };
       var errorsLog = [];
@@ -82,10 +82,16 @@ export default {
         return val;
       });
       if (vals.filter(v => v).length === 2) {
+        var numReg = /^[0-9]*$/;
+        if (!numReg.test(vals[0]) || vals[0].length != 10) {
+          this.showToast('your phone number is error!');
+          return null;
+        }
         return vals;
       } else {
         this.showToast(errorsLog[0]);
       }
+
       return null;
     },
     goRegister() {

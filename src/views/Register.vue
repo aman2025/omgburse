@@ -4,12 +4,9 @@
       <img src="../assets/login-top.png" />
     </div>
     <div class="login-bd">
-      <div>
-        <Input placeholder="Enter your username" objkey="username" v-model:formData="loginForm" iconuser="icon-q01" :hasIcon="true" />
-      </div>
       <div class="phone-prev-warp">
         <span class="phone-prev">+91</span>
-        <Input placeholder="Enter your phone" objkey="uphone" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" maxLen="10" class="ipadd" />
+        <Input placeholder="Enter your phone" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" maxLen="10" class="ipadd" />
       </div>
       <div>
         <Input type="password" placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
@@ -46,7 +43,7 @@ export default {
     const router = useRoute();
     const params = router.query;
     const state = reactive({
-      loginForm: { username: '', uphone: '', password: '', repassword: '' },
+      loginForm: { username: '', password: '', repassword: '' },
       visible: false,
       message: ''
     });
@@ -84,8 +81,7 @@ export default {
     },
     loginValidate() {
       var errors = {
-        username: 'username cannot be empty',
-        uphone: 'uphone cannot be empty',
+        username: 'uphone cannot be empty',
         password: 'password cannot be empty',
         repassword: 'repassword cannot be empty'
       };
@@ -100,13 +96,12 @@ export default {
       });
       console.log(vals);
       console.log(errorsLog);
-      if (vals.filter(v => v).length !== 4) {
+      if (vals.filter(v => v).length !== 3) {
         this.showToast(errorsLog[0]);
         return null;
       }
       var numReg = /^[0-9]*$/;
-      console.log(vals[1]);
-      if (!numReg.test(vals[1]) || vals[1].length != 10) {
+      if (!numReg.test(vals[0]) || vals[0].length != 10) {
         this.showToast('your phone number is error!');
         return null;
       }
