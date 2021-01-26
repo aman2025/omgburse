@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Loading v-if="isLoad" />
-    <Welcome :panelShow="true" />
+    <Welcome />
     <BoxTop />
     <!-- memberDynamic -->
     <Marquee />

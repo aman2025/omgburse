@@ -9,13 +9,17 @@
         <input type="text" readonly v-model="money" />
       </div>
       <h3 class="typeTitle">Recharge Type</h3>
-      <div class="sel-ipt-wrap ">
+      <div class="sel-ptype">
+        <div><input type="radio" id="transfer" v-model="ptype" value="1" checked /><label for="transfer">Transfer payment</label></div>
+        <div><input type="radio" id="scanning" v-model="ptype" value="2" /><label for="scanning">Payment by scanning code</label></div>
+      </div>
+      <!-- <div class="sel-ipt-wrap ">
         <select name="" id="" class="sel-ipt" v-model="ptype">
           <option value="1">Transfer payment</option>
           <option value="2">Payment by scanning code</option>
         </select>
         <span class="caret"></span>
-      </div>
+      </div> -->
     </div>
     <div class="box-opt">
       <ul>
@@ -148,7 +152,7 @@ export default {
   left: 5px;
   height: 26px;
 }
-.box-ipt div input {
+.box-ipt div input[type='text'] {
   border-radius: 5px;
   background-color: #fff;
   height: 38px;
@@ -168,6 +172,7 @@ export default {
 .typeTitle {
   padding-top: 10px;
 }
+//下拉样式
 .sel-ipt {
   border-radius: 5px;
   background-color: #fff;
@@ -194,5 +199,43 @@ export default {
   width: 0;
   z-index: 99;
   transform: rotate3d(0, 0, 1, 90deg);
+}
+// radio 选择
+.sel-ptype {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.sel-ptype > div {
+  flex: 0 0 48%;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  padding: 17px 0;
+  text-align: center;
+  position: relative;
+  font-size: 12px;
+}
+.sel-ptype label {
+  display: block;
+  position: absolute;
+  top: 0;
+  padding: 7px 0;
+  left: 0;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+}
+.sel-ptype input[type='radio'] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 17px 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 0;
+}
+.sel-ptype input[type='radio']:checked {
+  background-color: #bde0ea;
 }
 </style>

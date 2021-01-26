@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome" v-show="ps">
+  <div class="welcome" v-if="panelShow">
     <div class="welcome-box">
       <h1>Welcome</h1>
       <div class="info">
@@ -13,19 +13,19 @@
 
 <script>
 import Button from '@/components/Button.vue';
-import { onMounted, ref } from 'vue';
+import { inject, onMounted, ref } from 'vue';
 import request from '../utils/request';
 
 export default {
   name: 'Welcome',
-  props: {
-    panelShow: Boolean
-  },
+  props: {},
   components: {
     Button
   },
-  setup(props) {
+  setup() {
     var content = ref('');
+    var panelShow = inject('panelShow');
+    var updatePanelShow = inject('updatePanelShow');
     // onMounted
     onMounted(() => {
       const url = '/Api/System/Notice';
@@ -37,15 +37,15 @@ export default {
         })
         .catch(() => {});
     });
-    var ps = ref(props.panelShow);
     return {
-      ps,
+      panelShow,
+      updatePanelShow,
       content
     };
   },
   methods: {
     gotIt() {
-      this.ps = false;
+      this.updatePanelShow();
     }
   }
 };
