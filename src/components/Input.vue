@@ -1,7 +1,7 @@
 <template>
   <div class="wraper">
     <i v-if="hasIcon" :class="iconuser"></i>
-    <input :type="type ? type : 'text'" :placeholder="placeholder" @input="getValue" :class="'ipt ' + (hasIcon ? 'iptpadd' : '')" :maxlength="maxLen" />
+    <input :type="type ? type : 'text'" :placeholder="placeholder" @input="getValue" :class="'ipt ' + (hasIcon ? 'iptpadd' : '')" :maxlength="maxLen" :value="newFormData[objkey]" />
   </div>
 </template>
 

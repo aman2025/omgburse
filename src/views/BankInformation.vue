@@ -1,22 +1,23 @@
 <template>
   <div class="bank-information">
     <OutView title="Fill in personal information" :isBack="true" />
+
     <div class="out-wraper">
       <div class="form-title">Bank information</div>
       <Input placeholder="Enter your name" iconuser="icon-q01" :hasIcon="true" objkey="uname" v-model:formData="accoutForm" />
       <Input placeholder="Enter your mobile phone number" iconuser="icon-q02" :hasIcon="true" objkey="uphone" v-model:formData="accoutForm" />
-      <Input placeholder="Enter your bank account" iconuser="icon-q03" :hasIcon="true" objkey="bankcode" v-model:formData="accoutForm" />
-      <Input placeholder="Enter your bank name" iconuser="icon-q04" :hasIcon="true" objkey="bankuname" v-model:formData="accoutForm" />
-      <Input type="password" placeholder="Enter password" iconuser="icon-q05" :hasIcon="true" objkey="password" v-model:formData="accoutForm" />
       <!-- 下拉 -->
       <div class="sel-ipt-wrap ">
         <i></i>
         <select name="" id="" class="sel-ipt" v-model="thebank">
-          <option v-for="item in banklist" :key="item.id" :value="item.title">{{ item.title }}</option>
+          <option v-for="item in banklist" :key="item.id" :value="item.id">{{ item.title }}</option>
         </select>
         <span class="caret"></span>
         <div class="pholder">{{ thebank == '' ? 'Select your bank name' : '' }}</div>
       </div>
+      <Input placeholder="Enter your bank name" iconuser="icon-q04" :hasIcon="true" objkey="bankuname" v-model:formData="accoutForm" />
+      <Input placeholder="Enter your bank account" iconuser="icon-q03" :hasIcon="true" objkey="bankcode" v-model:formData="accoutForm" />
+      <Input type="password" placeholder="Enter password" iconuser="icon-q05" :hasIcon="true" objkey="password" v-model:formData="accoutForm" />
     </div>
     <Button btnText="save" theme="primary" class="tipBtn" @click="saveAccount" />
     <Toast v-show="visible" :message="message" />
@@ -46,11 +47,25 @@ export default {
       banklist: [],
       message: ''
     });
+    // userinfo
+    var userUrl = '/Api/Account/UserInfo';
+    const getUserinfo = () => request.get(userUrl);
+    getUserinfo()
+      .then(res => {
+        state.accoutForm.uname = res.data.uname;
+        state.accoutForm.uphone = res.data.uphone;
+        state.accoutForm.bankcode = res.data.bankcode;
+        state.accoutForm.bankuname = res.data.bankuname;
+        state.accoutForm.thebank = res.data.bankuname;
+        state.thebank = res.data.thebank;
+      })
+      .catch(() => {});
+
+    //banklist
     const url = '/Api/System/banklist';
     const getBankList = () => request.post(url);
     getBankList()
       .then(res => {
-        console.log(res.data);
         state.banklist = res.data;
       })
       .catch(() => {});
@@ -66,7 +81,7 @@ export default {
       if (vals) {
         // 校验通过并获取值
         const tokenVal = JSON.parse(localStorage.token);
-        const accoutForm = Object.assign({}, this.accoutForm, { token: tokenVal });
+        const accoutForm = Object.assign({}, this.accoutForm, { token: tokenVal, thebank: this.thebank });
         const url = '/Api/Account/Addinfo';
         const addinfo = user => request.post(url, user);
         addinfo(accoutForm)

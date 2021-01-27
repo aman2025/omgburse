@@ -71,13 +71,20 @@ export default {
         const Tixian = param => request.post(url, param);
         Tixian(withdrawForm)
           .then(res => {
-            if (res.status == 0) {
+            if (res.status == 3) {
+              // 没绑定银行卡
               this.showToast(res.msg);
-            } else {
+              setTimeout(() => {
+                this.$router.push('/BankInformation');
+              }, 2000);
+            } else if (res.status == 1) {
+              // 提现成功
               this.showToast(res.msg);
               setTimeout(() => {
                 this.$router.back(-1);
               }, 2000);
+            } else {
+              this.showToast(res.msg);
             }
           })
           .catch(() => {});
