@@ -5,7 +5,7 @@
     <div class="box-ipt">
       <h3>Recharge amount</h3>
       <div>
-        <span class="pri-symbol">₽</span>
+        <span class="pri-symbol">₹</span>
         <input type="text" readonly v-model="money" />
       </div>
       <h3 class="typeTitle">Recharge Type</h3>
@@ -23,7 +23,7 @@
     </div>
     <div class="box-opt">
       <ul>
-        <li v-for="(item, index) in moneyList" :key="item.id" @click="selectMoney(item.money, index)" :class="{ active: isChange == index }">{{ item.money }}₽</li>
+        <li v-for="(item, index) in moneyList" :key="item.id" @click="selectMoney(item.money, index)" :class="{ active: isChange == index }">{{ item.money }}₹</li>
       </ul>
     </div>
     <Button btnText="Recharge" theme="primary" class="tipBtn" @click="recharge" />
