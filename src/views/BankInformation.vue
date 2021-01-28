@@ -12,7 +12,7 @@
           <option v-for="item in banklist" :key="item.id" :value="item.id">{{ item.title }}</option>
         </select>
         <span class="caret"></span>
-        <div class="pholder">{{ thebank == '' ? 'Select your bank name' : '' }}</div>
+        <div class="pholder">{{ thebank == '' || thebank == '0' ? 'Select your bank name' : '' }}</div>
       </div>
       <Input placeholder="Enter your bank name" iconuser="icon-q04" :hasIcon="true" objkey="bankuname" v-model:formData="accoutForm" />
       <Input placeholder="Enter your bank account" iconuser="icon-q03" :hasIcon="true" objkey="bankcode" v-model:formData="accoutForm" />
