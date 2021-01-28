@@ -15,7 +15,7 @@ let createMount = opts => {
   });
   return app.mount(mountNode);
 };
-//全局函数，会被添加到vue实例上
+// 全局函数，会被添加到vue实例上
 function createToast(options = {}) {
   // options.id = options.id || 'createToast_xxx';
   $inst = createMount(options);
@@ -26,6 +26,6 @@ createToast.install = app => {
   app.component('Toast', Toast);
   // vue3全局挂载函数的方式一：app.config.globalProperties.$createToast
   app.config.globalProperties.$Toast = createToast;
-  //方式二： app.provide('createToast', createToast);
+  // 方式二： app.provide('createToast', createToast);
 };
 export default createToast;

@@ -21,7 +21,7 @@ export default {
   components: {},
   setup() {
     let memberDynamic = ref([]);
-    //scrollAnimate
+    // scrollAnimate
     const scrollAnimate = () => {
       var lists = memberDynamic.value;
       setTimeout(() => {
@@ -32,7 +32,7 @@ export default {
     // onMounted
     onMounted(() => {
       const dynamicUrl = '/Api/System/Dynamic';
-      const getDynamic = () => request.get(dynamicUrl); //todo: 每5分钟请求1次
+      const getDynamic = () => request.get(dynamicUrl);
       getDynamic()
         .then(res => {
           console.log(res.data);

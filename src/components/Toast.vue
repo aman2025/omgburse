@@ -14,11 +14,11 @@ export default {
     message: String
   },
   setup(props) {
-    //监听是否显示
+    // 监听是否显示
     watchEffect(() => {
       console.log(props.message);
     });
-    //return
+    // return
     return {};
   }
 };

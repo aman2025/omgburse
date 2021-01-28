@@ -40,7 +40,7 @@ const request = () => {
         }
         config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
       }
-      //发送请求前的回调事件
+      // 发送请求前的回调事件
       beforesend && beforesend();
       return config;
     },

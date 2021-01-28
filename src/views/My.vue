@@ -31,7 +31,7 @@ export default {
     // 获取vue实例, 全局实例函数添加组件
     // var { ctx } = getCurrentInstance();
     // ctx.$Toast({ modelValue: false, message: 'ok', time: 2 });
-    //sign out
+    // sign out
     const router = useRouter();
     const signOut = () => {
       window.localStorage.clear();
@@ -96,7 +96,7 @@ export default {
         callback: signOut
       }
     ];
-    //dialog show
+    // dialog show
     const show = ref(false);
 
     // 响应式回调方法，dialog点击ok
@@ -106,7 +106,7 @@ export default {
     const openDialog = ref((val, func) => {
       content.value = val; // 子组件传值给父组件参数
       show.value = true;
-      callback.value = func; //回调callback，重新赋值
+      callback.value = func; // 回调callback，重新赋值
     });
 
     // 确定dialog
@@ -114,12 +114,12 @@ export default {
       show.value = val;
       callback.value();
     });
-    //关闭dialog
+    // 关闭dialog
     const onCancel = ref(val => {
       show.value = val;
     });
 
-    //定义dialog的内容
+    // 定义dialog的内容
     const content = ref('');
     return {
       lists,

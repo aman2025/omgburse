@@ -1,7 +1,6 @@
 <template>
   <div class="bank-information">
     <OutView title="Fill in personal information" :isBack="true" />
-
     <div class="out-wraper">
       <div class="form-title">Bank information</div>
       <Input placeholder="Enter your name" iconuser="icon-q01" :hasIcon="true" objkey="uname" v-model:formData="accoutForm" />
@@ -28,7 +27,7 @@ import OutView from '@/components/OutView.vue';
 import Button from '@/components/Button.vue';
 import Input from '@/components/Input.vue';
 import Toast from '@/components/Toast.vue';
-import { reactive, toRefs } from 'vue';
+import { reactive, toRefs, watchEffect } from 'vue';
 import request from '../utils/request';
 
 export default {
@@ -61,7 +60,7 @@ export default {
       })
       .catch(() => {});
 
-    //banklist
+    // banklist
     const url = '/Api/System/banklist';
     const getBankList = () => request.post(url);
     getBankList()
@@ -69,6 +68,11 @@ export default {
         state.banklist = res.data;
       })
       .catch(() => {});
+
+    // 监听选中的银行，防止选择银行后，accoutForm.thebank还是请求的默认值
+    watchEffect(() => {
+      state.accoutForm.thebank = state.thebank;
+    });
 
     return {
       ...toRefs(state)
@@ -115,6 +119,7 @@ export default {
         }
         return val;
       });
+      console.log(vals);
       if (vals.filter(v => v).length !== 6) {
         this.showToast(errorsLog[0]);
         return null;

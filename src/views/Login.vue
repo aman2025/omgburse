@@ -58,7 +58,7 @@ export default {
         .then(res => {
           localStorage.setItem('token', JSON.stringify(res.token));
           if (res.status == 1) {
-            //登录成功
+            // 登录成功
             this.$router.push('/');
           } else {
             this.showToast(res.msg);

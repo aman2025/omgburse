@@ -60,7 +60,7 @@ export default {
       show.value = val;
       callback.value();
     });
-    //关闭dialog
+    // 关闭dialog
     const onCancel = ref(val => {
       show.value = val;
     });
@@ -111,7 +111,7 @@ export default {
         toastState.visible = false;
       }, 1500);
     };
-    //return
+    // return
     return {
       isLoad,
       content,
