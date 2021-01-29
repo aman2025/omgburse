@@ -27,7 +27,7 @@
       <span>Forget password</span>
     </div>
     <Toast v-show="visible" :message="message" />
-    <img src="../assets/app.png" class="app" alt="" @click="appDownload" />
+    <!-- <img src="../assets/app.png" class="app" alt="" @click="appDownload" /> -->
   </div>
 </template>
 <script>

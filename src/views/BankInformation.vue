@@ -16,6 +16,7 @@
       </div>
       <Input placeholder="Enter your bank name" iconuser="icon-q04" :hasIcon="true" objkey="bankuname" v-model:formData="accoutForm" />
       <Input placeholder="Enter your bank account" iconuser="icon-q03" :hasIcon="true" objkey="bankcode" v-model:formData="accoutForm" />
+      <Input placeholder="Enter your bank province" iconuser="icon-q07" :hasIcon="true" objkey="province" v-model:formData="accoutForm" />
       <Input type="password" placeholder="Enter password" iconuser="icon-q05" :hasIcon="true" objkey="password" v-model:formData="accoutForm" />
     </div>
     <Button btnText="save" theme="primary" class="tipBtn" @click="saveAccount" />
@@ -40,7 +41,7 @@ export default {
   },
   setup() {
     const state = reactive({
-      accoutForm: { uname: '', uphone: '', bankcode: '', bankuname: '', password: '', thebank: '' },
+      accoutForm: { uname: '', uphone: '', bankcode: '', province: '', bankuname: '', password: '', thebank: '' },
       visible: false,
       thebank: '',
       banklist: [],
@@ -54,6 +55,7 @@ export default {
         state.accoutForm.uname = res.data.uname;
         state.accoutForm.uphone = res.data.uphone;
         state.accoutForm.bankcode = res.data.bankcode;
+        state.accoutForm.province = res.data.province;
         state.accoutForm.bankuname = res.data.bankuname;
         state.accoutForm.thebank = res.data.bankuname;
         state.thebank = res.data.thebank;
@@ -88,6 +90,7 @@ export default {
         const accoutForm = Object.assign({}, this.accoutForm, { token: tokenVal, thebank: this.thebank });
         const url = '/Api/Account/Addinfo';
         const addinfo = user => request.post(url, user);
+        console.log(accoutForm);
         addinfo(accoutForm)
           .then(res => {
             if (res.status == 1) {
@@ -107,6 +110,7 @@ export default {
         uname: 'uname cannot be empty',
         uphone: 'uphone cannot be empty',
         bankcode: 'bankcode cannot be empty',
+        province: 'province cannot be empty',
         bankuname: 'your bank name cannot be empty',
         password: 'password cannot be empty',
         thebank: 'bank cannot be empty'
@@ -120,7 +124,7 @@ export default {
         return val;
       });
       console.log(vals);
-      if (vals.filter(v => v).length !== 6) {
+      if (vals.filter(v => v).length !== 7) {
         this.showToast(errorsLog[0]);
         return null;
       }
