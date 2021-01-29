@@ -86,16 +86,16 @@ export default {
         url: '/Introduce',
         content: ''
       },
+      // {
+      //   id: 7,
+      //   title: 'APP download',
+      //   className: 'icon_mission',
+      //   img: 'icon_mission',
+      //   url: '/appDownload',
+      //   content: ''
+      // },
       {
         id: 7,
-        title: 'APP download',
-        className: 'icon_mission',
-        img: 'icon_mission',
-        url: '/appDownload',
-        content: ''
-      },
-      {
-        id: 8,
         title: 'Sign out',
         className: 'sign_out',
         img: 'icon_signout',

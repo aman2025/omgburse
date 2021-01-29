@@ -14,6 +14,10 @@
       <div>
         <Input type="password" placeholder="Repeat your password" objkey="repassword" v-model:formData="loginForm" iconuser="icon-q06" :hasIcon="true" />
       </div>
+      <div class="phone-prev-warp">
+        <span class="phone-prev">shareID</span>
+        <Input placeholder="" objkey="upid" v-model:formData="loginForm" iconuser="icon-q03" :hasIcon="true" class="ipadd2" />
+      </div>
       <!-- <div>
         <Input placeholder="Enter upid" objkey="upid" v-model:formData="loginForm" iconuser="icon-q03" :hasIcon="true" />
       </div> -->
@@ -25,7 +29,7 @@
       </div>
     </div>
     <Toast v-show="visible" :message="message" />
-    <img src="../assets/app.png" class="app" alt="" @click="appDownload" />
+    <!-- <img src="../assets/app.png" class="app" alt="" @click="appDownload" /> -->
   </div>
 </template>
 <script>
@@ -48,8 +52,9 @@ export default {
     // const { ctx } = getCurrentInstance();
     const router = useRoute();
     const params = router.query;
+    console.log(params.upid);
     const state = reactive({
-      loginForm: { username: '', password: '', repassword: '' },
+      loginForm: { username: '', password: '', repassword: '', upid: params.upid },
       visible: false,
       message: ''
     });
@@ -65,7 +70,7 @@ export default {
       var vals = this.loginValidate();
       if (vals) {
         // 校验通过并获取值
-        const loginForm = Object.assign({}, this.loginForm, { upid: this.params.upid });
+        const loginForm = Object.assign({}, this.loginForm);
         const url = '/Api/User/register';
         const login = user => request.post(url, user);
         console.log(loginForm);
@@ -90,7 +95,8 @@ export default {
       var errors = {
         username: 'uphone cannot be empty',
         password: 'password cannot be empty',
-        repassword: 'repassword cannot be empty'
+        repassword: 'repassword cannot be empty',
+        upid: 'shareID cannot be empty'
       };
       var errorsLog = [];
       var vals = Object.keys(errors).map(key => {
@@ -101,9 +107,7 @@ export default {
         }
         return val;
       });
-      console.log(vals);
-      console.log(errorsLog);
-      if (vals.filter(v => v).length !== 3) {
+      if (vals.filter(v => v).length !== 4) {
         this.showToast(errorsLog[0]);
         return null;
       }
@@ -188,5 +192,12 @@ export default {
   position: absolute;
   top: 20px;
   left: 68px;
+}
+.upid {
+  padding: 5px 0 0 32px;
+  font-weight: bold;
+}
+.upid span {
+  font-weight: normal;
 }
 </style>

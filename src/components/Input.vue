@@ -82,7 +82,14 @@ export default {
   background-image: url(../assets/icon-q06.png);
   background-size: 100%;
 }
+.wraper i.icon-q07 {
+  background-image: url(../assets/icon_modify.png);
+  background-size: 100%;
+}
 .wraper.ipadd .ipt {
   padding: 0 0 0 88px;
+}
+.wraper.ipadd2 .ipt {
+  padding: 0 0 0 112px;
 }
 </style>
