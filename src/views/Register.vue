@@ -25,11 +25,12 @@
       </div>
     </div>
     <Toast v-show="visible" :message="message" />
+    <img src="../assets/app.png" class="app" alt="" @click="appDownload" />
   </div>
 </template>
 <script>
 import request from '../utils/request';
-import { toRefs, reactive } from 'vue';
+import { toRefs, reactive, inject } from 'vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
 import Toast from '@/components/Toast.vue';
@@ -39,6 +40,11 @@ export default {
   name: 'Register',
   components: { Input, Button, Toast },
   setup() {
+    // app download url
+    const appUrl = inject('appUrl');
+    const appDownload = () => {
+      window.location.href = appUrl.value;
+    };
     // const { ctx } = getCurrentInstance();
     const router = useRoute();
     const params = router.query;
@@ -48,6 +54,7 @@ export default {
       message: ''
     });
     return {
+      appDownload,
       ...toRefs(state),
       params
     };

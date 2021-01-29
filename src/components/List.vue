@@ -96,4 +96,7 @@ export default {
 .list > div.sign_out > div > div {
   background-image: url(../assets/icon_signout.png);
 }
+.list > div.icon_mission > div > div {
+  background-image: url(../assets/icon_mission.png);
+}
 </style>

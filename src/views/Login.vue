@@ -27,11 +27,12 @@
       <span>Forget password</span>
     </div>
     <Toast v-show="visible" :message="message" />
+    <img src="../assets/app.png" class="app" alt="" @click="appDownload" />
   </div>
 </template>
 <script>
 import request from '../utils/request';
-import { toRefs, reactive } from 'vue';
+import { toRefs, reactive, inject } from 'vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
 import Toast from '@/components/Toast.vue';
@@ -45,8 +46,14 @@ export default {
       visible: false,
       message: ''
     });
+    // app download url
+    const appUrl = inject('appUrl');
+    const appDownload = () => {
+      window.location.href = appUrl.value;
+    };
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      appDownload
     };
   },
   methods: {

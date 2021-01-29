@@ -169,6 +169,14 @@ const routes = [
     meta: {
       showTab: false
     }
+  },
+  {
+    path: '/appDownload',
+    name: 'AppDownload',
+    component: () => import('../views/AppDownload.vue'),
+    meta: {
+      showTab: false
+    }
   }
 ];
 
