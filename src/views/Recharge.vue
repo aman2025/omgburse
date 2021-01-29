@@ -10,8 +10,8 @@
       </div>
       <h3 class="typeTitle">Recharge Type</h3>
       <div class="sel-ptype">
-        <div><input type="radio" id="transfer" v-model="ptype" value="1" checked /><label for="transfer">Transfer payment</label></div>
-        <div><input type="radio" id="scanning" v-model="ptype" value="2" /><label for="scanning">Payment by scanning code</label></div>
+        <div><input type="radio" id="scanning" v-model="ptype" value="2" checked /><label for="scanning">Payment by scanning code</label></div>
+        <div><input type="radio" id="transfer" v-model="ptype" value="1" /><label for="transfer">Transfer payment</label></div>
       </div>
       <!-- <div class="sel-ipt-wrap ">
         <select name="" id="" class="sel-ipt" v-model="ptype">
@@ -47,7 +47,7 @@ export default {
     const state = reactive({
       visible: false,
       message: '',
-      ptype: '1',
+      ptype: '',
       moneyList: [],
       isChange: -1
     });
