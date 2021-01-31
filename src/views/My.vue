@@ -9,6 +9,7 @@
       <div @click="customerService"><img src="../assets/btn-service.png" /></div>
       <div @click="inviteFriends"><img src="../assets/btn-friend.png" /></div>
     </div>
+    {{ lang.locale.login }}
     <div class="blank"></div>
     <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false" />
   </div>
@@ -139,7 +140,7 @@ export default {
       callback
     };
   },
-  inject: ['userinfo'],
+  inject: ['userinfo', 'lang'],
   methods: {
     makeMoney() {
       this.$router.push('/MakeMoney');

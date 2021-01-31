@@ -26,6 +26,9 @@
       <em>|</em>
       <span>Forget password</span>
     </div>
+    {{ lang.locale.login }}
+    <button @click="changeLanguage('PT')">切换PT</button>
+    <button @click="changeLanguage('enUS')">切换enUS</button>
     <Toast v-show="visible" :message="message" />
     <!-- <img src="../assets/app.png" class="app" alt="" @click="appDownload" /> -->
   </div>
@@ -40,6 +43,7 @@ import Toast from '@/components/Toast.vue';
 export default {
   name: 'Login',
   components: { Input, Button, Toast },
+  inject: ['lang', 'changeLanguage'],
   setup() {
     const state = reactive({
       loginForm: { username: '', password: '' },
@@ -51,6 +55,8 @@ export default {
     const appDownload = () => {
       window.location.href = appUrl.value;
     };
+
+    // return
     return {
       ...toRefs(state),
       appDownload
