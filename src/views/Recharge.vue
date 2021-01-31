@@ -172,17 +172,6 @@ export default {
 .typeTitle {
   padding-top: 10px;
 }
-//下拉样式
-.sel-ipt {
-  border-radius: 5px;
-  background-color: #fff;
-  height: 38px;
-  line-height: 38px;
-  padding: 0 10px 0 8px;
-  font-size: 14px;
-  width: 100%;
-  color: #555;
-}
 .sel-ipt-wrap {
   position: relative;
 }

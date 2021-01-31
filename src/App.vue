@@ -6,7 +6,7 @@
 </template>
 <script>
 import Tabbar from '@/components/Tabbar.vue';
-import { provide, reactive, ref, toRefs, watchEffect } from 'vue';
+import { provide, reactive, ref, watchEffect } from 'vue';
 import request from './utils/request';
 import enUS from '@/locales/en-US.js';
 import PT from '@/locales/PT.js';
@@ -58,7 +58,7 @@ export default {
       const storeLang = localStorage.getItem('language_key');
       if (storeLang) {
         console.log('watch......');
-        changeLanguage();
+        changeLanguage(storeLang);
       }
     });
     provide('lang', lang);
@@ -66,7 +66,6 @@ export default {
 
     // return
     return {
-      ...toRefs(lang),
       panelShow,
       updatePanelShow,
       appUrl

@@ -35,7 +35,7 @@ export default {
     // sign out
     const router = useRouter();
     const signOut = () => {
-      window.localStorage.clear();
+      window.localStorage.removeItem('token');
       router.push('/Login');
     };
     const lists = [

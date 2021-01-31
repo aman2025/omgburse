@@ -10,6 +10,17 @@
       <div>
         <Input type="password" placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
       </div>
+      <!-- 下拉 -->
+      <div class="sel-ipt-wrap">
+        <i></i>
+        <select name="" id="" class="sel-ipt" v-model="selLang">
+          <option value="enUS">English</option>
+          <option value="PT">Portugal</option>
+          <option value="SP">Spain</option>
+        </select>
+        <span class="caret"></span>
+        <div class="pholder">{{ thebank == '' || thebank == '0' ? 'Select your bank name' : '' }}</div>
+      </div>
       <div class="login-remember">
         <label for="rm">
           <input type="checkbox" class="checkbox" id="rm" />
@@ -175,5 +186,8 @@ export default {
 }
 .login-register em {
   margin: 0 10px;
+}
+.sel-ipt-wrap > i {
+  background-image: url(../assets/icon-q04.png);
 }
 </style>

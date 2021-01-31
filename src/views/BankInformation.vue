@@ -6,7 +6,7 @@
       <Input placeholder="Enter your name" iconuser="icon-q01" :hasIcon="true" objkey="uname" v-model:formData="accoutForm" />
       <Input placeholder="Enter your mobile phone number" iconuser="icon-q02" :hasIcon="true" objkey="uphone" v-model:formData="accoutForm" />
       <!-- 下拉 -->
-      <div class="sel-ipt-wrap ">
+      <div class="sel-ipt-wrap">
         <i></i>
         <select name="" id="" class="sel-ipt" v-model="thebank">
           <option v-for="item in banklist" :key="item.id" :value="item.id">{{ item.title }}</option>
@@ -153,53 +153,7 @@ export default {
 .form-title {
   padding-left: 28px;
 }
-.sel-ipt {
-  position: relative;
-  height: 38px;
-  line-height: 38px;
-  padding: 0 10px 0 50px;
-  font-size: 14px;
-  width: 100%;
-  color: #555;
-  border-bottom: 1px solid #a1a1a1;
-  background-color: transparent !important;
-  z-index: 2;
-}
-.sel-ipt-wrap {
-  position: relative;
-  padding: 10px 20px;
-}
 .sel-ipt-wrap > i {
-  display: block;
-  position: absolute;
-  top: 15px;
-  left: 28px;
-  width: 29px;
-  height: 25px;
   background-image: url(../assets/icon-q04.png);
-  background-size: 100%;
-}
-.sel-ipt-wrap .caret {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  display: block;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-top: 5px solid transparent;
-  border-left: 5px solid #5096ac;
-  height: 0;
-  width: 0;
-  z-index: 99;
-  transform: rotate3d(0, 0, 1, 90deg);
-}
-.sel-ipt-wrap .pholder {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  top: 15px;
-  left: 69px;
-  color: #555;
-  z-index: 1;
 }
 </style>
