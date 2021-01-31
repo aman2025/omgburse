@@ -5,10 +5,10 @@
     </div>
     <div class="login-bd">
       <div>
-        <Input placeholder="Enter your phone" objkey="username" v-model:formData="loginForm" maxLen="10" iconuser="icon-q02" :hasIcon="true" />
+        <Input :placeholder="lang.locale.enterYourPhone" objkey="username" v-model:formData="loginForm" maxLen="10" iconuser="icon-q02" :hasIcon="true" />
       </div>
       <div>
-        <Input type="password" placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
+        <Input type="password" :placeholder="lang.locale.enterYourPassword" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
       </div>
       <!-- 下拉 -->
       <div class="sel-ipt-wrap">
@@ -24,7 +24,7 @@
       <div class="login-remember">
         <label for="rm">
           <input type="checkbox" class="checkbox" id="rm" />
-          Remember password
+          {{ lang.locale.remeberPassword }}
         </label>
       </div>
       <div class="login-btn-wrap">
@@ -37,7 +37,7 @@
       <em>|</em>
       <span>Forget password</span>
     </div>
-    {{ lang.locale.login }}
+
     <button @click="changeLanguage('PT')">切换PT</button>
     <button @click="changeLanguage('enUS')">切换enUS</button>
     <Toast v-show="visible" :message="message" />
@@ -56,10 +56,12 @@ export default {
   components: { Input, Button, Toast },
   inject: ['lang', 'changeLanguage'],
   setup() {
+    var curLangKey = localStorage.getItem('language_key');
     const state = reactive({
       loginForm: { username: '', password: '' },
       visible: false,
-      message: ''
+      message: '',
+      selLang: curLangKey
     });
     // app download url
     const appUrl = inject('appUrl');
