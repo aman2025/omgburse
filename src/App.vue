@@ -38,12 +38,12 @@ export default {
       .catch(() => {});
 
     // 切换语言
+    const storeLang = localStorage.getItem('language_key');
     const lang = reactive({
-      locale: enUS
+      locale: enUS,
+      storeLang: storeLang
     });
     const changeLanguage = val => {
-      console.log('changelanguage......1');
-      console.log(val);
       if (val == 'PT') {
         localStorage.setItem('language_key', 'PT');
         lang.locale = PT;
@@ -51,16 +51,13 @@ export default {
         localStorage.setItem('language_key', 'enUS');
         lang.locale = enUS;
       } else if (val == 'SP') {
-        console.log(3);
         localStorage.setItem('language_key', 'SP');
         lang.locale = SP;
       }
     };
 
     watchEffect(() => {
-      const storeLang = localStorage.getItem('language_key');
       if (storeLang) {
-        console.log('watch......');
         changeLanguage(storeLang);
       }
     });
