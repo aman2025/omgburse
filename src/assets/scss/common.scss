@@ -220,6 +220,16 @@ h3 {
 .login-head{
   text-align: center;
   background-color: #5294AA;
+  position: relative;
+}
+.login-head .login-tip{
+  color: #fff;
+  position: absolute;
+  bottom: 52px;
+  font-size: 18px;
+  white-space: nowrap;
+  left: 50%;
+  transform: translate( -50%, 0);
 }
 
 .app {

@@ -91,6 +91,11 @@ const I18N_CONF = {
   provinceEmpty: 'Provincias No puede estar vacío',
   bankunameEmpty: 'Tuyo Banco Nombre No puede estar vacío',
   bankEmpty: 'Banco No puede estar vacío',
+  // img text
+  loginTip: 'Ganar dinero con aplicaciones',
+  howMakeMoney: 'Cómo ganar dinero',
+  cutomerService: 'Servicio al cliente',
+  superRewards: 'Ganar premios de valor',
   // other
   noData: 'No hay datos!',
   totalRevenue: 'Total Ingresos',

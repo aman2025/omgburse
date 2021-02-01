@@ -1,6 +1,7 @@
 <template class="login">
   <div class="login">
     <div class="login-head">
+      <span class="login-tip">{{ lang.locale.loginTip }}</span>
       <img src="../assets/login-top.png" />
     </div>
     <div class="login-bd">

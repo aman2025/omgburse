@@ -5,9 +5,20 @@
     <!-- List component  -->
     <List :listdatas="lists" :openDialog="openDialog" style="margin-top: 5px" />
     <div class="other">
-      <div @click="makeMoney"><img src="../assets/btn-money.png" /></div>
-      <div @click="customerService"><img src="../assets/btn-service.png" /></div>
-      <div @click="inviteFriends"><img src="../assets/btn-friend.png" /></div>
+      <div @click="makeMoney">
+        <span class="myBtnText">{{ lang.locale.howMakeMoney }}</span>
+        <img src="../assets/btn-money.png" />
+      </div>
+      <div @click="customerService">
+        <span class="myBtnText">{{ lang.locale.cutomerService }}</span>
+        <img src="../assets/btn-service.png" />
+      </div>
+      <div @click="inviteFriends">
+        <span class="myBtnText invite"
+          >{{ lang.locale.inviteFriends }}<em>{{ lang.locale.superRewards }}</em></span
+        >
+        <img src="../assets/btn-friend.png" />
+      </div>
     </div>
     <div class="blank"></div>
     <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false" />
@@ -163,6 +174,28 @@ export default {
 .other > div {
   text-align: center;
   height: 18vw;
+  position: relative;
+}
+.other > div .myBtnText {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  text-align: left;
+  color: #fff;
+  font-size: 21px;
+  padding: 12px 0 0 105px;
+}
+.other > div .myBtnText em {
+  display: block;
+  font-size: 16px;
+}
+.other > div .myBtnText.invite {
+  padding-top: 0;
+  padding-left: 112px;
+}
+.other > div .myBtnText.invite em {
+  margin-top: -5px;
 }
 .my-title {
   position: fixed;
