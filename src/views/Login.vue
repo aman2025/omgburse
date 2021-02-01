@@ -13,13 +13,12 @@
       <!-- 下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
-        <select name="" id="" class="sel-ipt" v-model="selLang">
+        <select name="" id="" class="sel-ipt" v-model="selLang" @change="triggerSelect">
           <option value="enUS">English</option>
           <option value="PT">Portugal</option>
           <option value="SP">Spain</option>
         </select>
         <span class="caret"></span>
-        <div class="pholder">{{ thebank == '' || thebank == '0' ? 'Select your bank name' : '' }}</div>
       </div>
       <div class="login-remember">
         <label for="rm">
@@ -28,18 +27,15 @@
         </label>
       </div>
       <div class="login-btn-wrap">
-        <Button btnText="Login" theme="primary" class="tipBtn" @click="handleSubmit" />
+        <Button :btnText="lang.locale.login" theme="primary" class="tipBtn" @click="handleSubmit" />
       </div>
     </div>
 
     <div class="login-register">
-      <span @click="goRegister">Register</span>
+      <span @click="goRegister">{{ lang.locale.register }}</span>
       <em>|</em>
-      <span>Forget password</span>
+      <span>{{ lang.locale.forgetPSW }}</span>
     </div>
-
-    <button @click="changeLanguage('PT')">切换PT</button>
-    <button @click="changeLanguage('enUS')">切换enUS</button>
     <Toast v-show="visible" :message="message" />
     <!-- <img src="../assets/app.png" class="app" alt="" @click="appDownload" /> -->
   </div>
@@ -56,13 +52,15 @@ export default {
   components: { Input, Button, Toast },
   inject: ['lang', 'changeLanguage'],
   setup() {
-    var curLangKey = localStorage.getItem('language_key');
+    // 语言选择
+    var curLangKey = localStorage.getItem('language_key') || 'enUS';
     const state = reactive({
       loginForm: { username: '', password: '' },
       visible: false,
       message: '',
       selLang: curLangKey
     });
+
     // app download url
     const appUrl = inject('appUrl');
     const appDownload = () => {
@@ -137,6 +135,10 @@ export default {
       this.visible = true;
       this.message = msg;
       this.closeToast();
+    },
+    triggerSelect(e) {
+      //  下拉选择语言
+      this.changeLanguage(e.target.value);
     }
   }
 };
@@ -181,7 +183,7 @@ export default {
   position: absolute;
   text-align: center;
   left: 0;
-  top: 138vw;
+  top: 145vw;
   right: 0;
   color: #fb6500;
   font-weight: 700;

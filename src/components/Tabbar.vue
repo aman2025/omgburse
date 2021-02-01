@@ -2,23 +2,23 @@
   <nav class="tabbar">
     <router-link to="/" active-class="active" exact>
       <i class="icon-nav01"></i>
-      <span>HOME</span>
+      <span>{{ lang.locale.home }}</span>
     </router-link>
     <router-link to="/order" active-class="active">
       <i class="icon-nav02"></i>
-      <span>ORDER FINANCE</span>
+      <span>{{ lang.locale.orderFinance }}</span>
     </router-link>
     <router-link to="/team" active-class="active">
       <i class="icon-nav03"></i>
-      <span>TEAM</span>
+      <span>{{ lang.locale.team }}</span>
     </router-link>
     <router-link to="/financial" active-class="active">
       <i class="icon-nav04"></i>
-      <span>FINANCIAL PRODUCT</span>
+      <span>{{ lang.locale.financeProduct }}</span>
     </router-link>
     <router-link to="/my" active-class="active">
       <i class="icon-nav05"></i>
-      <span>MY</span>
+      <span>{{ lang.locale.my }}</span>
     </router-link>
   </nav>
 </template>
@@ -26,6 +26,7 @@
 <script>
 export default {
   name: 'Tabbar',
+  inject: ['lang'],
   props: {}
 };
 </script>
