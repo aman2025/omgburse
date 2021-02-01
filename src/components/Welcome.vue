@@ -1,12 +1,12 @@
 <template>
   <div class="welcome" v-if="panelShow">
     <div class="welcome-box">
-      <h1>Welcome</h1>
+      <h1>{{ lang.locale.welcome }}</h1>
       <div class="info">
         <p v-html="content"></p>
       </div>
       <div class="w-blank"></div>
-      <Button btnText="Got it" class="tipBtn" @click="gotIt" />
+      <Button :btnText="lang.locale.gotIt" class="tipBtn" @click="gotIt" />
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@ export default {
   components: {
     Button
   },
+  inject: ['lang'],
   setup() {
     var content = ref('');
     var panelShow = inject('panelShow');

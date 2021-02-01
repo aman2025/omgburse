@@ -34,7 +34,7 @@
 <script>
 import Dialog from '@/components/Dialog.vue';
 import Toast from '@/components/Toast.vue';
-import { reactive, ref, toRefs } from 'vue';
+import { inject, reactive, ref, toRefs } from 'vue';
 import request from '../utils/request';
 export default {
   name: 'ProductType',
@@ -45,8 +45,8 @@ export default {
   props: {
     depositLists: Array
   },
-  inject: ['lang'],
   setup() {
+    const lang = inject('lang');
     const toastState = reactive({
       visible: false,
       message: ''
@@ -76,7 +76,7 @@ export default {
       // 金额为空返回
       if (!money.value) {
         toastState.visible = true;
-        toastState.message = 'money can not be empty';
+        toastState.message = lang.locale.moneyEmpty;
         closeToast();
         return;
       }
@@ -124,6 +124,7 @@ export default {
       onCancel,
       onDeposite,
       depositeId,
+      lang,
       money,
       ...toRefs(toastState),
       show

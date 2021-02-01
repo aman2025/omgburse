@@ -94,10 +94,10 @@ export default {
     },
     loginValidate() {
       var errors = {
-        username: 'uphone cannot be empty',
-        password: 'password cannot be empty',
-        repassword: 'repassword cannot be empty',
-        upid: 'shareID cannot be empty'
+        username: this.lang.locale.phoneEmpty,
+        password: this.lang.locale.passwordEmpty,
+        repassword: this.lang.locale.repasswordEmpty,
+        upid: this.lang.locale.shareIDEmpty
       };
       var errorsLog = [];
       var vals = Object.keys(errors).map(key => {
@@ -119,7 +119,7 @@ export default {
       }
       const [password, repassword] = ['password', 'repassword'].map(k => this.loginForm[k]);
       if (password !== repassword) {
-        this.showToast('Passwords are inconsistent!');
+        this.showToast(this.lang.locale.passwordInconsistent);
         return null;
       }
       return vals;

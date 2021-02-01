@@ -94,8 +94,8 @@ export default {
     },
     loginValidate() {
       var errors = {
-        username: 'your phone cannot be empty',
-        password: 'password cannot be empty'
+        username: this.lang.locale.phoneEmpty,
+        password: this.lang.locale.passwordEmpty
       };
       var errorsLog = [];
       var vals = Object.keys(errors).map(key => {

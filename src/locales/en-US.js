@@ -21,16 +21,15 @@ const I18N_CONF = {
   memberDynamic: 'MEMBERDynamic',
   // ProductList
   member: 'Member',
+  inmoney: 'inmoney',
   profit: 'profit',
   price: 'price',
-
   // tabbar
   home: 'HOME',
   orderFinance: 'ORDER FINANCE',
   team: 'TEAM',
   financeProduct: 'FINANCIAL PRODUCT',
   my: 'MY',
-
   // team
   copy: 'copy',
   teamSize: 'Equipe Tamanho',
@@ -42,6 +41,12 @@ const I18N_CONF = {
   incomeList: 'Income List',
   rechargeRecord: 'Recharge Record',
   withdrawalRecord: 'Withdrawal Record',
+  fillInPersonalInformation: 'Fill in personal information',
+  introduce: 'Introduce',
+  recharge2: 'Recharge',
+  makeMoney: 'Make Money',
+  customerService: 'Customer Service',
+  inviteFriends: 'Invite Friends',
   // product type
   type: 'Type',
   producType: 'Product type',
@@ -56,16 +61,44 @@ const I18N_CONF = {
   changeName: 'Change Name',
   introduction: 'Introduction',
   signOut: 'Sign out',
+  players: 'Players will be LV1 members by default after registering an account',
   // bank information
   bankInformation: 'Bank information',
+  enterYourName: 'Enter your name',
+  selectYourBankName: 'Select your bank name',
+  enterYourBankName: 'Enter your bank name',
+  enterYourBankAccount: 'Enter your bank account',
+  enterYourProvince: 'Enter your province',
+  // recharge
+  scanningCode: 'Payment by scanning code',
+  transferPayment: 'Transfer payment',
+  // withdraw
+  money: 'Money',
+  mark: 'Mark',
   // dialog
   no: 'NO',
   yes: 'YES',
+  doYouWant: 'Do you want to Sign out?',
+  // errors empty
+  phoneEmpty: 'your phone cannot be empty',
+  passwordEmpty: 'password cannot be empty',
+  repasswordEmpty: 'repassword cannot be empty',
+  shareIDEmpty: 'shareID cannot be empty',
+  passwordInconsistent: 'Passwords are inconsistent',
+  moneyEmpty: 'money can not be empty',
+  unameEmpty: 'uname cannot be empty',
+  bankcodeEmpty: 'bankcode cannot be empty',
+  provinceEmpty: 'province cannot be empty',
+  bankunameEmpty: 'your bank name cannot be empty',
+  bankEmpty: 'bank cannot be empty',
   // other
-  noData: '"No Data!',
+  noData: 'No Data!',
   totalRevenue: 'Total revenue',
   transferOut: 'Transfer out',
+  save: 'save',
   amount: 'amount',
-  interest: 'Interest'
+  interest: 'Interest',
+  gotIt: 'Got it',
+  welcome: 'Welcome'
 };
 export default I18N_CONF;

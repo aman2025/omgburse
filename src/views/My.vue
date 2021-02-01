@@ -101,7 +101,7 @@ export default {
         className: 'sign_out',
         img: 'icon_signout',
         url: '',
-        content: 'Do you want to Sign out?',
+        content: lang.locale.doYouWant,
         callback: signOut
       }
     ];
