@@ -10,6 +10,7 @@ import { provide, reactive, ref, watchEffect } from 'vue';
 import request from './utils/request';
 import enUS from '@/locales/en-US.js';
 import PT from '@/locales/PT.js';
+import SP from '@/locales/SP.js';
 
 export default {
   name: 'Home',
@@ -46,11 +47,13 @@ export default {
       if (val == 'PT') {
         localStorage.setItem('language_key', 'PT');
         lang.locale = PT;
-        console.log(1);
       } else if (val == 'enUS' || val == undefined) {
-        console.log(2);
         localStorage.setItem('language_key', 'enUS');
         lang.locale = enUS;
+      } else if (val == 'SP') {
+        console.log(3);
+        localStorage.setItem('language_key', 'SP');
+        lang.locale = SP;
       }
     };
 

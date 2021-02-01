@@ -32,8 +32,8 @@ const I18N_CONF = {
   my: 'MY',
   // team
   copy: 'copy',
-  teamSize: 'Equipe Tamanho',
-  totalTeamContribution: 'Total Equipe Contribuição',
+  teamSize: 'Team size',
+  totalTeamContribution: 'Total team contribution',
   bonus: 'Bonus',
   details: 'Details',
   // title

@@ -129,7 +129,7 @@ export default {
 }
 .box .fixed .top .leftUserInfo .UserName {
   position: absolute;
-  left: 50px;
+  left: 60px;
   top: 15px;
   font-size: 15px;
   width: 93px;
