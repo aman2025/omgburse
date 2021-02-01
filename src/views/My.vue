@@ -9,7 +9,6 @@
       <div @click="customerService"><img src="../assets/btn-service.png" /></div>
       <div @click="inviteFriends"><img src="../assets/btn-friend.png" /></div>
     </div>
-    {{ lang.locale.login }}
     <div class="blank"></div>
     <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false" />
   </div>
@@ -19,7 +18,7 @@ import List from '@/components/List.vue';
 import BoxTop from '@/components/BoxTop.vue';
 import Dialog from '@/components/Dialog.vue';
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 
 export default {
   name: 'My',
@@ -29,6 +28,7 @@ export default {
     Dialog
   },
   setup() {
+    const lang = inject('lang');
     // 获取vue实例, 全局实例函数添加组件
     // var { ctx } = getCurrentInstance();
     // ctx.$Toast({ modelValue: false, message: 'ok', time: 2 });
@@ -41,7 +41,7 @@ export default {
     const lists = [
       {
         id: 1,
-        title: 'Member system',
+        title: lang.locale.memberSystem,
         className: 'member_system',
         img: 'icon_member',
         url: '/MemberSystem',
@@ -49,7 +49,7 @@ export default {
       },
       {
         id: 2,
-        title: 'Bind bank card',
+        title: lang.locale.bindBankCard,
         className: 'bind_bank_card',
         img: 'icon_bank',
         url: '/BankInformation',
@@ -57,7 +57,7 @@ export default {
       },
       {
         id: 3,
-        title: 'Withdrawal record',
+        title: lang.locale.withdrawalRecord,
         className: 'withdrawal_record',
         img: 'icon_withdraw',
         url: '/WithdrawalRecord?type=2',
@@ -65,7 +65,7 @@ export default {
       },
       {
         id: 4,
-        title: 'Recharge record',
+        title: lang.locale.rechargeRecord,
         className: 'recharge_record',
         img: 'icon_recharge',
         url: '/WithdrawalRecord?type=1',
@@ -73,7 +73,7 @@ export default {
       },
       {
         id: 5,
-        title: 'Change Name',
+        title: lang.locale.changeName,
         className: 'change_name',
         img: 'icon_modify',
         url: '/ChangeName',
@@ -81,7 +81,7 @@ export default {
       },
       {
         id: 6,
-        title: 'Introduction',
+        title: lang.locale.introduction,
         className: 'introduction',
         img: 'icon_introduction',
         url: '/Introduce',
@@ -97,7 +97,7 @@ export default {
       // },
       {
         id: 7,
-        title: 'Sign out',
+        title: lang.locale.signOut,
         className: 'sign_out',
         img: 'icon_signout',
         url: '',
@@ -135,6 +135,7 @@ export default {
       show,
       openDialog,
       content,
+      lang,
       onOk,
       onCancel,
       callback

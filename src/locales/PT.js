@@ -30,9 +30,42 @@ const I18N_CONF = {
   team: 'EQUIPE',
   financeProduct: 'FINANCEIRO PRODUTO',
   my: 'MEU',
+
+  // team
+  copy: 'Cópia',
+  teamSize: 'Equipe Tamanho',
+  totalTeamContribution: 'Total Equipe Contribuição',
+  bonus: 'Bónus',
+  details: 'Detalhes',
   // title
   orderRecord: 'Ordem. Gravar',
+  incomeList: 'Rendimento Lista',
+  rechargeRecord: 'Recarregamento Gravar',
+  withdrawalRecord: 'Retirada Gravar',
+  // product type
+  type: 'Tipo',
+  producType: 'Produto Tipo',
+  oneDay: 'Um. Dia',
+  set: 'Conjunto',
+  days: 'Dias',
+  deposit: 'Depósito',
+  interestRate: 'Taxa de JURO',
+  // my
+  memberSystem: 'Membro Sistema',
+  bindBankCard: 'Ligado Banco Cartão',
+  changeName: 'Variação Nome',
+  introduction: 'Introdução',
+  signOut: 'Assine aqui.',
+  // bank information
+  bankInformation: 'Banco Informação',
+  // dialog
+  no: 'NÃO',
+  yes: 'SIM',
   // other
-  noData: 'Não. Dados'
+  noData: 'Não. Dados',
+  totalRevenue: 'Total Receitas',
+  transferOut: 'Transferir para fora',
+  amount: 'Montante',
+  interest: 'Interesse'
 };
 export default I18N_CONF;

@@ -2,26 +2,26 @@
   <div class="product-type">
     <div class="type-bar" v-for="item in depositLists" :key="item.id">
       <div class="type-bar-name">
-        <span>Type</span>
+        <span>{{ lang.locale.type }}</span>
         <em>{{ item.title }}</em>
       </div>
       <div class="type-bar-info">
         <h3>
-          One day: <span>Interest rate +{{ $filters.toPercent(item.per) }}</span>
+          {{ lang.locale.oneDay }}: <span>{{ lang.locale.interestRate }} +{{ $filters.toPercent(item.per) }}</span>
         </h3>
         <h5>
-          [set] <em>{{ item.days }}</em> days
+          [{{ lang.locale.set }}] <em>{{ item.days }}</em> {{ lang.locale.days }}
         </h5>
         <button>+{{ $filters.toPercent(item.days * item.per) }}</button>
       </div>
       <div class="type-bar-btn" @click="onDeposite(item.id)">
-        <span>Deposit</span>
+        <span>{{ lang.locale.deposit }}</span>
       </div>
     </div>
     <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false">
       <template v-slot>
         <div class="depositeText">
-          <span>amount:</span>
+          <span>{{ lang.locale.amount }}:</span>
           <input type="text" class="ipt02" v-model="money" />
         </div>
       </template>
@@ -45,6 +45,7 @@ export default {
   props: {
     depositLists: Array
   },
+  inject: ['lang'],
   setup() {
     const toastState = reactive({
       visible: false,
@@ -76,6 +77,7 @@ export default {
       if (!money.value) {
         toastState.visible = true;
         toastState.message = 'money can not be empty';
+        closeToast();
         return;
       }
       const url = '/Api/Deposit/Addthedeposit';
@@ -97,7 +99,13 @@ export default {
         })
         .catch(() => {});
     };
-
+    const closeToast = () => {
+      var timeout = null;
+      timeout && clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        toastState.visible = false;
+      }, 1500);
+    };
     // 显示隐藏toast
     const showToast = msg => {
       if (toastState.visible) {
@@ -105,11 +113,7 @@ export default {
       }
       toastState.visible = true;
       toastState.message = msg;
-      var timeout = null;
-      timeout && clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        toastState.visible = false;
-      }, 1500);
+      closeToast();
     };
     // return
     return {

@@ -2,7 +2,7 @@
   <div class="bank-information">
     <OutView title="Fill in personal information" :isBack="true" />
     <div class="out-wraper">
-      <div class="form-title">Bank information</div>
+      <div class="form-title">{{ lang.locale.bankInformation }}</div>
       <Input placeholder="Enter your name" iconuser="icon-q01" :hasIcon="true" objkey="uname" v-model:formData="accoutForm" />
       <Input placeholder="Enter your mobile phone number" iconuser="icon-q02" :hasIcon="true" objkey="uphone" v-model:formData="accoutForm" />
       <!-- 下拉 -->
@@ -39,6 +39,7 @@ export default {
     Toast,
     Input
   },
+  inject: ['lang'],
   setup() {
     const state = reactive({
       accoutForm: { uname: '', uphone: '', bankcode: '', province: '', bankuname: '', password: '', thebank: '' },

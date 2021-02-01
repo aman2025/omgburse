@@ -4,20 +4,20 @@
       <h3 class="total-title">
         <!-- todo: 异步问题,或数据问题 -->
         <span>{{ userinfo.ymoney }}</span>
-        <em>Your total assets</em>
+        <em>{{ lang.locale.yourTotalAssets }}</em>
       </h3>
       <div class="total-info">
         <ul>
           <li>
-            <h3>Interest</h3>
+            <h3>{{ lang.locale.interest }}</h3>
             <em>{{ depositLogs.interest }}</em>
           </li>
           <li>
-            <h3>Total revenue</h3>
+            <h3>{{ lang.locale.totalRevenue }}</h3>
             <em>{{ depositLogs.total }}</em>
           </li>
           <li>
-            <h3>Yesterday's earnings</h3>
+            <h3>{{ lang.locale.yesterdayEarnings }}</h3>
             <em>{{ depositLogs.yesterday }}</em>
           </li>
         </ul>
@@ -34,6 +34,7 @@ export default {
   props: {
     depositLogs: Object
   },
+  inject: ['lang'],
   setup() {
     // 团队
     const state = reactive({
