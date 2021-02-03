@@ -102,6 +102,14 @@ export default {
         url: '',
         content: 'Do you want to Sign out?',
         callback: signOut
+      },
+      {
+        id: 9,
+        title: 'Reset Password',
+        className: 'icon_mission',
+        img: 'icon_mission',
+        url: '/ResetPassword',
+        content: ''
       }
     ];
     // dialog show
