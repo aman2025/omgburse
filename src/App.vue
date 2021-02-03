@@ -6,11 +6,8 @@
 </template>
 <script>
 import Tabbar from '@/components/Tabbar.vue';
-import { provide, reactive, ref, watchEffect } from 'vue';
+import { provide, ref } from 'vue';
 import request from './utils/request';
-import enUS from '@/locales/en-US.js';
-import PT from '@/locales/PT.js';
-import SP from '@/locales/SP.js';
 
 export default {
   name: 'Home',
@@ -27,6 +24,7 @@ export default {
     provide('updatePanelShow', updatePanelShow);
 
     // 全局app下载连接
+
     const appUrl = ref('');
     provide('appUrl', appUrl);
     var url = '/Api/System/AllConfig';
@@ -36,35 +34,6 @@ export default {
         appUrl.value = res.data.download;
       })
       .catch(() => {});
-
-    // 切换语言
-    const storeLang = localStorage.getItem('language_key');
-    const lang = reactive({
-      locale: enUS,
-      storeLang: storeLang
-    });
-    const changeLanguage = val => {
-      if (val == 'PT') {
-        localStorage.setItem('language_key', 'PT');
-        lang.locale = PT;
-      } else if (val == 'enUS' || val == undefined) {
-        localStorage.setItem('language_key', 'enUS');
-        lang.locale = enUS;
-      } else if (val == 'SP') {
-        localStorage.setItem('language_key', 'SP');
-        lang.locale = SP;
-      }
-    };
-
-    watchEffect(() => {
-      if (storeLang) {
-        changeLanguage(storeLang);
-      }
-    });
-    provide('lang', lang);
-    provide('changeLanguage', changeLanguage);
-
-    // return
     return {
       panelShow,
       updatePanelShow,

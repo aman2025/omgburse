@@ -13,7 +13,6 @@ export default {
     // app download url
     const appUrl = inject('appUrl');
     window.location.href = appUrl.value;
-
     // return
     return {};
   }

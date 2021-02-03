@@ -1,41 +1,30 @@
 <template class="login">
   <div class="login">
     <div class="login-head">
-      <span class="login-tip">{{ lang.locale.loginTip }}</span>
       <img src="../assets/login-top.png" />
     </div>
     <div class="login-bd">
       <div>
-        <Input :placeholder="lang.locale.enterYourPhone" objkey="username" v-model:formData="loginForm" maxLen="10" iconuser="icon-q02" :hasIcon="true" />
+        <Input placeholder="Enter your phone" objkey="username" v-model:formData="loginForm" maxLen="10" iconuser="icon-q02" :hasIcon="true" />
       </div>
       <div>
-        <Input type="password" :placeholder="lang.locale.enterYourPassword" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
-      </div>
-      <!-- 下拉 -->
-      <div class="sel-ipt-wrap">
-        <i></i>
-        <select name="" id="" class="sel-ipt" v-model="selLang" @change="triggerSelect">
-          <option value="enUS">English</option>
-          <option value="PT">Portugal</option>
-          <option value="SP">Spain</option>
-        </select>
-        <span class="caret"></span>
+        <Input type="password" placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
       </div>
       <div class="login-remember">
         <label for="rm">
           <input type="checkbox" class="checkbox" id="rm" />
-          {{ lang.locale.remeberPassword }}
+          Remember password
         </label>
       </div>
       <div class="login-btn-wrap">
-        <Button :btnText="lang.locale.login" theme="primary" class="tipBtn" @click="handleSubmit" />
+        <Button btnText="Login" theme="primary" class="tipBtn" @click="handleSubmit" />
       </div>
     </div>
 
     <div class="login-register">
-      <span @click="goRegister">{{ lang.locale.register }}</span>
+      <span @click="goRegister">Register</span>
       <em>|</em>
-      <span>{{ lang.locale.forgetPSW }}</span>
+      <span>Forget password</span>
     </div>
     <Toast v-show="visible" :message="message" />
     <span class="app" @click="appDownload"><img src="../assets/app.png" alt="" />App Download</span>
@@ -51,24 +40,17 @@ import Toast from '@/components/Toast.vue';
 export default {
   name: 'Login',
   components: { Input, Button, Toast },
-  inject: ['lang', 'changeLanguage'],
   setup() {
-    // 语言选择
-    var curLangKey = localStorage.getItem('language_key') || 'enUS';
     const state = reactive({
       loginForm: { username: '', password: '' },
       visible: false,
-      message: '',
-      selLang: curLangKey
+      message: ''
     });
-
     // app download url
     const appUrl = inject('appUrl');
     const appDownload = () => {
       window.location.href = appUrl.value;
     };
-
-    // return
     return {
       ...toRefs(state),
       appDownload
@@ -95,8 +77,8 @@ export default {
     },
     loginValidate() {
       var errors = {
-        username: this.lang.locale.phoneEmpty,
-        password: this.lang.locale.passwordEmpty
+        username: 'your phone cannot be empty',
+        password: 'password cannot be empty'
       };
       var errorsLog = [];
       var vals = Object.keys(errors).map(key => {
@@ -136,10 +118,6 @@ export default {
       this.visible = true;
       this.message = msg;
       this.closeToast();
-    },
-    triggerSelect(e) {
-      //  下拉选择语言
-      this.changeLanguage(e.target.value);
     }
   }
 };
@@ -184,15 +162,12 @@ export default {
   position: absolute;
   text-align: center;
   left: 0;
-  top: 145vw;
+  top: 138vw;
   right: 0;
   color: #fb6500;
   font-weight: 700;
 }
 .login-register em {
   margin: 0 10px;
-}
-.sel-ipt-wrap > i {
-  background-image: url(../assets/icon-q04.png);
 }
 </style>

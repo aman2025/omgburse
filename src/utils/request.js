@@ -22,18 +22,15 @@ const request = () => {
       }
       if (!url.includes('/Api/User/login')) {
         let token = {};
-        let lang = 'enUS';
         try {
           // 如果获取不到token，进入catch去goLogin()
           token = JSON.parse(localStorage.token);
-          lang = localStorage.language_key;
           // token = '1'; //测试token
         } catch (e) {
           console.log(e);
           goLogin();
         }
         config.params.token = token;
-        config.params.lang = lang;
         config.headers = Object.assign({}, headers, { Authorization: token });
       }
       if (data && isPlainObject(data) && ['post', 'put'].includes(method)) {

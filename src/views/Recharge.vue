@@ -1,21 +1,17 @@
 <template>
   <div class="recharge">
-    <OutView :title="lang.locale.recharge2" :isBack="true" />
+    <OutView title="Recharge" :isBack="true" />
     <Toast v-show="visible" :message="message" />
     <div class="box-ipt">
-      <h3>{{ lang.locale.recharge2 }} {{ lang.locale.amount }}</h3>
+      <h3>Recharge amount</h3>
       <div>
         <span class="pri-symbol">₹</span>
         <input type="text" readonly v-model="money" />
       </div>
-      <h3 class="typeTitle">{{ lang.locale.recharge2 }} {{ lang.locale.type }}</h3>
+      <h3 class="typeTitle">Recharge Type</h3>
       <div class="sel-ptype">
-        <div>
-          <input type="radio" id="scanning" v-model="ptype" value="2" checked /><label for="scanning">{{ lang.locale.scanningCode }}</label>
-        </div>
-        <div>
-          <input type="radio" id="transfer" v-model="ptype" value="1" /><label for="transfer">{{ lang.locale.transferPayment }}</label>
-        </div>
+        <div><input type="radio" id="scanning" v-model="ptype" value="2" checked /><label for="scanning">Payment by scanning code</label></div>
+        <div><input type="radio" id="transfer" v-model="ptype" value="1" /><label for="transfer">Transfer payment</label></div>
       </div>
       <!-- <div class="sel-ipt-wrap ">
         <select name="" id="" class="sel-ipt" v-model="ptype">
@@ -30,7 +26,7 @@
         <li v-for="(item, index) in moneyList" :key="item.id" @click="selectMoney(item.money, index)" :class="{ active: isChange == index }">{{ item.money }}₹</li>
       </ul>
     </div>
-    <Button :btnText="lang.locale.recharge2" theme="primary" class="tipBtn" @click="recharge" />
+    <Button btnText="Recharge" theme="primary" class="tipBtn" @click="recharge" />
   </div>
 </template>
 <script>
@@ -47,7 +43,6 @@ export default {
     Toast,
     Button
   },
-  inject: ['lang'],
   setup() {
     const state = reactive({
       visible: false,
@@ -84,7 +79,7 @@ export default {
         const tokenVal = JSON.parse(localStorage.token);
         window.location.href = `${urlOther}?money=${this.money}&token=${tokenVal}&ptype=${this.ptype}`;
       } else {
-        this.showToast(this.lang.locale.moneyEmpty);
+        this.showToast('money can not be empty');
       }
     },
     closeToast() {
@@ -176,6 +171,17 @@ export default {
 }
 .typeTitle {
   padding-top: 10px;
+}
+//下拉样式
+.sel-ipt {
+  border-radius: 5px;
+  background-color: #fff;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 10px 0 8px;
+  font-size: 14px;
+  width: 100%;
+  color: #555;
 }
 .sel-ipt-wrap {
   position: relative;

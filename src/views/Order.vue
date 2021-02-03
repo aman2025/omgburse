@@ -1,7 +1,7 @@
 <template>
   <div class="order">
     <Loading v-if="isLoad" />
-    <OutView :title="lang.locale.orderRecord" />
+    <OutView title="Order Record" />
     <div class="money-wrap">
       <div class="moneyx hasimg" v-for="item in order" :key="item.id">
         <div class="mx-img"><img :src="item.img" /></div>
@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <NoData v-if="noData" :resultText="lang.locale.noData" />
+    <NoData v-if="noData" resultText="No Data!" />
     <div class="blank" style="height: 50px"></div>
     <!-- <Button btnText="Go to order finance" class="tipBtn" @click="goHome" /> -->
     <!-- 获取订单 -->
@@ -73,7 +73,7 @@ export default {
       ...toRefs(state)
     };
   },
-  inject: ['location', 'lang'],
+  inject: ['location'],
   methods: {
     goHome() {
       this.$router.push('/');

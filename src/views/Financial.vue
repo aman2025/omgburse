@@ -5,10 +5,10 @@
     <TotalAssets :depositLogs="logs" />
     <div class="line"></div>
     <div class="product-wrap">
-      <h3 class="product-type">{{ lang.locale.producType }}</h3>
+      <h3 class="product-type">Product type</h3>
       <ProductType :depositLists="lists" />
     </div>
-    <Button :btnText="lang.locale.transferOut" theme="primary" class="tipBtn" @click="saveName" />
+    <Button btnText="Transfer out" theme="primary" class="tipBtn" @click="saveName" />
   </div>
 </template>
 
@@ -30,7 +30,6 @@ export default {
     Button,
     Loading
   },
-  inject: ['lang'],
   setup() {
     const isLoad = ref(false); // 设置isLoad=true响应
     // 投资列表

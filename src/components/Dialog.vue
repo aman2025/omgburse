@@ -9,8 +9,8 @@
         <slot></slot>
       </h3>
       <h3 class="dl-ft">
-        <button class="cancel" @click="onCancel(false)">{{ lang.locale.no }}</button>
-        <button class="ok" @click="onOk(false)">{{ lang.locale.yes }}</button>
+        <button class="cancel" @click="onCancel(false)">NO</button>
+        <button class="ok" @click="onOk(false)">YES</button>
       </h3>
     </div>
     <div class="dialog-mask"></div>
@@ -27,7 +27,6 @@ export default {
     onCancel: Function,
     onOk: Function
   },
-  inject: ['lang'],
   setup() {
     // const onOk = () => {
     //   console.log('onOk...');

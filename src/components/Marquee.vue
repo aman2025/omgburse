@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="marquee">
-      <h3>{{ lang.locale.memberDynamic }}</h3>
+      <h3>MEMBERDynamic</h3>
       <ul>
         <li v-for="item in memberDynamic" :key="item.id">
           <span>{{ item.title }}</span>
@@ -19,7 +19,6 @@ export default {
   name: 'Marquee',
   props: {},
   components: {},
-  inject: ['lang'],
   setup() {
     let memberDynamic = ref([]);
     // scrollAnimate

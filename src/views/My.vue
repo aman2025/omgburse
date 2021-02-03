@@ -5,20 +5,9 @@
     <!-- List component  -->
     <List :listdatas="lists" :openDialog="openDialog" style="margin-top: 5px" />
     <div class="other">
-      <div @click="makeMoney">
-        <span class="myBtnText">{{ lang.locale.howMakeMoney }}</span>
-        <img src="../assets/btn-money.png" />
-      </div>
-      <div @click="customerService">
-        <span class="myBtnText">{{ lang.locale.cutomerService }}</span>
-        <img src="../assets/btn-service.png" />
-      </div>
-      <div @click="inviteFriends">
-        <span class="myBtnText invite"
-          >{{ lang.locale.inviteFriends }}<em>{{ lang.locale.superRewards }}</em></span
-        >
-        <img src="../assets/btn-friend.png" />
-      </div>
+      <div @click="makeMoney"><img src="../assets/btn-money.png" /></div>
+      <div @click="customerService"><img src="../assets/btn-service.png" /></div>
+      <div @click="inviteFriends"><img src="../assets/btn-friend.png" /></div>
     </div>
     <div class="blank"></div>
     <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false" />
@@ -29,7 +18,7 @@ import List from '@/components/List.vue';
 import BoxTop from '@/components/BoxTop.vue';
 import Dialog from '@/components/Dialog.vue';
 import { useRouter } from 'vue-router';
-import { inject, ref } from 'vue';
+import { ref } from 'vue';
 
 export default {
   name: 'My',
@@ -39,20 +28,19 @@ export default {
     Dialog
   },
   setup() {
-    const lang = inject('lang');
     // 获取vue实例, 全局实例函数添加组件
     // var { ctx } = getCurrentInstance();
     // ctx.$Toast({ modelValue: false, message: 'ok', time: 2 });
     // sign out
     const router = useRouter();
     const signOut = () => {
-      window.localStorage.removeItem('token');
+      window.localStorage.clear();
       router.push('/Login');
     };
     const lists = [
       {
         id: 1,
-        title: lang.locale.memberSystem,
+        title: 'Member system',
         className: 'member_system',
         img: 'icon_member',
         url: '/MemberSystem',
@@ -60,7 +48,7 @@ export default {
       },
       {
         id: 2,
-        title: lang.locale.bindBankCard,
+        title: 'Bind bank card',
         className: 'bind_bank_card',
         img: 'icon_bank',
         url: '/BankInformation',
@@ -68,7 +56,7 @@ export default {
       },
       {
         id: 3,
-        title: lang.locale.withdrawalRecord,
+        title: 'Withdrawal record',
         className: 'withdrawal_record',
         img: 'icon_withdraw',
         url: '/WithdrawalRecord?type=2',
@@ -76,7 +64,7 @@ export default {
       },
       {
         id: 4,
-        title: lang.locale.rechargeRecord,
+        title: 'Recharge record',
         className: 'recharge_record',
         img: 'icon_recharge',
         url: '/WithdrawalRecord?type=1',
@@ -84,7 +72,7 @@ export default {
       },
       {
         id: 5,
-        title: lang.locale.changeName,
+        title: 'Change Name',
         className: 'change_name',
         img: 'icon_modify',
         url: '/ChangeName',
@@ -92,7 +80,7 @@ export default {
       },
       {
         id: 6,
-        title: lang.locale.introduction,
+        title: 'Introduction',
         className: 'introduction',
         img: 'icon_introduction',
         url: '/Introduce',
@@ -108,11 +96,11 @@ export default {
       },
       {
         id: 8,
-        title: lang.locale.signOut,
+        title: 'Sign out',
         className: 'sign_out',
         img: 'icon_signout',
         url: '',
-        content: lang.locale.doYouWant,
+        content: 'Do you want to Sign out?',
         callback: signOut
       }
     ];
@@ -146,13 +134,12 @@ export default {
       show,
       openDialog,
       content,
-      lang,
       onOk,
       onCancel,
       callback
     };
   },
-  inject: ['userinfo', 'lang'],
+  inject: ['userinfo'],
   methods: {
     makeMoney() {
       this.$router.push('/MakeMoney');
@@ -174,28 +161,6 @@ export default {
 .other > div {
   text-align: center;
   height: 18vw;
-  position: relative;
-}
-.other > div .myBtnText {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  text-align: left;
-  color: #fff;
-  font-size: 21px;
-  padding: 12px 0 0 105px;
-}
-.other > div .myBtnText em {
-  display: block;
-  font-size: 16px;
-}
-.other > div .myBtnText.invite {
-  padding-top: 0;
-  padding-left: 112px;
-}
-.other > div .myBtnText.invite em {
-  margin-top: -5px;
 }
 .my-title {
   position: fixed;

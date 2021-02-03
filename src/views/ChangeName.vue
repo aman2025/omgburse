@@ -1,10 +1,10 @@
 <template>
   <div class="order">
-    <OutView :title="lang.locale.changeName" :isBack="true" />
+    <OutView title="Change Name" :isBack="true" />
     <div class="out-wraper">
-      <Input :placeholder="lang.locale.enterYourName" iconuser="icon-q01" :hasIcon="true" objkey="uname" v-model:formData="accoutForm" />
+      <Input placeholder="Enter your name" iconuser="icon-q01" :hasIcon="true" objkey="uname" v-model:formData="accoutForm" />
     </div>
-    <Button :btnText="lang.locale.save" theme="primary" class="tipBtn" @click="saveName" />
+    <Button btnText="save" theme="primary" class="tipBtn" @click="saveName" />
     <Toast v-show="visible" :message="message" />
   </div>
 </template>
@@ -22,7 +22,6 @@ export default {
     Button,
     Input
   },
-  inject: ['lang'],
   setup() {
     const state = reactive({
       accoutForm: { uname: '' },
@@ -58,7 +57,7 @@ export default {
     // 表单校验
     accoutValidate() {
       var errors = {
-        uname: this.lang.locale.unameEmpty
+        uname: 'uname cannot be empty'
       };
       var errorsLog = [];
       var vals = Object.keys(errors).map(key => {

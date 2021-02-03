@@ -2,26 +2,26 @@
   <div class="product-type">
     <div class="type-bar" v-for="item in depositLists" :key="item.id">
       <div class="type-bar-name">
-        <span>{{ lang.locale.type }}</span>
+        <span>Type</span>
         <em>{{ item.title }}</em>
       </div>
       <div class="type-bar-info">
         <h3>
-          {{ lang.locale.oneDay }}: <span>{{ lang.locale.interestRate }} +{{ $filters.toPercent(item.per) }}</span>
+          One day: <span>Interest rate +{{ $filters.toPercent(item.per) }}</span>
         </h3>
         <h5>
-          [{{ lang.locale.set }}] <em>{{ item.days }}</em> {{ lang.locale.days }}
+          [set] <em>{{ item.days }}</em> days
         </h5>
         <button>+{{ $filters.toPercent(item.days * item.per) }}</button>
       </div>
       <div class="type-bar-btn" @click="onDeposite(item.id)">
-        <span>{{ lang.locale.deposit }}</span>
+        <span>Deposit</span>
       </div>
     </div>
     <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false">
       <template v-slot>
         <div class="depositeText">
-          <span>{{ lang.locale.amount }}:</span>
+          <span>amount:</span>
           <input type="text" class="ipt02" v-model="money" />
         </div>
       </template>
@@ -34,7 +34,7 @@
 <script>
 import Dialog from '@/components/Dialog.vue';
 import Toast from '@/components/Toast.vue';
-import { inject, reactive, ref, toRefs } from 'vue';
+import { reactive, ref, toRefs } from 'vue';
 import request from '../utils/request';
 export default {
   name: 'ProductType',
@@ -46,7 +46,6 @@ export default {
     depositLists: Array
   },
   setup() {
-    const lang = inject('lang');
     const toastState = reactive({
       visible: false,
       message: ''
@@ -76,8 +75,7 @@ export default {
       // 金额为空返回
       if (!money.value) {
         toastState.visible = true;
-        toastState.message = lang.locale.moneyEmpty;
-        closeToast();
+        toastState.message = 'money can not be empty';
         return;
       }
       const url = '/Api/Deposit/Addthedeposit';
@@ -99,13 +97,7 @@ export default {
         })
         .catch(() => {});
     };
-    const closeToast = () => {
-      var timeout = null;
-      timeout && clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        toastState.visible = false;
-      }, 1500);
-    };
+
     // 显示隐藏toast
     const showToast = msg => {
       if (toastState.visible) {
@@ -113,7 +105,11 @@ export default {
       }
       toastState.visible = true;
       toastState.message = msg;
-      closeToast();
+      var timeout = null;
+      timeout && clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        toastState.visible = false;
+      }, 1500);
     };
     // return
     return {
@@ -124,7 +120,6 @@ export default {
       onCancel,
       onDeposite,
       depositeId,
-      lang,
       money,
       ...toRefs(toastState),
       show

@@ -5,15 +5,15 @@
     <div class="title">
       <img src="../assets/shuadan_yqlj_bg.png" />
       <div class="titleText" ref="txt01">{{ teamList.referral }}</div>
-      <div class="copyBtn" @click="copy(txt01.innerText)">{{ lang.locale.copy }}</div>
+      <div class="copyBtn" @click="copy(txt01.innerText)">copy</div>
       <div class="titleText" ref="txt02" style="top: 43vw;">{{ teamList.referralurl }}</div>
-      <div class="copyBtn" style="top: 43vw;" @click="copy(txt02.innerText)">{{ lang.locale.copy }}</div>
+      <div class="copyBtn" style="top: 43vw;" @click="copy(txt02.innerText)">copy</div>
     </div>
     <!-- 头部图片 end -->
     <!-- team size  -->
     <div class="playerInfo">
-      <div class="text1">{{ lang.locale.teamSize }}</div>
-      <div class="text2">{{ lang.locale.totalTeamContribution }}</div>
+      <div class="text1">Team size</div>
+      <div class="text2">Total team contribution</div>
       <div class="uni-image image1" style="height: 26px;" @click="showTeamDetail()">
         <div></div>
         <img src="../assets/xiaji_bg_btn2.png" />
@@ -43,7 +43,7 @@
 <script>
 import TeamLVList from '@/components/TeamLVList.vue';
 import List from '@/components/List.vue';
-import { inject, reactive, ref, toRefs } from 'vue';
+import { reactive, ref, toRefs } from 'vue';
 import Loading from '@/components/Loading.vue';
 import request from '../utils/request';
 import Toast from '@/components/Toast.vue';
@@ -57,7 +57,6 @@ export default {
     Toast
   },
   setup() {
-    const lang = inject('lang');
     const state = reactive({
       visible: false,
       message: ''
@@ -68,7 +67,7 @@ export default {
     var lists = [
       {
         id: 2,
-        title: lang.locale.incomeList,
+        title: 'Income list',
         className: 'shuadan_btn_incomelist',
         img: 'shuadan_btn_incomelist',
         url: '/WithdrawalRecord?type=3'
@@ -96,7 +95,6 @@ export default {
       txt02,
       txt01,
       teamList,
-      lang,
       ...toRefs(state)
     };
   },
