@@ -19,7 +19,7 @@
 import OutView from '@/components/OutView.vue';
 import Loading from '@/components/Loading.vue';
 import request from '../utils/request';
-import { computed, reactive, ref, toRefs } from 'vue';
+import { computed, inject, reactive, ref, toRefs } from 'vue';
 import { useRoute } from 'vue-router';
 
 export default {
@@ -29,6 +29,7 @@ export default {
     Loading
   },
   setup() {
+    const lang = inject('lang');
     const router = useRoute();
     const routerQuery = router.query;
     const isLoad = ref(false);
@@ -39,11 +40,11 @@ export default {
     const types = routerQuery.type;
     const outViewTitle = computed(() => {
       if (types == '2') {
-        return 'Withdrawl Record';
+        return lang.locale.withdrawalRecord;
       } else if (types == '1') {
-        return 'Recharge Record';
+        return lang.locale.rechargeRecord;
       } else {
-        return 'Income List';
+        return lang.locale.incomeList;
       }
     });
     // 金额明细
@@ -68,7 +69,8 @@ export default {
     // return
     return {
       ...toRefs(state),
-      outViewTitle
+      outViewTitle,
+      lang
     };
   }
 };

@@ -1,13 +1,13 @@
 <template>
   <div class="member-system">
     <Loading v-if="isLoad" />
-    <OutView title="Member System" :isBack="true" />
-    <h3 class="title">Players will be LV1 members by default after registering an account</h3>
+    <OutView :title="lang.locale.memberSystem" :isBack="true" />
+    <h3 class="title">{{ lang.locale.players }}</h3>
     <div class="card-wrap">
       <div class="card" v-for="item in memberList" :key="item.id">
         <h3>
-          {{ item.title + ' members' }}
-          <span>inmoney: {{ item.inmoney }}</span>
+          {{ item.title + ' ' + lang.locale.member }}
+          <span>{{ lang.locale.inmoney }} : {{ item.inmoney }}</span>
         </h3>
         <div class="c-text">{{ item.mark }}</div>
         <p class="c-foot">{{ item.title2 }}</p>
@@ -25,6 +25,7 @@ export default {
   components: {
     OutView
   },
+  inject: ['lang'],
   setup() {
     const isLoad = ref(false); // 设置isLoad=true响应
     // member列表

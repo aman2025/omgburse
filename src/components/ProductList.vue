@@ -4,7 +4,7 @@
       <div v-for="item in goods" :key="item[0].id" class="product-item" @click="showDetail(item[0].id)">
         <div class="title-bg">
           <span class="text">{{ item[0].title }}</span>
-          <span class="text">{{ item[0].theusertype }} Member</span>
+          <span class="text">{{ item[0].theusertype }} {{ lang.locale.member }}</span>
         </div>
         <div class="icon">
           <img :src="item[0].img" />
@@ -17,9 +17,12 @@
           <img :src="item[0].cateimg" />
         </div>
         <div class="bottom">
-          <div class="price"><span class="profit">profit</span>{{ $filters.toPercent(item[0].per) }}</div>
+          <div class="price">
+            <span class="profit"> {{ lang.locale.profit }}</span>
+            {{ $filters.toPercent(item[0].per) }}
+          </div>
           <div style="display: flex; flex-direction: column; justify-content: space-around;">
-            <div class="info">price</div>
+            <div class="info">{{ lang.locale.price }}</div>
             <div class="price1">{{ item[0].price }}RS</div>
           </div>
         </div>
@@ -34,6 +37,7 @@ export default {
   props: {
     goods: Array
   },
+  inject: ['lang'],
   computed: {
     newPer() {
       return '$' + this.goods.per;

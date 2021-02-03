@@ -3,11 +3,11 @@
     <div id="title" class="fixed">
       <div class="top">
         <div class="leftUserInfo">
-          <div class="Hi">Hi</div>
+          <div class="Hi">{{ lang.locale.hi }}</div>
           <div class="UserName">{{ userinfo.uname }}</div>
-          <div class="myTotalAssets">Your Total Assets</div>
+          <div class="myTotalAssets">{{ lang.locale.yourTotalAssets }}</div>
           <div class="money">{{ userinfo.ymoney }}</div>
-          <div class="Virtual" v-if="!custom">Virtual currency</div>
+          <div class="Virtual" v-if="!custom">{{ lang.locale.virtualCurrency }}</div>
           <div class="VirtualMoney" v-if="!custom">{{ userinfo.virtual }}</div>
           <div class="LvImgBg">
             <div class="lvText">{{ userinfo.level }}</div>
@@ -19,7 +19,7 @@
               <img src="" />
             </div>
             <div class="text">
-              Recharge
+              {{ lang.locale.recharge }}
             </div>
           </div>
           <div class="btnRecharge btnWithdraw" @click="withdraw">
@@ -27,7 +27,7 @@
               <img src="" />
             </div>
             <div class="text">
-              Withdraw
+              {{ lang.locale.withdraw }}
             </div>
           </div>
         </div>
@@ -36,15 +36,15 @@
       <div class="bottom">
         <div class="infoNum" v-if="!custom">
           <span class="numValue">{{ userinfo.yesterday }}</span>
-          <span class="text">Yesterday's earnings</span>
+          <span class="text">{{ lang.locale.yesterdayEarnings }}</span>
         </div>
         <div class="infoNum" v-if="!custom">
           <span class="numValue">{{ userinfo.cumulative }}</span>
-          <span class="text">Cumulative income</span>
+          <span class="text">{{ lang.locale.cumulativeIncome }}</span>
         </div>
         <div class="infoNum" v-if="!custom">
           <span class="numValue">{{ userinfo.today }}</span>
-          <span class="text">Today's earnings</span>
+          <span class="text">{{ lang.locale.todayEarnings }}</span>
         </div>
       </div>
     </div>
@@ -61,6 +61,7 @@ export default {
     top: String,
     custom: Boolean
   },
+  inject: ['lang'],
   setup() {
     // 团队
     const state = reactive({
@@ -128,7 +129,7 @@ export default {
 }
 .box .fixed .top .leftUserInfo .UserName {
   position: absolute;
-  left: 40px;
+  left: 60px;
   top: 15px;
   font-size: 15px;
   width: 93px;

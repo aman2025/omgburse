@@ -6,26 +6,26 @@
     <div class="login-bd">
       <div class="phone-prev-warp">
         <span class="phone-prev">+91</span>
-        <Input placeholder="Enter your phone" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" maxLen="10" class="ipadd" />
+        <Input :placeholder="lang.locale.enterYourPhone" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" maxLen="10" class="ipadd" />
       </div>
       <div>
-        <Input type="password" placeholder="Enter your password" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
+        <Input type="password" :placeholder="lang.locale.enterYourPassword" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
       </div>
       <div>
-        <Input type="password" placeholder="Repeat your password" objkey="repassword" v-model:formData="loginForm" iconuser="icon-q06" :hasIcon="true" />
+        <Input type="password" :placeholder="lang.locale.repeatYourPassword" objkey="repassword" v-model:formData="loginForm" iconuser="icon-q06" :hasIcon="true" />
       </div>
       <div class="phone-prev-warp">
-        <span class="phone-prev">shareID</span>
+        <span class="phone-prev">{{ lang.locale.shareId }}</span>
         <Input placeholder="" objkey="upid" v-model:formData="loginForm" iconuser="icon-q03" :hasIcon="true" class="ipadd2" />
       </div>
       <!-- <div>
         <Input placeholder="Enter upid" objkey="upid" v-model:formData="loginForm" iconuser="icon-q03" :hasIcon="true" />
       </div> -->
       <div class="login-btn-wrap">
-        <Button btnText="Register" theme="primary" class="tipBtn" @click="handleSubmit" />
+        <Button :btnText="lang.locale.register" theme="primary" class="tipBtn" @click="handleSubmit" />
       </div>
       <div class="login-register">
-        <span @click="goLogin">Login</span>
+        <span @click="goLogin">{{ lang.locale.login }}</span>
       </div>
     </div>
     <Toast v-show="visible" :message="message" />
@@ -43,6 +43,7 @@ import { useRoute } from 'vue-router';
 export default {
   name: 'Register',
   components: { Input, Button, Toast },
+  inject: ['lang'],
   setup() {
     // app download url
     const appUrl = inject('appUrl');
@@ -93,10 +94,10 @@ export default {
     },
     loginValidate() {
       var errors = {
-        username: 'uphone cannot be empty',
-        password: 'password cannot be empty',
-        repassword: 'repassword cannot be empty',
-        upid: 'shareID cannot be empty'
+        username: this.lang.locale.phoneEmpty,
+        password: this.lang.locale.passwordEmpty,
+        repassword: this.lang.locale.repasswordEmpty,
+        upid: this.lang.locale.shareIDEmpty
       };
       var errorsLog = [];
       var vals = Object.keys(errors).map(key => {
@@ -118,7 +119,7 @@ export default {
       }
       const [password, repassword] = ['password', 'repassword'].map(k => this.loginForm[k]);
       if (password !== repassword) {
-        this.showToast('Passwords are inconsistent!');
+        this.showToast(this.lang.locale.passwordInconsistent);
         return null;
       }
       return vals;

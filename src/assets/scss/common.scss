@@ -220,6 +220,16 @@ h3 {
 .login-head{
   text-align: center;
   background-color: #5294AA;
+  position: relative;
+}
+.login-head .login-tip{
+  color: #fff;
+  position: absolute;
+  bottom: 52px;
+  font-size: 18px;
+  white-space: nowrap;
+  left: 50%;
+  transform: translate( -50%, 0);
 }
 
 .app {
@@ -233,4 +243,55 @@ h3 {
 .app img{
   vertical-align: middle;
   margin-right: 10px;
+}
+
+
+//下拉样式
+.sel-ipt {
+  position: relative;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 10px 0 50px;
+  font-size: 14px;
+  width: 100%;
+  color: #555;
+  border-bottom: 1px solid #a1a1a1;
+  background-color: transparent !important;
+  z-index: 2;
+}
+.sel-ipt-wrap {
+  position: relative;
+  padding: 10px 20px;
+}
+.sel-ipt-wrap > i {
+  display: block;
+  position: absolute;
+  top: 15px;
+  left: 28px;
+  width: 29px;
+  height: 25px;
+  background-size: 100%;
+}
+.sel-ipt-wrap .caret {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  display: block;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  border-left: 5px solid #5096ac;
+  height: 0;
+  width: 0;
+  z-index: 99;
+  transform: rotate3d(0, 0, 1, 90deg);
+}
+.sel-ipt-wrap .pholder {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  top: 15px;
+  left: 69px;
+  color: #555;
+  z-index: 1;
 }

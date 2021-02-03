@@ -9,14 +9,14 @@
           <div class="text">{{ item.title }}</div>
         </div>
         <div class="Bonus">
-          <div class="text1">Bonus</div>
+          <div class="text1">{{ lang.locale.bonus }}</div>
           <div class="text2">{{ item.totalmoney }}</div>
         </div>
         <div class="NumberOfPeople">
           <div class="text2">{{ item.num }}</div>
         </div>
         <div class="Details">
-          <div class="button" @click="showTeamDetail(index + 1)">Details</div>
+          <div class="button" @click="showTeamDetail(index + 1)">{{ lang.locale.details }}</div>
         </div>
       </div>
       <div style="height: 60px;"></div>
@@ -30,6 +30,7 @@ export default {
   props: {
     teamData: Array
   },
+  inject: ['lang'],
   methods: {
     showTeamDetail(ord) {
       this.$router.push('/TeamMember?ord=' + ord);

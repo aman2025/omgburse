@@ -1,6 +1,6 @@
 <template>
   <div class="recharge">
-    <OutView title="Introduce" :isBack="true" />
+    <OutView :title="lang.locale.introduce" :isBack="true" />
     <div class="box-ipt" style="width:100%">
       <div v-html="content"></div>
     </div>
@@ -16,6 +16,7 @@ export default {
   components: {
     OutView
   },
+  inject: ['lang'],
   setup() {
     const state = reactive({
       content: {}

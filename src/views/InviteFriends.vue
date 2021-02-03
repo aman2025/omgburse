@@ -1,6 +1,6 @@
 <template>
   <div class="recharge">
-    <OutView title="Invite Friends" :isBack="true" />
+    <OutView :title="lang.locale.inviteFriends" :isBack="true" />
     <div class="box-ipt">
       <div>
         <img :src="userinfo.qrcode" />
@@ -18,6 +18,7 @@ export default {
   components: {
     OutView
   },
+  inject: ['lang'],
   setup() {
     // 团队
     const state = reactive({

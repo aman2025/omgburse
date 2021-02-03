@@ -2,23 +2,23 @@
   <div class="recharge">
     <Loading v-if="isLoad" />
     <Toast v-show="visible" :message="message" />
-    <OutView title="Withdraw" :isBack="true" />
+    <OutView :title="lang.locale.withdraw" :isBack="true" />
     <div class="box-ipt">
-      <h3>Money</h3>
+      <h3>{{ lang.locale.money }}</h3>
       <div>
         <img class="xiaji" src="../assets/xiaji_bg_btn1.png" />
         <input type="text" v-model="money" />
       </div>
     </div>
     <div class="box-ipt">
-      <h3>Mark</h3>
+      <h3>{{ lang.locale.mark }}</h3>
       <div>
         <i></i>
         <textarea v-model="mark" />
       </div>
     </div>
     <div class="illustration" v-html="illustration"></div>
-    <Button btnText="Withdraw" theme="primary" class="tipBtn" @click="withdraw" />
+    <Button :btnText="lang.locale.withdraw" theme="primary" class="tipBtn" @click="withdraw" />
   </div>
 </template>
 <script>
@@ -37,6 +37,7 @@ export default {
     Loading,
     Toast
   },
+  inject: ['lang'],
   setup() {
     const isLoad = ref(false); // 设置isLoad=true响应
     const state = reactive({
@@ -89,7 +90,7 @@ export default {
           })
           .catch(() => {});
       } else {
-        this.showToast('money can not be empty');
+        this.showToast(this.lang.locale.moneyEmpty);
       }
     },
     closeToast() {

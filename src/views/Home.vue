@@ -7,6 +7,7 @@
     <Marquee />
     <ProductList :goods="goods" />
     <div class="OrderRecord" @click="goOrder">
+      <span class="orderRecord-text"> {{ lang.locale.orderRecord }}</span>
       <img src="../assets/shuadan_dt_btn_order.png" />
     </div>
     <!-- <div class="endText">No other new types of products</div> -->
@@ -33,6 +34,7 @@ export default {
     Marquee,
     Loading
   },
+  inject: ['lang'],
   setup() {
     const isLoad = ref(false); // 设置isLoad=true响应
     const goods = ref([]);
@@ -73,6 +75,17 @@ export default {
   margin-top: 5%;
   height: 50px;
   text-align: center;
+  position: relative;
+}
+.OrderRecord .orderRecord-text {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-size: 23px;
+  font-weight: bold;
+  padding: 10px 0 0 35px;
 }
 .endText {
   margin-top: 5%;
