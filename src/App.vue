@@ -6,7 +6,7 @@
 </template>
 <script>
 import Tabbar from '@/components/Tabbar.vue';
-import { provide, ref } from 'vue';
+import { provide, reactive, ref } from 'vue';
 import request from './utils/request';
 
 export default {
@@ -26,17 +26,25 @@ export default {
     // 全局app下载连接
 
     const appUrl = ref('');
+    const rechargeType = reactive({
+      typeOne: false,
+      typeTwo: false
+    });
     provide('appUrl', appUrl);
+    provide('rechargeType', rechargeType);
     var url = '/Api/System/AllConfig';
     const getApp = () => request.get(url);
     getApp()
       .then(res => {
         appUrl.value = res.data.download;
+        rechargeType.typeOne = res.data.recharge1;
+        rechargeType.typeTwo = res.data.recharge2;
       })
       .catch(() => {});
     return {
       panelShow,
       updatePanelShow,
+      rechargeType,
       appUrl
     };
   }
