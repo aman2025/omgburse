@@ -38,7 +38,7 @@
       <span>{{ lang.locale.forgetPSW }}</span>
     </div>
     <Toast v-show="visible" :message="message" />
-    <span class="app" @click="appDownload"><img src="../assets/app.png" alt="" />App Download</span>
+    <span class="app" @click="appDownload"><img src="../assets/app.png" alt="" />{{ lang.locale.appDownload }}</span>
   </div>
 </template>
 <script>

@@ -104,6 +104,10 @@ const I18N_CONF = {
   amount: 'amount',
   interest: 'Interest',
   gotIt: 'Got it',
-  welcome: 'Welcome'
+  welcome: 'Welcome',
+  // 20210205
+  appDownload: 'App Download',
+  resetPassword: 'Reset Password',
+  enterYourOldPassword: 'Enter your old password'
 };
 export default I18N_CONF;

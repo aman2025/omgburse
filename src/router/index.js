@@ -177,6 +177,14 @@ const routes = [
     meta: {
       showTab: false
     }
+  },
+  {
+    path: '/resetPassword',
+    name: 'ResetPassword',
+    component: () => import('../views/ResetPassword.vue'),
+    meta: {
+      showTab: false
+    }
   }
 ];
 

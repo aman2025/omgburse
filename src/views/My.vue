@@ -100,7 +100,7 @@ export default {
       },
       {
         id: 7,
-        title: 'APP download',
+        title: lang.locale.appDownload,
         className: 'icon_mission',
         img: 'icon_mission',
         url: '/appDownload',
@@ -114,6 +114,14 @@ export default {
         url: '',
         content: lang.locale.doYouWant,
         callback: signOut
+      },
+      {
+        id: 9,
+        title: lang.locale.resetPassword,
+        className: 'icon_mission',
+        img: 'icon_mission',
+        url: '/ResetPassword',
+        content: ''
       }
     ];
     // dialog show

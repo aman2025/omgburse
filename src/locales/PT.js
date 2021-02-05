@@ -104,6 +104,10 @@ const I18N_CONF = {
   amount: 'Montante',
   interest: 'Interesse',
   gotIt: 'Já está.',
-  welcome: 'Bem-vindo.'
+  welcome: 'Bem-vindo.',
+  // 20210205
+  appDownload: 'Aplicativo Transferir',
+  resetPassword: 'Reiniciar Senha',
+  enterYourOldPassword: ' Entrar Seu antigo Senha '
 };
 export default I18N_CONF;
