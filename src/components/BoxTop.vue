@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div style="width: 100%; height: 121px;"></div>
+    <div style="width: 100%; height: 121px;" class="blank-box"></div>
   </div>
 </template>
 
@@ -260,5 +260,11 @@ export default {
 }
 .top .fixed {
   top: 10px;
+}
+.home-box .fixed {
+  top: 112px !important;
+}
+.home-box .blank-box {
+  height: 222px !important;
 }
 </style>

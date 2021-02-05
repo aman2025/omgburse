@@ -23,7 +23,7 @@
           </div>
           <div style="display: flex; flex-direction: column; justify-content: space-around;">
             <div class="info">{{ lang.locale.price }}</div>
-            <div class="price1">{{ item[0].price }}RS</div>
+            <div class="price1">{{ item[0].price }}</div>
           </div>
         </div>
       </div>

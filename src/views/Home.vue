@@ -1,8 +1,9 @@
 <template>
   <div class="home">
+    <Slide />
     <Loading v-if="isLoad" />
     <Welcome />
-    <BoxTop />
+    <BoxTop class="home-box" top="" />
     <!-- memberDynamic -->
     <Marquee />
     <ProductList :goods="goods" />
@@ -21,6 +22,7 @@ import ProductList from '@/components/ProductList.vue';
 import Welcome from '@/components/Welcome.vue';
 import Marquee from '@/components/Marquee.vue';
 import Loading from '@/components/Loading.vue';
+import Slide from '@/components/Slide.vue';
 // import request from '../utils/request';
 import { ref } from 'vue';
 import request from '../utils/request';
@@ -32,6 +34,7 @@ export default {
     BoxTop,
     Welcome,
     Marquee,
+    Slide,
     Loading
   },
   inject: ['lang'],
