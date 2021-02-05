@@ -1,16 +1,26 @@
 <template>
   <div class="slide">
-    <swiper :slides-per-view="1" :space-between="0" :autoplay="{ delay: 100 }" :loop="true" @swiper="onSwiper" @slideChange="onSlideChange">
+    <swiper :slides-per-view="1" :space-between="0" autoplay :loop="true" @swiper="onSwiper" @slideChange="onSlideChange">
       <swiper-slide v-for="item in slideData" :key="item.id"><img :src="item.img"/></swiper-slide>
     </swiper>
   </div>
 </template>
 
 <script>
+// import Swiper core and required modules
+import SwiperCore, { Autoplay } from 'swiper';
+
+// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
 import 'swiper/swiper.scss';
 import request from '../utils/request';
 import { ref } from 'vue';
+
+// install Swiper modules
+SwiperCore.use([Autoplay]);
+
 export default {
   name: 'Slide',
   components: {
@@ -34,10 +44,6 @@ export default {
   },
   methods: {
     onSwiper(swiper) {
-      //初始加载
-      setInterval(() => {
-        console.log(1);
-      }, 1000);
       console.log(swiper);
     },
     onSlideChange() {
