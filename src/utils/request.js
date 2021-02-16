@@ -30,7 +30,10 @@ const request = () => {
           // token = '1'; //测试token
         } catch (e) {
           console.log(e);
-          goLogin();
+          if (!url.includes('/Api/User/register')) {
+            // 注册页面没有token,return后到,then().catch{...}没有先服务端发送请求
+            goLogin();
+          }
         }
         config.params.token = token;
         config.params.lang = lang;
