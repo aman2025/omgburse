@@ -262,9 +262,9 @@ export default {
   top: 10px;
 }
 .home-box .fixed {
-  top: 112px !important;
+  top: 160px !important;
 }
 .home-box .blank-box {
-  height: 222px !important;
+  height: 272px !important;
 }
 </style>

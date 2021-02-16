@@ -6,7 +6,7 @@
     </div>
     <div class="login-bd">
       <div>
-        <Input :placeholder="lang.locale.enterYourPhone" objkey="username" v-model:formData="loginForm" maxLen="10" iconuser="icon-q02" :hasIcon="true" />
+        <Input :placeholder="lang.locale.enterYourPhone" objkey="username" v-model:formData="loginForm" maxLen="11" iconuser="icon-q02" :hasIcon="true" />
       </div>
       <div>
         <Input type="password" :placeholder="lang.locale.enterYourPassword" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />

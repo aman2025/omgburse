@@ -5,8 +5,8 @@
     </div>
     <div class="login-bd">
       <div class="phone-prev-warp">
-        <span class="phone-prev">+91</span>
-        <Input :placeholder="lang.locale.enterYourPhone" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" maxLen="10" class="ipadd" />
+        <span class="phone-prev">+55</span>
+        <Input :placeholder="lang.locale.enterYourPhone" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" maxLen="11" class="ipadd" />
       </div>
       <div>
         <Input type="password" :placeholder="lang.locale.enterYourPassword" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
