@@ -63,7 +63,8 @@ const routes = [
     name: 'Register',
     component: () => import('../views/Register.vue'),
     meta: {
-      showTab: false
+      showTab: false,
+      singleContact: true
     }
   },
   {
@@ -71,7 +72,8 @@ const routes = [
     name: 'Login',
     component: () => import('../views/Login.vue'),
     meta: {
-      showTab: false
+      showTab: false,
+      singleContact: true
     }
   },
   {

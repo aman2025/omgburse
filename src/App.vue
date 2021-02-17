@@ -2,10 +2,12 @@
   <div style="height:100%">
     <Tabbar v-if="this.$route.meta.showTab" />
     <router-view />
+    <Contact v-model="this.$route.meta.singleContact" />
   </div>
 </template>
 <script>
 import Tabbar from '@/components/Tabbar.vue';
+import Contact from '@/components/Contact.vue';
 import { provide, reactive, ref, watchEffect } from 'vue';
 import request from './utils/request';
 import enUS from '@/locales/en-US.js';
@@ -15,7 +17,8 @@ import SP from '@/locales/SP.js';
 export default {
   name: 'Home',
   components: {
-    Tabbar
+    Tabbar,
+    Contact
   },
   setup() {
     // 首页welcome，提示
