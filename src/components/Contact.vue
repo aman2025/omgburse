@@ -2,11 +2,11 @@
   <teleport to="body">
     <div v-show="true" class="contact">
       <div v-show="!modelValue">
-        <i class="icon-customer"></i>
-        <i class="icon-customer"></i>
+        <i class="icon-contact03"></i>
+        <i class="icon-contact02"></i>
       </div>
       <div>
-        <i class="icon-customer"></i>
+        <i class="icon-contact01"></i>
       </div>
     </div>
   </teleport>
@@ -29,7 +29,8 @@ export default {
 .contact {
   position: fixed;
   bottom: 100px;
-  right: 10px;
+  right: 16px;
+  z-index: 9999;
 }
 .contact i {
   display: block;
@@ -40,10 +41,16 @@ export default {
   text-align: center;
   border: 2px solid #ffbe01;
   margin-top: 3px;
-}
-.contact i.icon-customer {
-  background-image: url(../assets/icon_introduction.png);
-  background-size: 22px;
+  background-size: 26px;
   background-position: center;
+}
+.contact i.icon-contact01 {
+  background-image: url(../assets/icon-contact01.png);
+}
+.contact i.icon-contact02 {
+  background-image: url(../assets/icon-contact02.png);
+}
+.contact i.icon-contact03 {
+  background-image: url(../assets/icon-contact03.png);
 }
 </style>
