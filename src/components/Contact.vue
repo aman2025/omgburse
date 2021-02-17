@@ -2,11 +2,11 @@
   <teleport to="body">
     <div v-show="true" class="contact">
       <div v-show="!modelValue">
-        <i class="icon-contact03"></i>
-        <i class="icon-contact02"></i>
+        <!-- <i class="icon-contact03"></i>
+        <i class="icon-contact02"></i> -->
       </div>
       <div>
-        <i class="icon-contact01"></i>
+        <i @click="customerService" class="icon-contact01"></i>
       </div>
     </div>
   </teleport>
@@ -22,7 +22,11 @@ export default {
     // return
     return {};
   },
-  methods: {}
+  methods: {
+    customerService() {
+      this.$router.push('/customerService');
+    }
+  }
 };
 </script>
 <style scoped lang="scss">
