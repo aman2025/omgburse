@@ -11,7 +11,12 @@
     </div>
     <div class="text1">Commission: {{ goodsDetail.per }} of the product price</div>
     <div class="goods">
-      <h3>{{ goodsDetail.theusertype }} {{ goodsDetail.title }}</h3>
+      <h3>
+        {{ goodsDetail.theusertype }}
+      </h3>
+      <h5>
+        {{ goodsDetail.title }}
+      </h5>
       <div class="g-pic">
         <img :src="goodsDetail.img" />
       </div>
@@ -240,7 +245,7 @@ export default {
   font-weight: 700;
 }
 .product-detail .goods {
-  width: 50vw;
+  width: 55vw;
   border-radius: 5px;
   border: 1px solid #e44e2e;
   margin: 0 auto;
@@ -250,11 +255,14 @@ export default {
   color: #fff;
   font-size: 15px;
   padding-left: 10px;
-  border-top-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-radius: 5px 5px 0 0;
   background-color: #e5502e;
   font-weight: 700;
-  width: 82%;
+  width: 100%;
+}
+.product-detail .goods h5 {
+  text-align: center;
+  padding-top: 5px;
 }
 .product-detail .goods .g-pic {
   padding: 10px 0;
