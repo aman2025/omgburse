@@ -108,7 +108,7 @@ export default {
       });
       if (vals.filter(v => v).length === 2) {
         var numReg = /^[0-9]*$/;
-        if (!numReg.test(vals[0]) || vals[0].length != 10) {
+        if (!numReg.test(vals[0])) {
           this.showToast('your phone number is error!');
           return null;
         }
