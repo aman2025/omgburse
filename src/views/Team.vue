@@ -3,7 +3,7 @@
     <Loading v-if="isLoad" />
     <!-- 头部图片 -->
     <div class="title">
-      <img src="../assets/shuadan_yqlj_bg.png" />
+      <img :src="teamimg" />
       <div class="titleText" ref="txt01">{{ teamList.referral }}</div>
       <div class="copyBtn" @click="copy(txt01.innerText)">{{ lang.locale.copy }}</div>
       <div class="titleText" ref="txt02" style="top: 43vw;">{{ teamList.referralurl }}</div>
@@ -58,6 +58,7 @@ export default {
   },
   setup() {
     const lang = inject('lang');
+    const teamimg = inject('teamimg');
     const state = reactive({
       visible: false,
       message: ''
@@ -96,6 +97,7 @@ export default {
       txt02,
       txt01,
       teamList,
+      teamimg,
       lang,
       ...toRefs(state)
     };

@@ -31,12 +31,15 @@ export default {
 
     // 全局app下载连接
     const appUrl = ref('');
+    const teamimg = ref('');
     provide('appUrl', appUrl);
+    provide('teamimg', teamimg);
     var url = '/Api/System/AllConfig';
     const getApp = () => request.get(url);
     getApp()
       .then(res => {
         appUrl.value = res.data.download;
+        teamimg.value = res.data.teamimg;
       })
       .catch(() => {});
 
@@ -71,6 +74,7 @@ export default {
     return {
       panelShow,
       updatePanelShow,
+      teamimg,
       appUrl
     };
   }
