@@ -5,12 +5,12 @@
       <Input placeholder="email" iconuser="icon-q07" :hasIcon="true" objkey="email" maxLen="30" v-model:formData="collectionForm" />
       <Input placeholder="first name" iconuser="icon-q07" :hasIcon="true" objkey="firstName" maxLen="20" v-model:formData="collectionForm" />
       <Input placeholder="last name" iconuser="icon-q07" :hasIcon="true" objkey="lastName" maxLen="20" v-model:formData="collectionForm" />
-      <!-- 下拉 -->
+      <!-- sex下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
         <select name="" id="" class="sel-ipt" v-model="sex" @change="sexSelect">
-          <option value="enUS">male</option>
-          <option value="PT">female</option>
+          <option value="male" selected>male</option>
+          <option value="female">female</option>
         </select>
         <span class="caret"></span>
       </div>
@@ -18,8 +18,17 @@
       <Input placeholder="address" iconuser="icon-q07" :hasIcon="true" objkey="address" maxLen="255" v-model:formData="collectionForm" />
       <Input placeholder="mobile area" iconuser="icon-q07" :hasIcon="true" objkey="mobileArea" maxLen="10" v-model:formData="collectionForm" />
       <Input placeholder="mobile" iconuser="icon-q07" :hasIcon="true" objkey="mobile" maxLen="20" v-model:formData="collectionForm" />
-      <Input placeholder="id type" iconuser="icon-q07" :hasIcon="true" objkey="idType" v-model:formData="collectionForm" />
-      <Input placeholder="id number" iconuser="icon-q07" :hasIcon="true" objkey="idNumber" v-model:formData="collectionForm" />
+      <!-- id_type下拉 -->
+      <div class="sel-ipt-wrap">
+        <i></i>
+        <select name="" id="" class="sel-ipt" v-model="idType" @change="idTypeSelect">
+          <option value="identity_card" selected>identity_card</option>
+          <option value="passport">passport</option>
+          <option value="driving_licence">driving_licence</option>
+        </select>
+        <span class="caret"></span>
+      </div>
+      <Input placeholder="id number" type="date" iconuser="icon-q07" :hasIcon="true" objkey="idNumber" v-model:formData="collectionForm" />
     </div>
     <Button :btnText="lang.locale.save" theme="primary" class="tipBtn" @click="saveName" />
     <Toast v-show="visible" :message="message" />
@@ -44,6 +53,8 @@ export default {
     const state = reactive({
       collectionForm: { email: '', firstName: '', lastName: '', sex: '', city: '', address: '', mobileArea: '', mobile: '', idType: '', idNumber: '' },
       visible: false,
+      sex: 'male',
+      idType: 'identity_card',
       message: ''
     });
     return {
