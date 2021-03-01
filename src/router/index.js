@@ -187,6 +187,14 @@ const routes = [
     meta: {
       showTab: false
     }
+  },
+  {
+    path: '/collectionForm',
+    name: 'CollectionForm',
+    component: () => import('../views/CollectionForm.vue'),
+    meta: {
+      showTab: false
+    }
   }
 ];
 

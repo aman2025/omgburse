@@ -1,9 +1,9 @@
 <template>
   <div class="my">
     <!-- <h1 class="my-title">My information</h1> -->
-    <BoxTop top="top" :custom="true" />
+    <BoxTop top="top" :showId="true" :virtualCurrency="true" />
     <!-- List component  -->
-    <List :listdatas="lists" :openDialog="openDialog" style="margin-top: 5px" />
+    <List :listdatas="lists" :openDialog="openDialog" style="margin-top: 68px" />
     <div class="other">
       <div @click="makeMoney">
         <span class="myBtnText">{{ lang.locale.howMakeMoney }}</span>

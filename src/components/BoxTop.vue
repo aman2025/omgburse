@@ -7,8 +7,8 @@
           <div class="UserName">{{ userinfo.uname }}</div>
           <div class="myTotalAssets">{{ lang.locale.yourTotalAssets }}</div>
           <div class="money">{{ userinfo.ymoney }}</div>
-          <div class="Virtual" v-if="!custom">{{ lang.locale.virtualCurrency }}</div>
-          <div class="VirtualMoney" v-if="!custom">{{ userinfo.virtual }}</div>
+          <div class="Virtual" v-if="!virtualCurrency">{{ lang.locale.virtualCurrency }}</div>
+          <div class="VirtualMoney" v-if="!virtualCurrency">{{ userinfo.virtual }}</div>
           <div class="LvImgBg">
             <div class="lvText">{{ userinfo.level }}</div>
           </div>
@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <div class="myid" v-if="custom">ID: {{ userinfo.id }}</div>
+      <div class="myid" v-if="showId">ID: {{ userinfo.id }}</div>
       <div class="bottom">
         <div class="infoNum" v-if="!custom">
           <span class="numValue">{{ userinfo.yesterday }}</span>
@@ -59,6 +59,8 @@ export default {
   name: 'ProductList',
   props: {
     top: String,
+    showId: Boolean,
+    virtualCurrency: Boolean,
     custom: Boolean
   },
   inject: ['lang'],

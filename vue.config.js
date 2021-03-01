@@ -5,7 +5,7 @@ module.exports = {
     proxy: {
       '/Api': {
         //代理地址
-        target: 'http://tst.0598qq.com/Api', //需要代理的地址
+        target: 'http://demo.0598qq.com/Api', //需要代理的地址
         changeOrigin: true, //是否跨域
         secure: false,
         pathRewrite: {

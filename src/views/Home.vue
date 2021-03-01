@@ -3,7 +3,6 @@
     <Slide />
     <Loading v-if="isLoad" />
     <Welcome />
-    <BoxTop class="home-box" top="" />
     <!-- memberDynamic -->
     <Marquee />
     <ProductList :goods="goods" />
@@ -17,7 +16,6 @@
 </template>
 
 <script>
-import BoxTop from '@/components/BoxTop.vue';
 import ProductList from '@/components/ProductList.vue';
 import Welcome from '@/components/Welcome.vue';
 import Marquee from '@/components/Marquee.vue';
@@ -31,7 +29,6 @@ export default {
   name: 'Home',
   components: {
     ProductList,
-    BoxTop,
     Welcome,
     Marquee,
     Slide,
@@ -100,6 +97,6 @@ export default {
   line-height: 30px;
 }
 .blank {
-  height: 12vw;
+  height: 16vw;
 }
 </style>

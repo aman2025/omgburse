@@ -61,7 +61,7 @@ export default {
   left: 10px;
   right: 10px;
   bottom: 10px;
-  height: 150px;
+  height: 215px;
   z-index: 9999;
   border-radius: 10px;
   overflow: hidden;
