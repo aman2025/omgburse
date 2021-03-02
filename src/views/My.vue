@@ -63,7 +63,7 @@ export default {
         title: lang.locale.bindBankCard,
         className: 'bind_bank_card',
         img: 'icon_bank',
-        url: '/BankInformation',
+        url: '/CollectionForm',
         content: ''
       },
       {

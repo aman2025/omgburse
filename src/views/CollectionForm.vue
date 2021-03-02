@@ -1,10 +1,10 @@
 <template>
   <div class="order">
-    <OutView title="collection" :isBack="true" />
+    <OutView :title="lang.locale.fillInPersonalInformation" :isBack="true" />
     <div class="out-wraper">
-      <Input placeholder="email" iconuser="icon-q07" :hasIcon="true" objkey="email" maxLen="30" v-model:formData="collectionForm" />
-      <Input placeholder="first name" iconuser="icon-q07" :hasIcon="true" objkey="first_name" maxLen="20" v-model:formData="collectionForm" />
-      <Input placeholder="last name" iconuser="icon-q07" :hasIcon="true" objkey="last_name" maxLen="20" v-model:formData="collectionForm" />
+      <Input placeholder="Enter your email" iconuser="icon-q07" :hasIcon="true" objkey="email" maxLen="30" v-model:formData="collectionForm" />
+      <Input placeholder="Enter your first name" iconuser="icon-q07" :hasIcon="true" objkey="first_name" maxLen="20" v-model:formData="collectionForm" />
+      <Input placeholder="Enter your last name" iconuser="icon-q07" :hasIcon="true" objkey="last_name" maxLen="20" v-model:formData="collectionForm" />
       <!-- sex下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
@@ -14,8 +14,8 @@
         </select>
         <span class="caret"></span>
       </div>
-      <Input placeholder="the account" iconuser="icon-q07" :hasIcon="true" objkey="theaccount" maxLen="50" v-model:formData="collectionForm" />
-      <Input placeholder="bank account number" iconuser="icon-q07" :hasIcon="true" objkey="bank_account_number" maxLen="50" v-model:formData="collectionForm" />
+      <Input placeholder="Enter the account" iconuser="icon-q07" :hasIcon="true" objkey="theaccount" maxLen="50" v-model:formData="collectionForm" />
+      <Input placeholder="Enter bank account number" iconuser="icon-q07" :hasIcon="true" objkey="bank_account_number" maxLen="50" v-model:formData="collectionForm" />
       <!-- thebank 下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
@@ -24,9 +24,9 @@
         </select>
         <span class="caret"></span>
       </div>
-      <Input placeholder="id expire date" type="date" iconuser="icon-q07" :hasIcon="true" objkey="id_expire_date" v-model:formData="collectionForm" />
-      <Input placeholder="id issue date" type="date" iconuser="icon-q07" :hasIcon="true" objkey="id_issue_date" v-model:formData="collectionForm" />
-      <Input placeholder="id number" iconuser="icon-q07" :hasIcon="true" objkey="id_number" maxLen="20" v-model:formData="collectionForm" />
+      <Input :class="{ 'ipt-date': collectionForm.id_expire_date == '' }" placeholder="Enter expire date" type="date" iconuser="icon-q07" :hasIcon="true" objkey="id_expire_date" v-model:formData="collectionForm" />
+      <Input :class="{ 'ipt-date': collectionForm.id_issue_date == '' }" placeholder="Enter issue date" type="date" iconuser="icon-q07" :hasIcon="true" objkey="id_issue_date" v-model:formData="collectionForm" />
+      <Input placeholder="Enter id number" iconuser="icon-q07" :hasIcon="true" objkey="id_number" maxLen="20" v-model:formData="collectionForm" />
       <!-- id_type下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
@@ -37,10 +37,10 @@
         </select>
         <span class="caret"></span>
       </div>
-      <Input placeholder="mobile area" iconuser="icon-q07" :hasIcon="true" objkey="mobile_area" maxLen="10" v-model:formData="collectionForm" />
-      <Input placeholder="mobile" type="number" iconuser="icon-q07" :hasIcon="true" objkey="mobile" maxLen="20" v-model:formData="collectionForm" />
-      <Input placeholder="address" iconuser="icon-q07" :hasIcon="true" objkey="address" maxLen="255" v-model:formData="collectionForm" />
-      <Input placeholder="city" iconuser="icon-q07" :hasIcon="true" objkey="city" maxLen="50" v-model:formData="collectionForm" />
+      <Input placeholder="Enter mobile area" iconuser="icon-q07" :hasIcon="true" objkey="mobile_area" maxLen="10" v-model:formData="collectionForm" />
+      <Input placeholder="Enter mobile" type="number" iconuser="icon-q07" :hasIcon="true" objkey="mobile" maxLen="20" v-model:formData="collectionForm" />
+      <Input placeholder="Enter address" iconuser="icon-q07" :hasIcon="true" objkey="address" maxLen="255" v-model:formData="collectionForm" />
+      <Input placeholder="Enter city" iconuser="icon-q07" :hasIcon="true" objkey="city" maxLen="50" v-model:formData="collectionForm" />
     </div>
     <Button :btnText="lang.locale.save" theme="primary" class="tipBtn" @click="saveName" />
     <Toast v-show="visible" :message="message" />
@@ -88,6 +88,29 @@ export default {
       message: ''
     });
 
+    // Get User BankInfo
+    var userBankUrl = '/Api/Bank/GetUserBankInfo';
+    const getUserBankInfo = () => request.get(userBankUrl);
+    getUserBankInfo()
+      .then(res => {
+        state.collectionForm.sex = res.data.sex;
+        state.collectionForm.last_name = res.data.last_name;
+        state.collectionForm.first_name = res.data.first_name;
+        state.collectionForm.email = res.data.email;
+        state.collectionForm.theaccount = res.data.theaccount;
+        state.collectionForm.bank_account_number = res.data.bank_account_number;
+        state.collectionForm.thebank = res.data.thebank;
+        state.collectionForm.id_expire_date = res.data.id_expire_date;
+        state.collectionForm.id_issue_date = res.data.id_issue_date;
+        state.collectionForm.id_number = res.data.id_number;
+        state.collectionForm.id_type = res.data.id_type;
+        state.collectionForm.mobile = res.data.mobile;
+        state.collectionForm.mobile_area = res.data.mobile_area;
+        state.collectionForm.address = res.data.address;
+        state.collectionForm.city = res.data.city;
+      })
+      .catch(() => {});
+
     // banklist
     const bankurl = '/Api/Bank/banklist';
     const getBankList = () => request.get(bankurl);
@@ -108,7 +131,6 @@ export default {
     saveName() {
       var vals = this.collectionValidate();
       if (vals) {
-        console.log(vals);
         // 校验通过并获取值
         const tokenVal = JSON.parse(localStorage.token);
         const collectionForm = Object.assign({}, this.collectionForm, { token: tokenVal });
@@ -117,7 +139,7 @@ export default {
         addName(collectionForm).then(res => {
           if (res.status == 1) {
             this.showToast(res.msg);
-            setTimeout(function() {
+            setTimeout(() => {
               this.$router.back(-1);
             }, 2000);
           } else {

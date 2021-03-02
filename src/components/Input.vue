@@ -92,4 +92,8 @@ export default {
 .wraper.ipadd2 .ipt {
   padding: 0 0 0 112px;
 }
+.wraper.ipt-date input[type='date']:before {
+  content: attr(placeholder);
+  color: #999;
+}
 </style>
