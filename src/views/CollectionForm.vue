@@ -17,7 +17,6 @@
       <Input placeholder="the account" iconuser="icon-q07" :hasIcon="true" objkey="theaccount" maxLen="50" v-model:formData="collectionForm" />
       <Input placeholder="bank account number" iconuser="icon-q07" :hasIcon="true" objkey="bank_account_number" maxLen="50" v-model:formData="collectionForm" />
       <!-- thebank 下拉 -->
-      {{ thebank }}
       <div class="sel-ipt-wrap">
         <i></i>
         <select name="" id="" class="sel-ipt" v-model="thebank">
@@ -65,7 +64,7 @@ export default {
   setup() {
     const sex = ref('male');
     const id_type = ref('identity_card');
-    const thebank = ref('');
+    const thebank = ref('22');
     const state = reactive({
       collectionForm: {
         sex: sex,
@@ -109,23 +108,22 @@ export default {
     saveName() {
       var vals = this.collectionValidate();
       if (vals) {
-        console.log('校验通过...');
+        console.log(vals);
         // 校验通过并获取值
-        // const tokenVal = JSON.parse(localStorage.token);
-        // const collectionForm = Object.assign({}, this.collectionForm, { token: tokenVal });
-        // const url = '/Api/Account/ChangeName';
-        // const addName = user => request.post(url, user);
-        // addName(collectionForm)
-        //   .then(res => {
-        //     if (res.status == 1) {
-        //       this.$router.back(-1);
-        //     } else {
-        //       this.showToast(res.msg);
-        //     }
-        //   })
-        //   .catch(() => {
-        //     alert('login fail!');
-        //   });
+        const tokenVal = JSON.parse(localStorage.token);
+        const collectionForm = Object.assign({}, this.collectionForm, { token: tokenVal });
+        const url = '/Api/Bank/bankinfo';
+        const addName = opts => request.post(url, opts);
+        addName(collectionForm).then(res => {
+          if (res.status == 1) {
+            this.showToast(res.msg);
+            setTimeout(function() {
+              this.$router.back(-1);
+            }, 2000);
+          } else {
+            this.showToast(res.msg);
+          }
+        });
       }
     },
     // 表单校验
@@ -156,11 +154,11 @@ export default {
         }
         return val;
       });
-      if (vals.filter(v => v).length === 10) {
+      if (vals.filter(v => v).length === 15) {
         // var numReg = /^[0-9]*$/;
         // eslint-disable-next-line no-useless-escape
         var emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        if (!emailReg.test(vals[0])) {
+        if (!emailReg.test(vals[3])) {
           this.showToast('email is error!');
           return null;
         }
