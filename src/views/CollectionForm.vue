@@ -60,25 +60,24 @@ export default {
     Button,
     Input
   },
-  inject: ['lang'],
   setup() {
-    const langs = inject('lang');
-    const sex = ref(langs.locale.male);
-    const id_type = ref(langs.locale.identity_card);
+    const lang = inject('lang');
+    const sex = ref(lang.locale.male);
+    const id_type = ref(lang.locale.identity_card);
     const thebank = ref('22');
     const state = reactive({
       collectionForm: {
-        sex: sex,
+        sex: sex.value,
         last_name: '',
         first_name: '',
         email: '',
         theaccount: '',
         bank_account_number: '',
-        thebank: thebank,
+        thebank: thebank.value,
         id_expire_date: '',
         id_issue_date: '',
         id_number: '',
-        id_type: id_type,
+        id_type: id_type.value,
         mobile: '',
         mobile_area: '',
         address: '',
@@ -124,6 +123,7 @@ export default {
     return {
       ...toRefs(state),
       sex,
+      lang,
       thebank,
       id_type
     };
