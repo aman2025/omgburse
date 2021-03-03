@@ -2,20 +2,20 @@
   <div class="order">
     <OutView :title="lang.locale.fillInPersonalInformation" :isBack="true" />
     <div class="out-wraper">
-      <Input placeholder="Enter your email" iconuser="icon-q07" :hasIcon="true" objkey="email" maxLen="30" v-model:formData="collectionForm" />
-      <Input placeholder="Enter your first name" iconuser="icon-q07" :hasIcon="true" objkey="first_name" maxLen="20" v-model:formData="collectionForm" />
-      <Input placeholder="Enter your last name" iconuser="icon-q07" :hasIcon="true" objkey="last_name" maxLen="20" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterYourEmail" iconuser="icon-q07" :hasIcon="true" objkey="email" maxLen="30" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterYourFirstName" iconuser="icon-q07" :hasIcon="true" objkey="first_name" maxLen="20" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterYourLastName" iconuser="icon-q07" :hasIcon="true" objkey="last_name" maxLen="20" v-model:formData="collectionForm" />
       <!-- sex下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
         <select name="" id="" class="sel-ipt" v-model="sex">
-          <option value="male">male</option>
-          <option value="female">female</option>
+          <option :value="lang.locale.male">{{ lang.locale.male }}</option>
+          <option :value="lang.locale.female">{{ lang.locale.female }}</option>
         </select>
         <span class="caret"></span>
       </div>
-      <Input placeholder="Enter the account" iconuser="icon-q07" :hasIcon="true" objkey="theaccount" maxLen="50" v-model:formData="collectionForm" />
-      <Input placeholder="Enter bank account number" iconuser="icon-q07" :hasIcon="true" objkey="bank_account_number" maxLen="50" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterTheAccount" iconuser="icon-q07" :hasIcon="true" objkey="theaccount" maxLen="50" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterBankAccountNumber" iconuser="icon-q07" :hasIcon="true" objkey="bank_account_number" maxLen="50" v-model:formData="collectionForm" />
       <!-- thebank 下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
@@ -26,21 +26,21 @@
       </div>
       <Input :class="{ 'ipt-date': collectionForm.id_expire_date == '' }" placeholder="Enter expire date" type="date" iconuser="icon-q07" :hasIcon="true" objkey="id_expire_date" v-model:formData="collectionForm" />
       <Input :class="{ 'ipt-date': collectionForm.id_issue_date == '' }" placeholder="Enter issue date" type="date" iconuser="icon-q07" :hasIcon="true" objkey="id_issue_date" v-model:formData="collectionForm" />
-      <Input placeholder="Enter id number" iconuser="icon-q07" :hasIcon="true" objkey="id_number" maxLen="20" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterIdNumber" iconuser="icon-q07" :hasIcon="true" objkey="id_number" maxLen="20" v-model:formData="collectionForm" />
       <!-- id_type下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
         <select name="" id="" class="sel-ipt" v-model="id_type">
-          <option value="identity_card">identity_card</option>
-          <option value="passport">passport</option>
-          <option value="driving_licence">driving_licence</option>
+          <option :value="lang.locale.identity_card">{{ lang.locale.identity_card }}</option>
+          <option :value="lang.locale.passport">{{ lang.locale.passport }}</option>
+          <option :value="lang.locale.driving_licence">{{ lang.locale.driving_licence }}</option>
         </select>
         <span class="caret"></span>
       </div>
-      <Input placeholder="Enter mobile area" iconuser="icon-q07" :hasIcon="true" objkey="mobile_area" maxLen="10" v-model:formData="collectionForm" />
-      <Input placeholder="Enter mobile" type="number" iconuser="icon-q07" :hasIcon="true" objkey="mobile" maxLen="20" v-model:formData="collectionForm" />
-      <Input placeholder="Enter address" iconuser="icon-q07" :hasIcon="true" objkey="address" maxLen="255" v-model:formData="collectionForm" />
-      <Input placeholder="Enter city" iconuser="icon-q07" :hasIcon="true" objkey="city" maxLen="50" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterMobileArea" iconuser="icon-q07" :hasIcon="true" objkey="mobile_area" maxLen="10" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterMobile" type="number" iconuser="icon-q07" :hasIcon="true" objkey="mobile" maxLen="20" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterAddress" iconuser="icon-q07" :hasIcon="true" objkey="address" maxLen="255" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterCity" iconuser="icon-q07" :hasIcon="true" objkey="city" maxLen="50" v-model:formData="collectionForm" />
     </div>
     <Button :btnText="lang.locale.save" theme="primary" class="tipBtn" @click="saveName" />
     <Toast v-show="visible" :message="message" />
@@ -50,7 +50,7 @@
 import OutView from '@/components/OutView.vue';
 import Button from '@/components/Button.vue';
 import Input from '@/components/Input.vue';
-import { reactive, ref, toRefs } from 'vue';
+import { inject, reactive, ref, toRefs } from 'vue';
 import request from '../utils/request';
 
 export default {
@@ -62,8 +62,9 @@ export default {
   },
   inject: ['lang'],
   setup() {
-    const sex = ref('male');
-    const id_type = ref('identity_card');
+    const langs = inject('lang');
+    const sex = ref(langs.locale.male);
+    const id_type = ref(langs.locale.identity_card);
     const thebank = ref('22');
     const state = reactive({
       collectionForm: {
@@ -151,21 +152,21 @@ export default {
     // 表单校验
     collectionValidate() {
       var errors = {
-        sex: 'sex cannot be empty',
-        last_name: 'last name cannot be empty',
-        first_name: 'first name cannot be empty',
-        email: 'email cannot be empty',
-        theaccount: 'the account cannot be empty',
-        bank_account_number: 'bank account number cannot be empty',
-        thebank: 'the bank cannot be empty',
-        id_expire_date: 'id expire date cannot be empty',
-        id_issue_date: 'id issue date cannot be empty',
-        id_number: 'id type cannot be empty',
-        id_type: 'id type cannot be empty',
-        mobile: 'mobile cannot be empty',
-        mobile_area: 'mobile area cannot be empty',
-        address: 'address cannot be empty',
-        city: 'city cannot be empty'
+        sex: this.lang.locale.sexCannotBeEmpty,
+        last_name: this.lang.locale.lastNameCannotBeEmpty,
+        first_name: this.lang.locale.firstNameCannotBeEmpty,
+        email: this.lang.locale.emailCannotBeEmpty,
+        theaccount: this.lang.locale.theAccountCannotBeEmpty,
+        bank_account_number: this.lang.locale.bankAccountNumberCannotBeEmpty,
+        thebank: this.lang.locale.theBankCannotBeEmpty,
+        id_expire_date: this.lang.locale.idExpireDateCannotBeEmpty,
+        id_issue_date: this.lang.locale.idIssueDateCannotBeEmpty,
+        id_number: this.lang.locale.idNumberCannotBeEmpty,
+        id_type: this.lang.locale.idTypeCannotBeEmpty,
+        mobile: this.lang.locale.mobileCannotBeEmpty,
+        mobile_area: this.lang.locale.mobileAreaCannotBeEmpty,
+        address: this.lang.locale.addresCannotBeEmpty,
+        city: this.lang.locale.cityCannotBeEmpty
       };
       var errorsLog = [];
       var vals = Object.keys(errors).map(key => {
