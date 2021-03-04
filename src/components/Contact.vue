@@ -43,9 +43,9 @@ export default {
   border-radius: 50%;
   background-color: #fff;
   text-align: center;
-  border: 2px solid #ffbe01;
+  border: 1px solid #1296db;
   margin-top: 3px;
-  background-size: 26px;
+  background-size: 22px;
   background-position: center;
 }
 .contact i.icon-contact01 {

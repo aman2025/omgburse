@@ -1,9 +1,9 @@
 <template class="login">
   <div class="login">
     <div class="login-head">
-      <img src="../assets/login-top.png" />
+      <img src="../assets/register-top.jpg" />
     </div>
-    <div class="login-bd">
+    <div class="login-bd" style="margin-top:-10px">
       <div class="phone-prev-warp">
         <span class="phone-prev">+55</span>
         <Input :placeholder="lang.locale.enterYourPhone" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" maxLen="11" class="ipadd" />
