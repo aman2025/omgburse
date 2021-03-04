@@ -3,6 +3,24 @@
     <Slide />
     <Loading v-if="isLoad" />
     <Welcome />
+    <!-- Share Demo Introduce -->
+    <div class="entry">
+      <div>
+        <router-link to="/InviteFriends">
+          <button class="">{{ lang.locale.share }}</button>
+        </router-link>
+      </div>
+      <div>
+        <router-link to="/Demo">
+          <button class="">{{ lang.locale.demo }}</button>
+        </router-link>
+      </div>
+      <div>
+        <router-link to="/Introduce">
+          <button class="">{{ lang.locale.introduce }}</button>
+        </router-link>
+      </div>
+    </div>
     <!-- memberDynamic -->
     <Marquee />
     <ProductList :goods="goods" />
@@ -98,5 +116,24 @@ export default {
 }
 .blank {
   height: 16vw;
+}
+.entry {
+  display: flex;
+  margin-top: 215px;
+  padding: 15px 10px 0;
+  margin-bottom: -10px;
+  justify-content: space-between;
+}
+.entry > div {
+  flex: 0 0 31%;
+  padding: 0;
+  text-align: center;
+}
+.entry > div button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #1296db;
+  width: 100%;
 }
 </style>

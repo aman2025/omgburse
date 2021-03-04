@@ -141,6 +141,10 @@ const I18N_CONF = {
   female: 'Mulher',
   identity_card: 'Identidade_Cartão',
   passport: 'Passaporte',
-  driving_licence: 'Condução_Licença'
+  driving_licence: 'Condução_Licença',
+
+  //20210304 首页入口 share demo introduce
+  share: 'Compartilhar',
+  demo: 'Demo.'
 };
 export default I18N_CONF;

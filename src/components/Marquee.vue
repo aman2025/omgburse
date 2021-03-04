@@ -53,7 +53,7 @@ export default {
 <style scoped lang="scss">
 .marquee {
   padding: 10px 10px 5px;
-  margin-top: 215px;
+  margin-top: 0;
 }
 .marquee h3 {
   font-weight: bold;

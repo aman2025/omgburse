@@ -195,6 +195,14 @@ const routes = [
     meta: {
       showTab: false
     }
+  },
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: () => import('../views/Demo.vue'),
+    meta: {
+      showTab: false
+    }
   }
 ];
 
