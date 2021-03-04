@@ -1,9 +1,9 @@
 <template class="login">
   <div class="login">
     <div class="login-head">
-      <img src="../assets/register-top.jpg" />
+      <img src="../assets/login-top.png" />
     </div>
-    <div class="login-bd" style="margin-top:-10px">
+    <div class="login-bd">
       <div class="phone-prev-warp">
         <span class="phone-prev">+55</span>
         <Input :placeholder="lang.locale.enterYourPhone" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" maxLen="11" class="ipadd" />
@@ -152,7 +152,7 @@ export default {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: #f5f5f5;
-  margin-top: -20px;
+  margin-top: -10px;
   position: relative;
 }
 .login-btn-wrap {

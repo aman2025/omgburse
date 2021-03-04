@@ -1,7 +1,7 @@
 <template class="login">
   <div class="login">
     <div class="login-head">
-      <span class="login-tip">{{ lang.locale.loginTip }}</span>
+      <!-- <span class="login-tip">{{ lang.locale.loginTip }}</span> -->
       <img src="../assets/login-top.png" />
     </div>
     <div class="login-bd">
@@ -158,7 +158,7 @@ export default {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: #f5f5f5;
-  margin-top: -20px;
+  margin-top: -10px;
   position: relative;
 }
 .login-btn-wrap {
