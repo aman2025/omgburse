@@ -152,7 +152,7 @@ export default {
   margin-bottom: 10px;
 }
 .product-type .type-bar .type-bar-name {
-  width: 60px;
+  width: 50px;
   text-align: center;
   background-color: #2185bf;
 }
@@ -190,12 +190,12 @@ export default {
   background-color: #ff2525;
   border: none;
   text-align: center;
-  padding: 3px 10px;
+  padding: 3px 3px;
   color: #ffffff;
 }
 .product-type .type-bar .type-bar-name span {
   color: #fcef7f;
-  font-size: 18px;
+  font-size: 16px;
   display: block;
 }
 .product-type .type-bar .type-bar-name em {
@@ -211,7 +211,7 @@ export default {
   color: #fb6400;
 }
 .product-type .type-bar .type-bar-info h5 {
-  font-size: 14px;
+  font-size: 12px;
 }
 .product-type .type-bar .type-bar-info h5 em {
   margin: 0 5px;
