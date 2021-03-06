@@ -38,14 +38,14 @@ export default {
 }
 .contact i {
   display: block;
-  width: 36px;
-  height: 36px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background-color: #fff;
   text-align: center;
   border: 1px solid #1296db;
   margin-top: 3px;
-  background-size: 22px;
+  background-size: 36px;
   background-position: center;
 }
 .contact i.icon-contact01 {
