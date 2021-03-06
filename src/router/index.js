@@ -211,21 +211,4 @@ const router = createRouter({
   routes
 });
 
-// index.html页面title设置多语言
-const setPageTitleTxt = () => {
-  const lang = localStorage.language_key;
-  if (lang == 'SP') {
-    window.document.title = 'sp';
-  } else if (lang == 'PT') {
-    window.document.title = 'pt';
-  } else {
-    window.document.title = 'en';
-  }
-};
-
-router.afterEach(() => {
-  // 设置title
-  setPageTitleTxt();
-});
-
 export default router;
