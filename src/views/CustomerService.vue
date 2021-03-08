@@ -21,7 +21,9 @@ export default {
     const state = reactive({
       content: {}
     });
-    var url = '/Api/System/ContactUs';
+    // 语言选择
+    var curLangKey = localStorage.getItem('language_key') || 'enUS';
+    var url = `/Api/System/ContactUs?lang=${curLangKey}`;
     const getCompany = () => request.get(url);
     getCompany()
       .then(res => {
