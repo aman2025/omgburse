@@ -8,7 +8,7 @@
         <span class="pri-symbol">R$</span>
         <input type="text" readonly v-model="money" />
       </div>
-      <h3 class="typeTitle">{{ lang.locale.recharge2 }} {{ lang.locale.type }}</h3>
+      <!-- <h3 class="typeTitle">{{ lang.locale.recharge2 }} {{ lang.locale.type }}</h3> -->
       <div class="sel-ptype">
         <div v-show="rechargeType.typeTwo">
           <input type="radio" id="scanning" v-model="ptype" value="2" checked /><label for="scanning">{{ lang.locale.scanningCode }}</label>

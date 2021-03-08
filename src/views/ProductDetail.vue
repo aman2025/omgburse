@@ -1,7 +1,7 @@
 <template>
   <div class="product-detail">
     <Loading v-if="isLoad" />
-    <OutView title="Order grabbing" :isBack="true" />
+    <OutView :title="lang.locale.orderGrabbing" :isBack="true" />
     <div class="instruction">
       <h3>{{ lang.locale.changeName }}</h3>
       <div>
