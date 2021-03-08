@@ -5,7 +5,7 @@
     <div class="box-ipt">
       <h3>{{ lang.locale.recharge2 }} {{ lang.locale.amount }}</h3>
       <div>
-        <span class="pri-symbol">₹</span>
+        <span class="pri-symbol">R$</span>
         <input type="text" readonly v-model="money" />
       </div>
       <h3 class="typeTitle">{{ lang.locale.recharge2 }} {{ lang.locale.type }}</h3>
@@ -27,7 +27,7 @@
     </div>
     <div class="box-opt">
       <ul>
-        <li v-for="(item, index) in moneyList" :key="item.id" @click="selectMoney(item.money, index)" :class="{ active: isChange == index }">{{ item.money }}₹</li>
+        <li v-for="(item, index) in moneyList" :key="item.id" @click="selectMoney(item.money, index)" :class="{ active: isChange == index }">{{ item.money }}R$</li>
       </ul>
     </div>
     <Button :btnText="lang.locale.recharge2" theme="primary" class="tipBtn" @click="recharge" />

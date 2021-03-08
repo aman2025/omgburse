@@ -12,7 +12,7 @@
         <div class="left-block">1</div>
         <div class="left-info">
           <div class="text1">Invited 1 valid member</div>
-          <div class="text2">Task reward:₹50</div>
+          <div class="text2">Task reward:R$50</div>
         </div>
         <div class="right-ProgressBar">
           <div class="text1">1/1</div>
@@ -28,7 +28,7 @@
         <div class="left-block">1</div>
         <div class="left-info">
           <div class="text1">Invited 1 valid member</div>
-          <div class="text2">Task reward:₹50</div>
+          <div class="text2">Task reward:R$50</div>
         </div>
         <div class="right-ProgressBar">
           <div class="text1">1/1</div>
@@ -46,7 +46,7 @@
         <div class="left-block">1</div>
         <div class="left-info">
           <div class="text1">Invited 1 valid member</div>
-          <div class="text2">Task reward:₹50</div>
+          <div class="text2">Task reward:R$50</div>
         </div>
         <div class="right-ProgressBar">
           <div class="text1">1/1</div>

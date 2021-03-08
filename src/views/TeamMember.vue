@@ -8,7 +8,7 @@
           <div class="m-left m-title">{{ item.uname }}</div>
         </div>
         <div class="m-bd">
-          <div class="m-left">₹{{ item.leftmoney }}</div>
+          <div class="m-left">R${{ item.leftmoney }}</div>
           <div class="m-mid m-tip">(tel: {{ item.uphone }})</div>
           <div class="m-right m-dateline">{{ item.dateline }}</div>
         </div>
