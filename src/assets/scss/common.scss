@@ -295,3 +295,9 @@ h3 {
   color: #555;
   z-index: 1;
 }
+// 全局样式, 渲染服务端返回的html
+.illustration em {
+    font-size: 14px;
+    color: #f00;
+    font-weight: bold;
+  }

@@ -5,10 +5,6 @@
     <!-- List component  -->
     <List :listdatas="lists" :openDialog="openDialog" style="margin-top: 68px" />
     <div class="other">
-      <div @click="makeMoney">
-        <span class="myBtnText">{{ lang.locale.howMakeMoney }}</span>
-        <img src="../assets/btn-money.png" />
-      </div>
       <div @click="customerService">
         <span class="myBtnText">{{ lang.locale.cutomerService }}</span>
         <img src="../assets/btn-service.png" />
@@ -108,20 +104,20 @@ export default {
       },
       {
         id: 8,
+        title: lang.locale.resetPassword,
+        className: 'icon_mission',
+        img: 'icon_mission',
+        url: '/ResetPassword',
+        content: ''
+      },
+      {
+        id: 9,
         title: lang.locale.signOut,
         className: 'sign_out',
         img: 'icon_signout',
         url: '',
         content: lang.locale.doYouWant,
         callback: signOut
-      },
-      {
-        id: 9,
-        title: lang.locale.resetPassword,
-        className: 'icon_mission',
-        img: 'icon_mission',
-        url: '/ResetPassword',
-        content: ''
       }
     ];
     // dialog show

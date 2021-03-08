@@ -2,7 +2,16 @@
   <div class="recharge">
     <OutView :title="lang.locale.demo" :isBack="true" />
     <div class="box-ipt" style="width:100%">
-      <div v-html="content"></div>
+      <!-- video -->
+      <div class="tutorial">
+        <div class="t-item" v-for="item in tutorials" :key="item.id">
+          <h3>{{ item.title }}</h3>
+          <div class="video-wrap">
+            <video :src="item.videourl" height="220" controls="controls" preload="none" :poster="item.img"></video>
+          </div>
+        </div>
+      </div>
+      <!-- video -->
     </div>
   </div>
 </template>
@@ -19,14 +28,14 @@ export default {
   inject: ['lang'],
   setup() {
     const state = reactive({
-      content: {}
+      tutorials: []
     });
-    var url = '/Api/System/Demo';
-    const getCompany = () => request.get(url);
-    getCompany()
+    var url = '/Api/System/getdemo';
+    const getDemo = () => request.get(url);
+    getDemo()
       .then(res => {
-        console.log(res.data);
-        state.content = res.data.content;
+        console.log(res);
+        state.tutorials = res.data;
       })
       .catch(() => {});
     // return
@@ -36,4 +45,24 @@ export default {
   }
 };
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.tutorial {
+  padding: 10px;
+}
+.tutorial .t-item {
+  width: 100%;
+}
+
+.tutorial .t-item h3 {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 0 5px;
+}
+.tutorial .t-item .video-wrap {
+  width: 100%;
+  background-color: #ccc;
+}
+.tutorial .t-item .video-wrap video {
+  width: 100%;
+}
+</style>
