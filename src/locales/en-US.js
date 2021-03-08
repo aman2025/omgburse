@@ -145,6 +145,19 @@ const I18N_CONF = {
 
   //20210304 首页入口 share demo introduce
   share: 'Share',
-  demo: 'Demo'
+  demo: 'Demo',
+
+  //0308详情页
+  InstructionsForUse: 'Instructions for use',
+  accountPerDay: 'One account can grerab 30 order per day',
+  matchingBusiness: 'The system is basedonLBS technology,through the cloud autom natic matching business',
+  commission: 'Commission',
+  productPrice: 'of the product price',
+  orderGrabbing: 'Order grabbing',
+  TodayResults: "Today's results",
+  TodayAssets: "Total's assets",
+  teamEarnings: "Yesterday's team earnings",
+  TodayOrder: "Today's order",
+  TeamBenefitsToday: 'Team benefits today'
 };
 export default I18N_CONF;

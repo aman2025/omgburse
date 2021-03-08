@@ -12,7 +12,7 @@ const I18N_CONF = {
   hi: 'Olá.',
   yourTotalAssets: 'Os seus activos totais',
   virtualCurrency: 'Moeda virtual',
-  recharge: 'Recarre...',
+  recharge: 'Recarga',
   withdraw: 'Retirar',
   yesterdayEarnings: 'Ganhos de ontem',
   cumulativeIncome: 'Rendimentos cumulativos',
@@ -145,6 +145,19 @@ const I18N_CONF = {
 
   //20210304 首页入口 share demo introduce
   share: 'Compartilhar',
-  demo: 'Demo.'
+  demo: 'Demo.',
+
+  //0308详情页
+  InstructionsForUse: 'Instruções de utilização',
+  accountPerDay: 'Uma conta pode grerab 30 pedidos por dia',
+  matchingBusiness: 'O sistema é baseado na tecnologia LBS, através do negócio de correspondência automática de natic',
+  commission: 'Comissão',
+  productPrice: 'do preço do produto',
+  orderGrabbing: 'encomenda Agarrar',
+  TodayResults: 'Os resultados de hoje',
+  TodayAssets: 'Total do património',
+  teamEarnings: 'Os ganhos da equipa de ontem',
+  TodayOrder: 'A encomenda de hoje',
+  TeamBenefitsToday: 'A equipa beneficia hoje'
 };
 export default I18N_CONF;

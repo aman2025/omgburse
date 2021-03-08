@@ -3,13 +3,13 @@
     <Loading v-if="isLoad" />
     <OutView title="Order grabbing" :isBack="true" />
     <div class="instruction">
-      <h3>Instructions for use</h3>
+      <h3>{{ lang.locale.changeName }}</h3>
       <div>
-        <p>1: One account can grerab 30 order per day</p>
-        <p>2: The system is basedonLBS technology,through the cloud autom natic matching business</p>
+        <p>1: {{ lang.locale.accountPerDay }}</p>
+        <p>2: {{ lang.locale.matchingBusiness }}</p>
       </div>
     </div>
-    <div class="text1">Commission: {{ goodsDetail.per }} of the product price</div>
+    <div class="text1">{{ lang.locale.commission }}: {{ goodsDetail.per }} {{ lang.locale.productPrice }}</div>
     <div class="goods">
       <h3>
         {{ goodsDetail.theusertype }}
@@ -24,28 +24,28 @@
         <img :src="goodsDetail.cateimg" />
       </div>
       <div class="g-foot">
-        <span>price</span>
-        <em>{{ goodsDetail.price }}RS</em>
+        <span>{{ lang.locale.price }}</span>
+        <em>{{ goodsDetail.price }}R$</em>
       </div>
     </div>
     <div class="btn-group">
-      <button class="btn1" @click="recharge">Recharge</button>
-      <button class="btn2" @click="addOrder">Order grabbing</button>
+      <button class="btn1" @click="recharge">{{ lang.locale.recharge }}</button>
+      <button class="btn2" @click="addOrder">{{ lang.locale.orderGrabbing }}</button>
     </div>
-    <h3 class="r-title">Today's results</h3>
+    <h3 class="r-title">{{ lang.locale.TodayResults }}</h3>
     <div class="result-group">
       <div class="result-info">
         <ul>
           <li>
-            <span>Total's assets</span>
+            <span>{{ lang.locale.TodayAssets }}</span>
             <em>{{ goodsDetail.totalassets }}</em>
           </li>
           <li>
-            <span>Yesterday's earnings</span>
+            <span>{{ lang.locale.yesterdayEarnings }}</span>
             <em>{{ goodsDetail.yesterday }}</em>
           </li>
           <li>
-            <span>Yesterday's team earnings</span>
+            <span>{{ lang.locale.teamEarnings }}</span>
             <em>{{ goodsDetail.yesterdayteam }}</em>
           </li>
         </ul>
@@ -53,15 +53,15 @@
       <div class="result-info">
         <ul>
           <li>
-            <span>Today's order</span>
+            <span>{{ lang.locale.TodayOrder }}</span>
             <em>{{ goodsDetail.todayorder }}</em>
           </li>
           <li>
-            <span>Today's earnings</span>
+            <span>{{ lang.locale.todayEarnings }}</span>
             <em>{{ goodsDetail.today }}</em>
           </li>
           <li>
-            <span>Team benefits today</span>
+            <span>{{ lang.locale.TeamBenefitsToday }}</span>
             <em>{{ goodsDetail.benefitstoday }}</em>
           </li>
         </ul>
@@ -91,6 +91,7 @@ export default {
     Dialog,
     Toast
   },
+  inject: ['lang'],
   setup() {
     const toastState = reactive({
       visible: false,
@@ -293,7 +294,8 @@ export default {
 }
 .product-detail .btn-group button {
   height: 36px;
-  width: 130px;
+  min-width: 130px;
+  padding: 0 5px;
   color: #ffffff;
   text-align: center;
   border-radius: 5px;

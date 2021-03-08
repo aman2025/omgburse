@@ -145,6 +145,19 @@ const I18N_CONF = {
 
   //20210304 首页入口 share demo introduce
   share: 'Compartir',
-  demo: 'Demo'
+  demo: 'Demo',
+
+  //0308详情页
+  InstructionsForUse: 'Instrucciones de uso',
+  accountPerDay: 'Una cuenta puede grerar 30 pedidos al día',
+  matchingBusiness: 'El sistema se basa en la tecnología LBS, a través de la nube de negocios de correspondencia automática',
+  commission: 'Comisión',
+  productPrice: 'del precio del producto',
+  orderGrabbing: 'Pida agarrando',
+  TodayResults: 'Resultados de hoy',
+  TodayAssets: 'Activos del total',
+  teamEarnings: 'Ayer equipo ganancias',
+  TodayOrder: 'El pedido de hoy',
+  TeamBenefitsToday: 'Equipo beneficios hoy'
 };
 export default I18N_CONF;
