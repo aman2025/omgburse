@@ -31,8 +31,13 @@ export default {
 
     // 全局app下载连接
     const appUrl = ref('');
+    const rechargeType = reactive({
+      typeOne: false,
+      typeTwo: false
+    });
     const teamimg = ref('');
     provide('appUrl', appUrl);
+    provide('rechargeType', rechargeType);
     provide('teamimg', teamimg);
     var url = '/Api/System/AllConfig';
     const getApp = () => request.get(url);
@@ -40,6 +45,8 @@ export default {
       .then(res => {
         appUrl.value = res.data.download;
         teamimg.value = res.data.teamimg;
+        rechargeType.typeOne = res.data.recharge1;
+        rechargeType.typeTwo = res.data.recharge2;
       })
       .catch(() => {});
 

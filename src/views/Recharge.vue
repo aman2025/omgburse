@@ -162,7 +162,7 @@ export default {
   background-color: #fff;
   height: 38px;
   line-height: 38px;
-  padding: 0 10px 0 28px;
+  padding: 0 10px 0 50px;
   font-size: 18px;
   width: 100%;
 }
