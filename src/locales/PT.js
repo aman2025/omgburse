@@ -158,6 +158,9 @@ const I18N_CONF = {
   TodayAssets: 'Total do património',
   teamEarnings: 'Os ganhos da equipa de ontem',
   TodayOrder: 'A encomenda de hoje',
-  TeamBenefitsToday: 'A equipa beneficia hoje'
+  TeamBenefitsToday: 'A equipa beneficia hoje',
+
+  //补充
+  teamMember: 'EquipaMembro'
 };
 export default I18N_CONF;

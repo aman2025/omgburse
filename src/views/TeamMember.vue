@@ -1,7 +1,7 @@
 <template>
   <div class="recharge">
     <Loading v-if="isLoad" />
-    <OutView title="TeamMember" :isBack="true" />
+    <OutView :title="lang.locale.teamMember" :isBack="true" />
     <div class="money-wrap">
       <div class="moneyx" v-for="item in member" :key="item.id">
         <div class="m-hd">
@@ -13,7 +13,7 @@
           <div class="m-right m-dateline">{{ item.dateline }}</div>
         </div>
       </div>
-      <NoData v-if="noData" resultText="No Data!" />
+      <NoData v-if="noData" :resultText="lang.locale.noData" />
     </div>
   </div>
 </template>
@@ -32,6 +32,7 @@ export default {
     NoData,
     Loading
   },
+  inject: ['lang'],
   setup() {
     const router = useRoute();
     const routerQuery = router.query;
