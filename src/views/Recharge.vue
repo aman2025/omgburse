@@ -10,10 +10,10 @@
       </div>
       <h3 class="typeTitle">{{ lang.locale.recharge2 }} {{ lang.locale.type }}</h3>
       <div class="sel-ptype">
-        <div>
+        <div v-show="rechargeType.typeTwo">
           <input type="radio" id="scanning" v-model="ptype" value="2" checked /><label for="scanning">{{ lang.locale.scanningCode }}</label>
         </div>
-        <div>
+        <div v-show="rechargeType.typeOne">
           <input type="radio" id="transfer" v-model="ptype" value="1" /><label for="transfer">{{ lang.locale.transferPayment }}</label>
         </div>
       </div>
@@ -47,7 +47,7 @@ export default {
     Toast,
     Button
   },
-  inject: ['lang'],
+  inject: ['lang', 'rechargeType'],
   setup() {
     const state = reactive({
       visible: false,
