@@ -21,7 +21,7 @@ const request = () => {
         config.params = {};
       }
 
-      if (!url.includes('/Api/User/login') && !url.includes('/Api/System/ContactUs')) {
+      if (!url.includes('/Api/User/login') && !url.includes('/Api/System/ContactUs') && !url.includes('/Api/User/getcode/username')) {
         let token = {};
         let lang = 'enUS';
         try {
