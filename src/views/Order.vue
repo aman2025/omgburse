@@ -10,7 +10,7 @@
         </div>
         <div class="m-bd">
           <div class="m-left">R${{ item.money }}</div>
-          <div class="m-mid m-tip">(commission {{ item.permoney }})</div>
+          <div class="m-mid m-tip">({{ lang.locale.commission }} {{ item.permoney }})</div>
           <div class="m-right m-dateline">{{ item.dateline }}</div>
         </div>
       </div>

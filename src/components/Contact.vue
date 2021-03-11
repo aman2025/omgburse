@@ -32,8 +32,8 @@ export default {
 <style scoped lang="scss">
 .contact {
   position: fixed;
-  bottom: 100px;
-  right: 16px;
+  bottom: 60px;
+  right: 12px;
   z-index: 9999;
 }
 .contact i {

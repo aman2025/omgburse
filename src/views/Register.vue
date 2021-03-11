@@ -8,6 +8,11 @@
         <span class="phone-prev">+55</span>
         <Input :placeholder="lang.locale.enterYourPhone" objkey="username" v-model:formData="loginForm" iconuser="icon-q02" :hasIcon="true" maxLen="11" class="ipadd" />
       </div>
+      <div class="phone-prev-warp get-code">
+        <span class="btn-code" v-if="mins == 60 || mins == 0" @click="getAuthCode">{{ lang.locale.getCode }}</span>
+        <span class="btn-code disabled" v-else>{{ lang.locale.after }} {{ mins }}s {{ lang.locale.reacquire }} </span>
+        <Input :placeholder="lang.locale.authCode" objkey="authCode" v-model:formData="loginForm" iconuser="icon-q03" :hasIcon="true" />
+      </div>
       <div>
         <Input type="password" :placeholder="lang.locale.enterYourPassword" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
       </div>
@@ -55,9 +60,10 @@ export default {
     const params = router.query;
     console.log(params.upid);
     const state = reactive({
-      loginForm: { username: '', password: '', repassword: '', upid: params.upid },
+      loginForm: { username: '', authCode: '', password: '', repassword: '', upid: params.upid },
       visible: false,
-      message: ''
+      message: '',
+      mins: 60
     });
     return {
       appDownload,
@@ -67,7 +73,6 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.closeToast();
       var vals = this.loginValidate();
       if (vals) {
         // 校验通过并获取值
@@ -92,9 +97,38 @@ export default {
     goLogin() {
       this.$router.push('/Login');
     },
+    getAuthCode() {
+      //获取验证码
+      if (!this.loginForm.username) {
+        this.showToast(this.lang.locale.phoneEmpty);
+        return;
+      }
+      const codeUrl = `/Api/User/getcode/username/${this.loginForm.username}`;
+      console.log(codeUrl);
+      const getCode = () => request.get(codeUrl);
+      getCode()
+        .then(res => {
+          this.showToast(res.msg);
+          if (res.status !== 0) {
+            setTimeout(this.waitOneMinute, 1000);
+          }
+        })
+        .catch(() => {});
+    },
+    waitOneMinute() {
+      let timeout;
+      timeout = setInterval(() => {
+        this.mins--;
+        if (this.mins == 0) {
+          clearInterval(timeout);
+          this.mins = 60;
+        }
+      }, 1000);
+    },
     loginValidate() {
       var errors = {
         username: this.lang.locale.phoneEmpty,
+        authCode: this.lang.locale.authcodeEmpty,
         password: this.lang.locale.passwordEmpty,
         repassword: this.lang.locale.repasswordEmpty,
         upid: this.lang.locale.shareIDEmpty
@@ -108,7 +142,7 @@ export default {
         }
         return val;
       });
-      if (vals.filter(v => v).length !== 4) {
+      if (vals.filter(v => v).length !== 5) {
         this.showToast(errorsLog[0]);
         return null;
       }
@@ -134,6 +168,7 @@ export default {
     showToast(msg) {
       this.visible = true;
       this.message = msg;
+      this.closeToast();
     }
   }
 };
@@ -175,17 +210,15 @@ export default {
   background-position: 0 -19px;
 }
 .login-register {
-  position: absolute;
+  padding-top: 20px;
   text-align: center;
-  left: 0;
-  top: 98vw;
-  right: 0;
   color: #fb6500;
   font-weight: 700;
 }
 .login-register em {
   margin: 0 10px;
 }
+.get-code,
 .phone-prev-warp {
   position: relative;
 }
@@ -200,5 +233,16 @@ export default {
 }
 .upid span {
   font-weight: normal;
+}
+.get-code .btn-code {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: 1px solid #f47401;
+  padding: 0 5px;
+  background-color: #fc8c02;
+  color: #fff;
+  border-radius: 3px;
+  z-index: 99;
 }
 </style>

@@ -161,6 +161,13 @@ const I18N_CONF = {
   TeamBenefitsToday: 'Equipo beneficios hoy',
 
   //补充
-  teamMember: 'EquipoMiembro'
+  teamMember: 'EquipoMiembro',
+
+  //20210311 获取验证码
+  authCode: 'Entrada verificación código',
+  authcodeEmpty: 'verificación código No puede estar vacío',
+  getCode: 'Consigue código',
+  after: 'después de',
+  reacquire: 'readquirir'
 };
 export default I18N_CONF;

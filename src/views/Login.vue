@@ -54,7 +54,7 @@ export default {
   inject: ['lang', 'changeLanguage'],
   setup() {
     // 语言选择
-    var curLangKey = localStorage.getItem('language_key') || 'enUS';
+    var curLangKey = localStorage.getItem('language_key') || 'PT';
     const state = reactive({
       loginForm: { username: '', password: '' },
       visible: false,

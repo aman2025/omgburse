@@ -97,6 +97,7 @@ export default {
   text-align: center;
   width: 100px;
   margin: 0 10px;
+  font-size: 14px !important;
 }
 .dialog .dl-ft .ok {
   background-color: #4765fd;
