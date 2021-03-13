@@ -53,14 +53,14 @@ export default {
     // 切换语言
     const storeLang = localStorage.getItem('language_key');
     const lang = reactive({
-      locale: enUS,
+      locale: PT,
       storeLang: storeLang
     });
     const changeLanguage = val => {
-      if (val == 'PT') {
+      if (val == 'PT' || val == undefined) {
         localStorage.setItem('language_key', 'PT');
         lang.locale = PT;
-      } else if (val == 'enUS' || val == undefined) {
+      } else if (val == 'enUS') {
         localStorage.setItem('language_key', 'enUS');
         lang.locale = enUS;
       } else if (val == 'SP') {
