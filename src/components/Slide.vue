@@ -1,8 +1,10 @@
 <template>
-  <div class="slide">
-    <swiper :slides-per-view="1" :space-between="0" autoplay :loop="true" @swiper="onSwiper" @slideChange="onSlideChange">
-      <swiper-slide v-for="item in slideData" :key="item.id"><img :src="item.img"/></swiper-slide>
-    </swiper>
+  <div class="slide-wrap">
+    <div class="slide">
+      <swiper :slides-per-view="1" :space-between="0" autoplay :loop="true" @swiper="onSwiper" @slideChange="onSlideChange">
+        <swiper-slide v-for="item in slideData" :key="item.id"><img :src="item.img"/></swiper-slide>
+      </swiper>
+    </div>
   </div>
 </template>
 
@@ -54,13 +56,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.slide-wrap {
+  padding: 5px 10px 0;
+}
 .slide {
   background-color: #eee;
-  position: fixed;
-  top: 5px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
   height: 215px;
   z-index: 9999;
   border-radius: 10px;

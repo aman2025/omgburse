@@ -119,8 +119,7 @@ export default {
 }
 .entry {
   display: flex;
-  margin-top: 215px;
-  padding: 15px 10px 0;
+  padding: 10px 10px 0;
   margin-bottom: -10px;
   justify-content: space-between;
 }

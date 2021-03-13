@@ -90,7 +90,7 @@ export default {
   padding: 0 0 0 88px;
 }
 .wraper.ipadd2 .ipt {
-  padding: 0 0 0 112px;
+  padding: 0 0 0 128px;
 }
 .wraper.ipt-date input[type='date']:before {
   content: attr(placeholder);
