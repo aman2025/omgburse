@@ -23,7 +23,7 @@ const request = () => {
 
       if (!url.includes('/Api/User/login') && !url.includes('/Api/System/ContactUs') && !url.includes('/Api/User/getcode/username')) {
         let token = {};
-        let lang = 'enUS';
+        let lang = 'PT';
         try {
           // 如果获取不到token，进入catch去goLogin()
           token = JSON.parse(localStorage.token);
