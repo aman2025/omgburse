@@ -168,6 +168,12 @@ const I18N_CONF = {
   authcodeEmpty: 'verificación código No puede estar vacío',
   getCode: 'Consigue código',
   after: 'después de',
-  reacquire: 'readquirir'
+  reacquire: 'readquirir',
+
+  //20210316 birth_day, bank_code
+  birthDateCannotBeEmpty: 'nacimiento Fecha No puede estar vacío',
+  enterBankCode: 'Entrada Banco código',
+  bankCodeCannotBeEmpty: 'Banco código No puede estar vacío',
+  enterBirthDate: 'Entrada nacimiento Fecha'
 };
 export default I18N_CONF;

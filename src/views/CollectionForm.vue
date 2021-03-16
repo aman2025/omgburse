@@ -8,9 +8,9 @@
       <!-- sex下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
-        <select name="" id="" class="sel-ipt" v-model="sex">
-          <option :value="lang.locale.male">{{ lang.locale.male }}</option>
-          <option :value="lang.locale.female">{{ lang.locale.female }}</option>
+        <select name="" id="" class="sel-ipt" v-model="collectionForm.sex">
+          <option value="male">{{ lang.locale.male }}</option>
+          <option value="female">{{ lang.locale.female }}</option>
         </select>
         <span class="caret"></span>
       </div>
@@ -19,21 +19,23 @@
       <!-- thebank 下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
-        <select name="" id="" class="sel-ipt" v-model="thebank">
+        <select name="" id="" class="sel-ipt" v-model="collectionForm.thebank">
           <option v-for="item in banklist" :key="item.id" :value="item.id">{{ item.title }}</option>
         </select>
         <span class="caret"></span>
       </div>
-      <Input :class="{ 'ipt-date': collectionForm.id_expire_date == '' }" placeholder="Enter expire date" type="date" iconuser="icon-q07" :hasIcon="true" objkey="id_expire_date" v-model:formData="collectionForm" />
-      <Input :class="{ 'ipt-date': collectionForm.id_issue_date == '' }" placeholder="Enter issue date" type="date" iconuser="icon-q07" :hasIcon="true" objkey="id_issue_date" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterBankCode" type="number" iconuser="icon-q07" :hasIcon="true" objkey="bank_code" maxLen="20" v-model:formData="collectionForm" />
+      <Input :class="{ 'ipt-date': collectionForm.id_expire_date == '' }" :placeholder="lang.locale.enterExpireDate" type="date" iconuser="icon-q07" :hasIcon="true" objkey="id_expire_date" v-model:formData="collectionForm" />
+      <Input :class="{ 'ipt-date': collectionForm.id_issue_date == '' }" :placeholder="lang.locale.enterIssueDate" type="date" iconuser="icon-q07" :hasIcon="true" objkey="id_issue_date" v-model:formData="collectionForm" />
+      <Input :class="{ 'ipt-date': collectionForm.birth_date == '' }" :placeholder="lang.locale.enterBirthDate" type="date" iconuser="icon-q07" :hasIcon="true" objkey="birth_date" v-model:formData="collectionForm" />
       <Input :placeholder="lang.locale.enterIdNumber" iconuser="icon-q07" :hasIcon="true" objkey="id_number" maxLen="20" v-model:formData="collectionForm" />
       <!-- id_type下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
-        <select name="" id="" class="sel-ipt" v-model="id_type">
-          <option :value="lang.locale.identity_card">{{ lang.locale.identity_card }}</option>
-          <option :value="lang.locale.passport">{{ lang.locale.passport }}</option>
-          <option :value="lang.locale.driving_licence">{{ lang.locale.driving_licence }}</option>
+        <select name="" id="" class="sel-ipt" v-model="collectionForm.id_type">
+          <option value="identity_card">{{ lang.locale.identity_card }}</option>
+          <option value="passport">{{ lang.locale.passport }}</option>
+          <option value="driving_licence">{{ lang.locale.driving_licence }}</option>
         </select>
         <span class="caret"></span>
       </div>
@@ -50,7 +52,7 @@
 import OutView from '@/components/OutView.vue';
 import Button from '@/components/Button.vue';
 import Input from '@/components/Input.vue';
-import { inject, reactive, ref, toRefs } from 'vue';
+import { inject, reactive, toRefs } from 'vue';
 import request from '../utils/request';
 
 export default {
@@ -62,22 +64,21 @@ export default {
   },
   setup() {
     const lang = inject('lang');
-    const sex = ref(lang.locale.male);
-    const id_type = ref(lang.locale.identity_card);
-    const thebank = ref('22');
     const state = reactive({
       collectionForm: {
-        sex: sex.value,
+        sex: lang.locale.male,
         last_name: '',
         first_name: '',
         email: '',
         theaccount: '',
         bank_account_number: '',
-        thebank: thebank.value,
+        thebank: '22',
         id_expire_date: '',
         id_issue_date: '',
+        birth_date: '',
+        bank_code: '',
         id_number: '',
-        id_type: id_type.value,
+        id_type: lang.locale.identity_card,
         mobile: '',
         mobile_area: '',
         address: '',
@@ -102,6 +103,8 @@ export default {
         state.collectionForm.thebank = res.data.thebank;
         state.collectionForm.id_expire_date = res.data.id_expire_date;
         state.collectionForm.id_issue_date = res.data.id_issue_date;
+        state.collectionForm.birth_date = res.data.birth_date;
+        state.collectionForm.bank_code = res.data.bank_code;
         state.collectionForm.id_number = res.data.id_number;
         state.collectionForm.id_type = res.data.id_type;
         state.collectionForm.mobile = res.data.mobile;
@@ -122,10 +125,7 @@ export default {
 
     return {
       ...toRefs(state),
-      sex,
-      lang,
-      thebank,
-      id_type
+      lang
     };
   },
   methods: {
@@ -137,6 +137,7 @@ export default {
         const collectionForm = Object.assign({}, this.collectionForm, { token: tokenVal });
         const url = '/Api/Bank/bankinfo';
         const addName = opts => request.post(url, opts);
+        console.log(collectionForm);
         addName(collectionForm).then(res => {
           if (res.status == 1) {
             this.showToast(res.msg);
@@ -161,6 +162,8 @@ export default {
         thebank: this.lang.locale.theBankCannotBeEmpty,
         id_expire_date: this.lang.locale.idExpireDateCannotBeEmpty,
         id_issue_date: this.lang.locale.idIssueDateCannotBeEmpty,
+        birth_date: this.lang.locale.birthDateCannotBeEmpty,
+        bank_code: this.lang.locale.bankCodeCannotBeEmpty,
         id_number: this.lang.locale.idNumberCannotBeEmpty,
         id_type: this.lang.locale.idTypeCannotBeEmpty,
         mobile: this.lang.locale.mobileCannotBeEmpty,
@@ -177,7 +180,7 @@ export default {
         }
         return val;
       });
-      if (vals.filter(v => v).length === 15) {
+      if (vals.filter(v => v).length === 17) {
         // var numReg = /^[0-9]*$/;
         // eslint-disable-next-line no-useless-escape
         var emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;

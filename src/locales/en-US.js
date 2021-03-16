@@ -168,6 +168,12 @@ const I18N_CONF = {
   authcodeEmpty: 'verification code cannot be empty',
   getCode: 'get code',
   after: 'after',
-  reacquire: 'reacquire'
+  reacquire: 'reacquire',
+
+  //20210316 birth_day, bank_code
+  birthDateCannotBeEmpty: 'birth date cannot be empty',
+  enterBankCode: 'Enter bank code',
+  bankCodeCannotBeEmpty: 'bank code cannot be empty',
+  enterBirthDate: 'Enter expire date'
 };
 export default I18N_CONF;

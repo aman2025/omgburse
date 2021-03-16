@@ -76,7 +76,7 @@ export default {
               // 没绑定银行卡
               this.showToast(res.msg);
               setTimeout(() => {
-                this.$router.push('/BankInformation');
+                this.$router.push('/CollectionForm');
               }, 2000);
             } else if (res.status == 1) {
               // 提现成功
