@@ -22,7 +22,7 @@ export default {
       content: {}
     });
     // 语言选择
-    var curLangKey = localStorage.getItem('language_key') || 'PT';
+    var curLangKey = 'PT';
     var url = `/Api/System/ContactUs?lang=${curLangKey}`;
     const getCompany = () => request.get(url);
     getCompany()

@@ -25,7 +25,7 @@ export default {
       content: {}
     });
     // 语言选择
-    var curLangKey = localStorage.getItem('language_key') || 'PT';
+    var curLangKey = 'PT';
     var url = `/Api/System/Downloadinfo?lang=${curLangKey}`;
 
     const getApp = () => request.get(url);
