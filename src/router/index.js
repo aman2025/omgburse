@@ -203,6 +203,14 @@ const routes = [
     meta: {
       showTab: false
     }
+  },
+  {
+    path: '/appDownloadInfo',
+    name: 'AppDownloadInfo',
+    component: () => import('../views/AppDownloadInfo.vue'),
+    meta: {
+      showTab: false
+    }
   }
 ];
 
