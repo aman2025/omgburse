@@ -43,6 +43,7 @@
       <Input :placeholder="lang.locale.enterMobile" type="number" iconuser="icon-q07" :hasIcon="true" objkey="mobile" maxLen="20" v-model:formData="collectionForm" />
       <Input :placeholder="lang.locale.enterAddress" iconuser="icon-q07" :hasIcon="true" objkey="address" maxLen="255" v-model:formData="collectionForm" />
       <Input :placeholder="lang.locale.enterCity" iconuser="icon-q07" :hasIcon="true" objkey="city" maxLen="50" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterCpfNumber" iconuser="icon-q07" :hasIcon="true" objkey="cpf_number" maxLen="50" v-model:formData="collectionForm" />
     </div>
     <Button :btnText="lang.locale.save" theme="primary" class="tipBtn" @click="saveName" />
     <Toast v-show="visible" :message="message" />
@@ -82,7 +83,8 @@ export default {
         mobile: '',
         mobile_area: '',
         address: '',
-        city: ''
+        city: '',
+        cpf_number: ''
       },
       visible: false,
       banklist: '',
@@ -111,6 +113,7 @@ export default {
         state.collectionForm.mobile_area = res.data.mobile_area;
         state.collectionForm.address = res.data.address;
         state.collectionForm.city = res.data.city;
+        state.collectionForm.cpf_number = res.data.cpf_number;
       })
       .catch(() => {});
 
@@ -169,7 +172,8 @@ export default {
         mobile: this.lang.locale.mobileCannotBeEmpty,
         mobile_area: this.lang.locale.mobileAreaCannotBeEmpty,
         address: this.lang.locale.addresCannotBeEmpty,
-        city: this.lang.locale.cityCannotBeEmpty
+        city: this.lang.locale.cityCannotBeEmpty,
+        cpf_number: this.lang.locale.cpfNumberCannotBeEmpty
       };
       var errorsLog = [];
       var vals = Object.keys(errors).map(key => {
@@ -180,7 +184,7 @@ export default {
         }
         return val;
       });
-      if (vals.filter(v => v).length === 17) {
+      if (vals.filter(v => v).length === 18) {
         // var numReg = /^[0-9]*$/;
         // eslint-disable-next-line no-useless-escape
         var emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;

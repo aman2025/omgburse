@@ -174,6 +174,7 @@ const I18N_CONF = {
   birthDateCannotBeEmpty: 'nacimiento Fecha No puede estar vacío',
   enterBankCode: 'Entrada Banco código',
   bankCodeCannotBeEmpty: 'Banco código No puede estar vacío',
-  enterBirthDate: 'Entrada nacimiento Fecha'
+  enterBirthDate: 'Entrada nacimiento Fecha',
+  enterCpfNumber: 'Entrada cpf Número'
 };
 export default I18N_CONF;
