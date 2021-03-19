@@ -172,9 +172,12 @@ const I18N_CONF = {
 
   //20210316 birth_day, bank_code
   birthDateCannotBeEmpty: 'nascimento Data de emissão Não Pode esvaziar',
-  enterBankCode: 'Entrar Banco código',
+  enterBankCode: 'Entrar Código da agência bancária',
   bankCodeCannotBeEmpty: 'Banco código Não Pode esvaziar',
   enterBirthDate: 'Entrar nascimento Data',
-  enterCpfNumber: 'Entrar cpf Número'
+  enterCpfNumber: 'Entrar cpf Número',
+
+  // 20210319 ptype
+  ptypeEmpty: 'Recarga Tipo Não Pode esvaziar'
 };
 export default I18N_CONF;

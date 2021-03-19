@@ -175,6 +175,9 @@ const I18N_CONF = {
   enterBankCode: 'Enter bank code',
   bankCodeCannotBeEmpty: 'bank code cannot be empty',
   enterBirthDate: 'Enter expire date',
-  enterCpfNumber: 'Enter cpf number'
+  enterCpfNumber: 'Enter cpf number',
+
+  // 20210319 ptype
+  ptypeEmpty: 'recharge type cannot be empty'
 };
 export default I18N_CONF;

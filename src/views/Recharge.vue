@@ -10,20 +10,10 @@
       </div>
       <!-- <h3 class="typeTitle">{{ lang.locale.recharge2 }} {{ lang.locale.type }}</h3> -->
       <div class="sel-ptype">
-        <div v-show="rechargeType.typeTwo">
-          <input type="radio" id="scanning" v-model="ptype" value="2" checked /><label for="scanning">{{ lang.locale.scanningCode }}</label>
-        </div>
-        <div v-show="rechargeType.typeOne">
-          <input type="radio" id="transfer" v-model="ptype" value="1" /><label for="transfer">{{ lang.locale.transferPayment }}</label>
+        <div v-for="(item, index) in channel" :key="item.id">
+          <input name="rechargeType" type="radio" :id="'scanning' + index" v-model="ptype" :value="item.id" /><label :for="'scanning' + index">{{ item.title }}</label>
         </div>
       </div>
-      <!-- <div class="sel-ipt-wrap ">
-        <select name="" id="" class="sel-ipt" v-model="ptype">
-          <option value="1">Transfer payment</option>
-          <option value="2">Payment by scanning code</option>
-        </select>
-        <span class="caret"></span>
-      </div> -->
     </div>
     <div class="box-opt">
       <ul>
@@ -47,13 +37,14 @@ export default {
     Toast,
     Button
   },
-  inject: ['lang', 'rechargeType'],
+  inject: ['lang'],
   setup() {
     const state = reactive({
       visible: false,
       message: '',
       ptype: '',
       moneyList: [],
+      channel: [],
       isChange: -1
     });
     const url = '/Api/Index/Moneylist';
@@ -63,6 +54,15 @@ export default {
         state.moneyList = res.data;
       })
       .catch(() => {});
+    //获取充值类型
+    const channelUrl = '/Api/System/Channel';
+    const getChannel = () => request.get(channelUrl);
+    getChannel()
+      .then(res => {
+        state.channel = res.data;
+      })
+      .catch(() => {});
+
     // 选中金额
     const money = ref('');
     const selectMoney = (num, idx) => {
@@ -79,12 +79,17 @@ export default {
   },
   methods: {
     recharge() {
-      if (this.money) {
+      if (this.money && this.ptype) {
         const urlOther = '/Api/Demo/ttopay';
         const tokenVal = JSON.parse(localStorage.token);
-        window.location.href = `${urlOther}?money=${this.money}&token=${tokenVal}&ptype=${this.ptype}`;
+        console.log(`${urlOther}?money=${this.money}&token=${tokenVal}&ptype=${this.ptype}`);
+        // window.location.href = `${urlOther}?money=${this.money}&token=${tokenVal}&ptype=${this.ptype}`;
       } else {
-        this.showToast(this.lang.locale.moneyEmpty);
+        if (!this.money) {
+          this.showToast(this.lang.locale.moneyEmpty);
+        } else {
+          this.showToast(this.lang.locale.ptypeEmpty);
+        }
       }
     },
     closeToast() {
@@ -196,6 +201,7 @@ export default {
 }
 // radio 选择
 .sel-ptype {
+  padding: 10px 0 0;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
