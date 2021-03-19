@@ -83,7 +83,7 @@ export default {
         const urlOther = '/Api/Demo/ttopay';
         const tokenVal = JSON.parse(localStorage.token);
         console.log(`${urlOther}?money=${this.money}&token=${tokenVal}&ptype=${this.ptype}`);
-        // window.location.href = `${urlOther}?money=${this.money}&token=${tokenVal}&ptype=${this.ptype}`;
+        window.location.href = `${urlOther}?money=${this.money}&token=${tokenVal}&ptype=${this.ptype}`;
       } else {
         if (!this.money) {
           this.showToast(this.lang.locale.moneyEmpty);

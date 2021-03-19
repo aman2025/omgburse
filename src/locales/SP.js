@@ -172,8 +172,8 @@ const I18N_CONF = {
 
   //20210316 birth_day, bank_code
   birthDateCannotBeEmpty: 'nacimiento Fecha No puede estar vacío',
-  enterBankCode: 'Entrada Código de la sucursal bancaria',
-  bankCodeCannotBeEmpty: 'Banco código No puede estar vacío',
+  enterBankCode: 'Entrada Código da Agência',
+  bankCodeCannotBeEmpty: 'Código da Agência No puede estar vacío',
   enterBirthDate: 'Entrada nacimiento Fecha',
   enterCpfNumber: 'Entrada cpf Número',
 
