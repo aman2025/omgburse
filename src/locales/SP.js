@@ -178,6 +178,20 @@ const I18N_CONF = {
   enterCpfNumber: 'Entrada cpf Número',
 
   // 20210319 ptype
-  ptypeEmpty: 'Recargar Tipo No puede estar vacío'
+  ptypeEmpty: 'Recargar Tipo No puede estar vacío',
+
+  // 20210325 新bankinfo表单
+  enterPayName: 'Entrada pagar nombre',
+  enterPayMobile: 'Entrada pagar Móvil',
+  enterDocumentId: 'Entrada documento id',
+  enterAccountNumber: 'Entrada cuenta Número',
+  enterAccountDigit: 'Entrada cuenta dígito',
+  enterBranchCode: 'Entrada rama Código da',
+  payNameCannotBeEmpty: 'pagar nombre No puede estar vacío',
+  payMobileCannotBeEmpty: 'pagar Móvil No puede estar vacío',
+  documentIdCannotBeEmpty: 'documento id No puede estar vacío',
+  accountNumberCannotBeEmpty: 'cuenta Número No puede estar vacío',
+  accountDigitCannotBeEmpty: 'cuenta dígito No puede estar vacío',
+  branchCodeCannotBeEmpty: 'rama Código da No puede estar vacío'
 };
 export default I18N_CONF;
