@@ -178,6 +178,20 @@ const I18N_CONF = {
   enterCpfNumber: 'Enter cpf number',
 
   // 20210319 ptype
-  ptypeEmpty: 'recharge type cannot be empty'
+  ptypeEmpty: 'recharge type cannot be empty',
+
+  // 20210325 新bankinfo表单
+  enterPayName: 'enter pay name',
+  enterPayMobile: 'enter pay mobile',
+  enterDocumentId: 'enter document id',
+  enterAccountNumber: 'enter account number',
+  enterAccountDigit: 'enter account digit',
+  enterBranchCode: 'enter branch code',
+  payNameCannotBeEmpty: 'pay name cannot be empty',
+  payMobileCannotBeEmpty: 'pay mobile cannot be empty',
+  documentIdCannotBeEmpty: 'document id cannot be empty',
+  accountNumberCannotBeEmpty: 'account number cannot be empty',
+  accountDigitCannotBeEmpty: 'account digit cannot be empty',
+  branchCodeCannotBeEmpty: 'branch code cannot be empty'
 };
 export default I18N_CONF;
