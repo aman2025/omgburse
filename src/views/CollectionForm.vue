@@ -2,11 +2,11 @@
   <div class="order">
     <OutView :title="lang.locale.fillInPersonalInformation" :isBack="true" />
     <div class="out-wraper">
-      <Input placeholder="enter pay name" iconuser="icon-q07" :hasIcon="true" objkey="pay_name" v-model:formData="collectionForm" />
-      <Input placeholder="enter pay mobile" iconuser="icon-q07" :hasIcon="true" objkey="pay_mobile" v-model:formData="collectionForm" />
-      <Input placeholder="enter document id" iconuser="icon-q07" :hasIcon="true" objkey="document_id" v-model:formData="collectionForm" />
-      <Input placeholder="enter account number" iconuser="icon-q07" :hasIcon="true" objkey="account_number" v-model:formData="collectionForm" />
-      <Input placeholder="enter account digit" iconuser="icon-q07" :hasIcon="true" objkey="account_digit" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterPayName" iconuser="icon-q07" :hasIcon="true" objkey="pay_name" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterPayMobile" iconuser="icon-q07" :hasIcon="true" objkey="pay_mobile" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterDocumentId" iconuser="icon-q07" :hasIcon="true" objkey="document_id" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterAccountNumber" iconuser="icon-q07" :hasIcon="true" objkey="account_number" v-model:formData="collectionForm" />
+      <Input :placeholder="lang.locale.enterAccountDigit" iconuser="icon-q07" :hasIcon="true" objkey="account_digit" v-model:formData="collectionForm" />
       <!-- thebank 下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
