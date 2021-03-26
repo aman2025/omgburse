@@ -3,7 +3,7 @@
     <OutView :title="lang.locale.resetPassword" :isBack="true" />
     <div class="login-bd">
       <div>
-        <Input type="password" :placeholder="lang.locale.enterYourOldPassword" objkey="oldpassword" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" maxLen="10" />
+        <Input type="password" :placeholder="lang.locale.enterYourOldPassword" objkey="oldpassword" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
       </div>
       <div>
         <Input type="password" :placeholder="lang.locale.enterYourPhone" objkey="password" v-model:formData="loginForm" iconuser="icon-q05" :hasIcon="true" />
