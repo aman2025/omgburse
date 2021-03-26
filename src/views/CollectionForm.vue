@@ -7,7 +7,6 @@
       <Input placeholder="enter document id" iconuser="icon-q07" :hasIcon="true" objkey="document_id" v-model:formData="collectionForm" />
       <Input placeholder="enter account number" iconuser="icon-q07" :hasIcon="true" objkey="account_number" v-model:formData="collectionForm" />
       <Input placeholder="enter account digit" iconuser="icon-q07" :hasIcon="true" objkey="account_digit" v-model:formData="collectionForm" />
-      <Input placeholder="enter branch code" iconuser="icon-q07" :hasIcon="true" objkey="branch_code" v-model:formData="collectionForm" />
       <!-- thebank 下拉 -->
       <div class="sel-ipt-wrap">
         <i></i>
@@ -16,6 +15,7 @@
         </select>
         <span class="caret"></span>
       </div>
+      <Input placeholder="enter branch code" iconuser="icon-q07" :hasIcon="true" objkey="branch_code" v-model:formData="collectionForm" />
     </div>
     <Button :btnText="lang.locale.save" theme="primary" class="tipBtn" @click="saveName" />
     <Toast v-show="visible" :message="message" />

@@ -181,12 +181,12 @@ const I18N_CONF = {
   ptypeEmpty: 'Recarga Tipo Não Pode esvaziar',
 
   // 20210325 新bankinfo表单
-  enterPayName: 'Entrar Pague Nome',
-  enterPayMobile: 'Entrar Pague Móvel',
-  enterDocumentId: 'Entrar documento id',
-  enterAccountNumber: 'Entrar Conta Número',
-  enterAccountDigit: 'Entrar Conta dígito',
-  enterBranchCode: 'Entrar filial código',
+  enterPayName: 'Entrar Nome',
+  enterPayMobile: 'Entrar Número de telefone celular',
+  enterDocumentId: 'Entrar CPF',
+  enterAccountNumber: 'Entrar Conta',
+  enterAccountDigit: 'Entrar Código de Verificação',
+  enterBranchCode: 'Entrar Código do Banco da Agência',
   payNameCannotBeEmpty: 'Pague Nome  Não Pode esvaziar',
   payMobileCannotBeEmpty: 'Pague Móvel  Não Pode esvaziar',
   documentIdCannotBeEmpty: 'documento id  Não Pode esvaziar',
