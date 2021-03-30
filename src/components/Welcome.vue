@@ -98,6 +98,8 @@ export default {
   padding: 2px;
   white-space: pre-wrap;
   min-height: 180px;
+  overflow: auto;
+  max-height: 320px;
 }
 .w-blank {
   height: 25px;

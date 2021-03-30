@@ -2,13 +2,13 @@
   <div class="product-detail">
     <Loading v-if="isLoad" />
     <OutView :title="lang.locale.orderGrabbing" :isBack="true" />
-    <div class="instruction">
+    <!-- <div class="instruction">
       <h3>{{ lang.locale.changeName }}</h3>
       <div>
         <p>1: {{ lang.locale.accountPerDay }}</p>
         <p>2: {{ lang.locale.matchingBusiness }}</p>
       </div>
-    </div>
+    </div> -->
     <div class="text1">{{ lang.locale.commission }}: {{ goodsDetail.per }} {{ lang.locale.productPrice }}</div>
     <div class="goods">
       <h3>

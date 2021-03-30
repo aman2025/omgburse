@@ -35,19 +35,21 @@
     </div>
     <Toast v-show="visible" :message="message" />
     <!-- <img src="../assets/app.png" class="app" alt="" @click="appDownload" /> -->
+    <Dialog v-if="show" :content="content" :onOk="onOk" :onCancel="onCancel" title="tip" :hasHead="false" />
   </div>
 </template>
 <script>
 import request from '../utils/request';
-import { toRefs, reactive, inject } from 'vue';
+import { toRefs, reactive, inject, ref } from 'vue';
 import Input from '@/components/Input.vue';
 import Button from '@/components/Button.vue';
 import Toast from '@/components/Toast.vue';
 import { useRoute } from 'vue-router';
+import Dialog from '@/components/Dialog.vue';
 
 export default {
   name: 'Register',
-  components: { Input, Button, Toast },
+  components: { Input, Button, Toast, Dialog },
   inject: ['lang'],
   setup() {
     // app download url
@@ -58,21 +60,41 @@ export default {
     // const { ctx } = getCurrentInstance();
     const router = useRoute();
     const params = router.query;
-    console.log(params.upid);
     const state = reactive({
       loginForm: { username: '', authCode: '', password: '', repassword: '', upid: params.upid },
       visible: false,
       message: '',
-      mins: 60
+      mins: 60,
+      isApp: params.app,
+      content: '立即下载app'
     });
+    // dialog show
+    const show = ref(false);
+    // 响应式回调方法，dialog点击ok
+    const callback = ref(function() {});
+    // 确定dialog
+    const onOk = ref(val => {
+      show.value = val;
+      callback.value();
+    });
+    // 关闭dialog
+    const onCancel = ref(val => {
+      show.value = val;
+    });
+
     return {
       appDownload,
       ...toRefs(state),
-      params
+      params,
+      onOk,
+      onCancel,
+      show,
+      callback
     };
   },
   methods: {
     handleSubmit() {
+      var _this = this;
       var vals = this.loginValidate();
       if (vals) {
         // 校验通过并获取值
@@ -84,9 +106,17 @@ export default {
           .then(res => {
             // localStorage.setItem('token', JSON.stringify(res.data));
             if (res.status == 1) {
-              this.$router.push('/');
+              if (_this.isApp) {
+                //  跳转到下载地址
+                _this.show = true;
+                _this.callback = () => {
+                  _this.appDownload();
+                };
+              } else {
+                _this.$router.push('/');
+              }
             } else {
-              this.showToast(res.msg);
+              _this.showToast(res.msg);
             }
           })
           .catch(() => {
