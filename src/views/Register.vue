@@ -66,7 +66,7 @@ export default {
       message: '',
       mins: 60,
       isApp: params.app,
-      content: '立即下载app'
+      content: 'Baixar agora app'
     });
     // dialog show
     const show = ref(false);
