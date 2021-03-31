@@ -109,11 +109,13 @@ export default {
       const input = document.createElement('input');
       document.body.appendChild(input);
       input.setAttribute('value', val);
-      input.select();
-      if (document.execCommand('copy')) {
-        document.execCommand('copy');
-      }
+      // input.select();
+      input.setSelectionRange(0, 100);
+      input.focus();
+      document.execCommand('copy');
+      input.blur();
       document.body.removeChild(input);
+
       this.showToast('copyed successful');
     },
     closeToast() {
