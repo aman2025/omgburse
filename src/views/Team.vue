@@ -5,9 +5,9 @@
     <div class="title">
       <img :src="teamimg" />
       <div class="titleText" ref="txt01">{{ teamList.referral }}</div>
-      <div class="copyBtn" @click="copy(txt01.innerText)">{{ lang.locale.copy }}</div>
+      <div class="copyBtn" @click="copy(teamList.referral)">{{ lang.locale.copy }}</div>
       <div class="titleText" ref="txt02" style="top: 43vw;">{{ teamList.referralurl }}</div>
-      <div class="copyBtn" style="top: 43vw;" @click="copy(txt02.innerText)">{{ lang.locale.copy }}</div>
+      <div class="copyBtn" style="top: 43vw;" @click="copy(teamList.referralurl)">{{ lang.locale.copy }}</div>
     </div>
     <!-- 头部图片 end -->
     <!-- team size  -->
