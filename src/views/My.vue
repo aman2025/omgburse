@@ -43,6 +43,7 @@ export default {
     const router = useRouter();
     const signOut = () => {
       window.localStorage.removeItem('token');
+      window.localStorage.removeItem('language_key');
       router.push('/Login');
     };
     const lists = [

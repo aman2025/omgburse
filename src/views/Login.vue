@@ -55,6 +55,7 @@ export default {
   setup() {
     // 语言选择
     var curLangKey = localStorage.getItem('language_key') || 'PT';
+    localStorage.setItem('language_key', curLangKey);
     const state = reactive({
       loginForm: { username: '', password: '' },
       visible: false,
